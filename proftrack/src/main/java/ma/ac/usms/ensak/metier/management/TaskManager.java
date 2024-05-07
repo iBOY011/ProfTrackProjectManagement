@@ -6,16 +6,16 @@ import java.util.List;
 
 import ma.ac.usms.ensak.metier.POJO.Project;
 import ma.ac.usms.ensak.metier.POJO.Task;
-import ma.ac.usms.ensak.persistance.impl.taskImpl;
+import ma.ac.usms.ensak.persistance.impl.TaskImpl;
 
 public class TaskManager {
         
         private List<Task> tasks;
-        private taskImpl taskImpl;
+        private TaskImpl taskImpl;
     
         public TaskManager() {
             tasks = new ArrayList<Task>();
-            taskImpl = new taskImpl();
+            taskImpl = new TaskImpl();
         }
     
         public void sort() {
