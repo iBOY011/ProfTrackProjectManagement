@@ -1,0 +1,16 @@
+ma\ac\usms\ensak\persistance\impl\workSessionImpl.class
+ma\ac\usms\ensak\persistance\dao\taskDAO.class
+ma\ac\usms\ensak\metier\POJO\project.class
+ma\ac\usms\ensak\metier\POJO\task.class
+ma\ac\usms\ensak\metier\POJO\listToDo.class
+ma\ac\usms\ensak\persistance\dao\projectDAO.class
+ma\ac\usms\ensak\persistance\dao\ListeDAO.class
+ma\ac\usms\ensak\persistance\impl\taskImpl.class
+ma\ac\usms\ensak\metier\POJO\workSession.class
+ma\ac\usms\ensak\persistance\impl\DocumentImpl.class
+ma\ac\usms\ensak\persistance\dao\DocumentDAO.class
+ma\ac\usms\ensak\persistance\StorageFile$1.class
+ma\ac\usms\ensak\persistance\StorageFile.class
+ma\ac\usms\ensak\persistance\dao\workSessionDAO.class
+ma\ac\usms\ensak\Main.class
+ma\ac\usms\ensak\metier\POJO\document.class
