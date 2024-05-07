@@ -10,7 +10,7 @@ import java.util.List;
 
 import ma.ac.usms.ensak.metier.POJO.Task;
 
-public interface taskDAO {
+public interface TaskDAO {
     void addTask(Task task);
     Task getTaskById(int idtask);
     void updateTask(Task task);

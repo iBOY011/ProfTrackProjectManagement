@@ -4,13 +4,13 @@ import java.util.List;
 import java.util.ArrayList;
 import ma.ac.usms.ensak.persistance.StorageFile;
 import ma.ac.usms.ensak.metier.POJO.Task;
-import ma.ac.usms.ensak.persistance.dao.taskDAO;
+import ma.ac.usms.ensak.persistance.dao.TaskDAO;
 
 
 /**
  * Implementation of the taskDAO interface for managing tasks.
  */
-public class taskImpl implements taskDAO {
+public class TaskImpl implements TaskDAO {
 
 
     /**
