@@ -1,21 +1,19 @@
-/**
- * 
- */
 package ma.ac.usms.ensak.persistance.dao;
 
-/**
- * 
- */
 import java.util.List;
 
-import ma.ac.usms.ensak.metier.POJO.project;
+import ma.ac.usms.ensak.metier.POJO.Project;
 
-public interface projectDAO {
-    void createproject(project project);
-    project readproject(int idproject);
-    void updateproject(project project);
-    void deleteproject(int idproject);
-    List<project> getAllprojects();
-    List<project> getprojectsByCategory(String category);
-    List<project> getprojectsByType(String type);
+public interface ProjectDAO {
+
+    void addProject(Project project);
+
+    Project getProjectById(String projetId);
+
+    List<Project> getAllProjects();
+
+    void updateProject(Project updatedProjet);
+
+    void deleteProject(String projetId);
+
 }

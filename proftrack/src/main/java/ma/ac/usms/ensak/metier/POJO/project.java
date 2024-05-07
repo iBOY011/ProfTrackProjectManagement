@@ -1,36 +1,56 @@
 package ma.ac.usms.ensak.metier.POJO;
 
+import java.util.Date;
+
 /**
- * The `project` class represents a project with various attributes such as id, description, start date, end date, category, and type.
+ * The `project` class represents a project with various attributes such as id,
+ * description, start date, end date, category, and type.
  */
-public class project {
+public class Project {
     private int id;
+    private String title;
     private String description;
-    private String start_date;
-    private String end_date;
+    private Date start_date;
+    private Date end_date;
     private String category;
     private String type;
+    private boolean closed;
 
-    public project() {
+    public Project() {
     }
 
     /**
      * Constructs a new `project` object with the specified attributes.
      * 
      * @param id          the id of the project
+     * @param title       the title of the project
      * @param description the description of the project
      * @param start_date  the start date of the project
      * @param end_date    the end date of the project
      * @param category    the category of the project
      * @param type        the type of the project
+     * @param closed      the status of the project
      */
-    public project(int id, String description, String start_date, String end_date, String category, String type) {
+    public Project(int id, String title, String description, Date start_date, Date end_date, String category,
+            String type, boolean closed) {
         this.id = id;
+        this.title = title;
         this.description = description;
         this.start_date = start_date;
         this.end_date = end_date;
         this.category = category;
         this.type = type;
+        this.closed = closed;
+    }
+
+    public Project(String title, String description, Date start_date, Date end_date, String category, String type, boolean closed) {
+        this.title = title;
+        this.description = description;
+        this.start_date = start_date;
+        this.end_date = end_date;
+        this.category = category;
+        this.type = type;
+        this.closed = closed;
     }
 
     /**
@@ -74,7 +94,7 @@ public class project {
      * 
      * @return the start date of the project
      */
-    public String getStart_date() {
+    public Date getStart_date() {
         return start_date;
     }
 
@@ -83,7 +103,7 @@ public class project {
      * 
      * @param start_date the start date to set
      */
-    public void setStart_date(String start_date) {
+    public void setStart_date(Date start_date) {
         this.start_date = start_date;
     }
 
@@ -92,7 +112,7 @@ public class project {
      * 
      * @return the end date of the project
      */
-    public String getEnd_date() {
+    public Date getEnd_date() {
         return end_date;
     }
 
@@ -101,7 +121,7 @@ public class project {
      * 
      * @param end_date the end date to set
      */
-    public void setEnd_date(String end_date) {
+    public void setEnd_date(Date end_date) {
         this.end_date = end_date;
     }
 
@@ -139,6 +159,35 @@ public class project {
      */
     public void setType(String type) {
         this.type = type;
+    }
+
+    /**
+     * @return String return the title
+     */
+    public String getTitle() {
+        return title;
+    }
+
+    /**
+     * @param title the title to set
+     */
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+
+    /**
+     * @return boolean return the closed
+     */
+    public boolean isClosed() {
+        return closed;
+    }
+
+    /**
+     * @param closed the closed to set
+     */
+    public void setClosed(boolean closed) {
+        this.closed = closed;
     }
 
 }

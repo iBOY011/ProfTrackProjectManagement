@@ -10,7 +10,7 @@ import java.util.List;
 import static ma.ac.usms.ensak.persistance.StorageFile.*;
 
 public class ListeToDoImpl implements ListeToDoDAO {
-    private static final String JSON_FILE_PATH = "src/main/resources/databases/listestodo.json";
+    private static final String JSON_FILE_PATH = "listestodo.json";
     private Gson gson;
 
     public ListeToDoImpl() {
@@ -20,7 +20,11 @@ public class ListeToDoImpl implements ListeToDoDAO {
     @Override
     public void addListeToDo(ListToDo listeToDo) {
         List<ListToDo> listesToDo = readObjectsFromJsonFile(JSON_FILE_PATH);
-        listeToDo.setId(listesToDo.size() + 1);
+        if (!listesToDo.isEmpty()) {
+            listeToDo.setId(listesToDo.get(listesToDo.size() - 1).getId() + 1);
+        } else {
+            listeToDo.setId(1);
+        }
         saveToJsonFile(listeToDo, JSON_FILE_PATH);
     }
 
@@ -32,7 +36,7 @@ public class ListeToDoImpl implements ListeToDoDAO {
                 return listeToDo;
             }
         }
-        return null;
+        return null; // ListeToDo not found
     }
 
     @Override
