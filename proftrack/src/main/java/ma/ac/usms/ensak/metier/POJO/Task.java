@@ -175,4 +175,9 @@ public class Task {
     public void setId_ListToDo(int id_ListToDo) {
         this.id_ListToDo = id_ListToDo;
     }
+
+    public boolean isClosed() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'isClosed'");
+    }
 }

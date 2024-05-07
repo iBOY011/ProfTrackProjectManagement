@@ -4,14 +4,14 @@ package ma.ac.usms.ensak.persistance.dao;
  */
 import java.util.List;
 
-import ma.ac.usms.ensak.metier.POJO.workSession;
+import ma.ac.usms.ensak.metier.POJO.WorkSession;
 
-public interface workSessionDAO {
-    void addWorkSession(workSession workSession);
-    workSession getWorkSessionById(int idworkSession);
-    void updateWorkSession(workSession workSession);
+public interface WorkSessionDAO {
+    void addWorkSession(WorkSession workSession);
+    WorkSession getWorkSessionById(int idworkSession);
+    void updateWorkSession(WorkSession workSession);
     void deleteWorkSession(int idworkSession);
-    List<workSession> getAllSeancesTravail();
-    List<workSession> getSeancesTravailByProject(int idProjet);
-    List<workSession> searchSeancesTravailByKeyword(String keyword);
+    List<WorkSession> getAllSeancesTravail();
+    List<WorkSession> getSeancesTravailByProject(int idProjet);
+    List<WorkSession> searchSeancesTravailByKeyword(String keyword);
 }

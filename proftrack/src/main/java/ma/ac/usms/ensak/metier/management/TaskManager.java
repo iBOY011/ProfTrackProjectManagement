@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-
+import ma.ac.usms.ensak.metier.POJO.Project;
 import ma.ac.usms.ensak.metier.POJO.Task;
 import ma.ac.usms.ensak.persistance.impl.taskImpl;
 
@@ -75,5 +75,10 @@ public class TaskManager {
             Task task = new Task(id, title, description, start_date, end_date, status, id_project, id_ListToDo);
             validate(task);
             taskImpl.updateTask(task);
+        }
+
+        public List<Task> listTasksByIdProject(Project project) {
+            // TODO Auto-generated method stub
+            throw new UnsupportedOperationException("Unimplemented method 'listTasksByIdProject'");
         }
 }
