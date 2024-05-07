@@ -1,0 +1,153 @@
+
+package ma.ac.usms.ensak.persistance.impl;
+import java.util.List;
+import java.util.ArrayList;
+import ma.ac.usms.ensak.persistance.StorageFile;
+import ma.ac.usms.ensak.metier.POJO.Task;
+import ma.ac.usms.ensak.persistance.dao.taskDAO;
+
+
+/**
+ * Implementation of the taskDAO interface for managing tasks.
+ */
+public class taskImpl implements taskDAO {
+
+
+    /**
+     * Creates a new task and saves it to the storage file.
+     *
+     * @param task The task to be created.
+     */
+    @Override
+    public void addTask(Task task) {
+        List<Task> tasks = StorageFile.readObjectsFromJsonFile("src/main/resources/databases/TaskFile.json");
+
+        if (!tasks.isEmpty()) {
+            task.setId(tasks.get(tasks.size() - 1).getId() + 1);
+        } else {
+            task.setId(1);
+        }
+        StorageFile.saveToJsonFile(task, "src/main/resources/databases/TaskFile.json");
+    }
+
+    /**
+     * Reads a task with the specified ID from the storage file.
+     *
+     * @param idtask The ID of the task to be read.
+     * @return The task with the specified ID, or null if not found.
+     */
+    @Override
+    public Task getTaskById(int idtask) {
+        List<Task> tasks = StorageFile.readObjectsFromJsonFile("src/main/resources/databases/TaskFile.json");
+
+        for (Task t : tasks) {
+            if (t.getId() == idtask) {
+                return t;
+            }
+        }
+        return null;
+    }
+
+    /**
+     * Updates an existing task and saves it to the storage file.
+     *
+     * @param task The task to be updated.
+     */
+    @Override
+    public void updateTask(Task task) {
+        List<Task> tasks = getAllTasks();
+
+        for (int i = 0; i < tasks.size(); i++) {
+            if (tasks.get(i).getId() == task.getId()) {
+                tasks.set(i, task);
+                break;
+            }
+        }
+
+        StorageFile.saveListToJsonFile(tasks, "src/main/resources/databases/TaskFile.json");
+    }
+
+    /**
+     * Deletes a task with the specified ID from the storage file.
+     *
+     * @param idtask The ID of the task to be deleted.
+     */
+    @Override
+    public void deleteTask(int idtask) {
+        List<Task> tasks = getAllTasks();
+
+        for (int i = 0; i < tasks.size(); i++) {
+            if (tasks.get(i).getId() == idtask) {
+                tasks.remove(i);
+                break;
+            }
+        }
+
+        StorageFile.saveListToJsonFile(tasks, "src/main/resources/databases/TaskFile.json");
+    }
+
+    /**
+     * Retrieves all tasks from the storage file.
+     *
+     * @return A list of all tasks.
+     */
+    @Override
+    public List<Task> getAllTasks() {
+        List<Task> tasks = StorageFile.readObjectsFromJsonFile("src/main/resources/databases/TaskFile.json");
+
+        return tasks;
+    }
+
+    /**
+     * Retrieves tasks associated with a specific project from the storage file.
+     *
+     * @param idProjet The ID of the project.
+     * @return A list of tasks associated with the specified project.
+     */
+    @Override
+    public List<Task> getTasksByProject(int idProjet) {
+        List<Task> tasks = getAllTasks();
+
+        List<Task> tasksByProject = new ArrayList<>();
+
+        for (Task t : tasks) {
+            if (t.getId_project() == idProjet) {
+                tasksByProject.add(t);
+            }
+        }
+
+        return tasksByProject;
+    }
+
+    /**
+     * Searches for tasks containing a specific keyword in their description.
+     *
+     * @param keyword The keyword to search for.
+     * @return A list of tasks containing the specified keyword in their description.
+     */
+    @Override
+    public List<Task> searchTasksByKeyword(String keyword) {
+        List<Task> tasks = getAllTasks();
+
+        List<Task> tasksByKeyword = new ArrayList<>();
+
+        for (Task t : tasks) {
+            if (t.getDescription().contains(keyword)) {
+                tasksByKeyword.add(t);
+            }
+        }
+
+        return tasksByKeyword;
+    }
+
+    /**
+     * Retrieves tasks associated with a specific category from the storage file.
+     *
+     * @param category The category of the tasks.
+     * @return A list of tasks associated with the specified category.
+     */
+    @Override
+    public List<Task> getTasksByCategory(String category) {
+        return null;
+    }
+}
