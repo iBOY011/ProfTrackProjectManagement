@@ -1,6 +1,6 @@
 package ma.ac.usms.ensak.metier.POJO;
 
-public class workSession {
+public class WorkSession {
     private int id;
     private String description;
     private String dateDebut;
@@ -8,7 +8,7 @@ public class workSession {
     private String note;
     private int id_project;
 
-    public workSession() {
+    public WorkSession() {
     }
 
     /**
@@ -21,7 +21,7 @@ public class workSession {
      * @param note        the note for the work session
      * @param id_project  the ID of the project associated with the work session
      */
-    public workSession(int id, String description, String dateDebut, String dateFin, String note, int id_project) {
+    public WorkSession(int id, String description, String dateDebut, String dateFin, String note, int id_project) {
         this.id = id;
         this.description = description;
         this.dateDebut = dateDebut;
