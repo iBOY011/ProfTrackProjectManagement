@@ -1,6 +1,5 @@
 package ma.ac.usms.ensak.metier.POJO;
 
-import java.rmi.server.UID;
 import java.util.UUID;
 
 public class WorkSession {
