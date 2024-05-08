@@ -56,7 +56,7 @@ public class DocumentManager {
     // add document
     public void createDocument(String description, String path, String id_project) {
         // create a new document
-        Document document = new Document(description, new Date(),path, id_project);
+        Document document = new Document(description, path, id_project);
         // validate the document
         validate(document);
         // add the document to the database
