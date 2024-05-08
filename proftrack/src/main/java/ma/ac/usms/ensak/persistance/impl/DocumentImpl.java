@@ -13,6 +13,7 @@ import ma.ac.usms.ensak.persistance.StorageFile;
  * Implementation of the DocumentDAO interface that provides methods to create, read, update, and delete documents.
  */
 public class DocumentImpl implements DocumentDAO {
+    private static final String DOCUMENT_FILE = "src/main/resources/databases/DocumentFile.json";
 
     /**
      * Creates a new document and saves it to the storage file.
@@ -21,13 +22,7 @@ public class DocumentImpl implements DocumentDAO {
      */
     @Override
     public void addDocument(Document document) {
-        List<Document> documents = StorageFile.readObjectsFromJsonFile("src/main/resources/databases/DocumentFile.json");
-        if (!documents.isEmpty()) {
-            document.setId(documents.get(documents.size() - 1).getId() + 1);
-        } else {
-            document.setId(1);
-        }
-        StorageFile.saveToJsonFile(document, "src/main/resources/databases/DocumentFile.json");
+        StorageFile.saveToJsonFile(document, DOCUMENT_FILE);
     }
 
     /**
@@ -37,8 +32,8 @@ public class DocumentImpl implements DocumentDAO {
      * @return The document with the specified ID, or null if not found.
      */
     @Override
-    public Document getDocumentById(int idDocument) {
-        List<Document> documents = StorageFile.readObjectsFromJsonFile("src/main/resources/databases/DocumentFile.json");
+    public Document getDocumentById(String idDocument) {
+        List<Document> documents = StorageFile.readObjectsFromJsonFile(DOCUMENT_FILE);
         for (Document d : documents) {
             if (d.getId() == idDocument) {
                 return d;
@@ -54,13 +49,13 @@ public class DocumentImpl implements DocumentDAO {
      */
     @Override
     public void updateDocument(Document document) {
-        List<Document> documents = StorageFile.readObjectsFromJsonFile("src/main/resources/databases/DocumentFile.json");
+        List<Document> documents = StorageFile.readObjectsFromJsonFile(DOCUMENT_FILE);
         for (Document d : documents) {
             if (d.getId() == document.getId()) {
                 d = document;
             }
         }
-        StorageFile.saveListToJsonFile(documents, "src/main/resources/databases/DocumentFile.json");
+        StorageFile.saveListToJsonFile(documents, DOCUMENT_FILE);
     }
 
     /**
@@ -69,8 +64,8 @@ public class DocumentImpl implements DocumentDAO {
      * @param idDocument The ID of the document to be deleted.
      */
     @Override
-    public void deleteDocument(int idDocument) {
-        List<Document> documents = StorageFile.readObjectsFromJsonFile("src/main/resources/databases/DocumentFile.json");
+    public void deleteDocument(String idDocument) {
+        List<Document> documents = StorageFile.readObjectsFromJsonFile(DOCUMENT_FILE);
 
         for (Document d : documents) {
             if (d.getId() == idDocument) {
@@ -98,7 +93,7 @@ public class DocumentImpl implements DocumentDAO {
      * @return A list of documents associated with the specified project.
      */
     @Override
-    public List<Document> getDocumentsByProject(int idProjet) {
+    public List<Document> getDocumentsByProject(String idProjet) {
         List<Document> documents = StorageFile.readObjectsFromJsonFile("src/main/resources/databases/DocumentFile.json");
         List<Document> documentsByProject = new ArrayList<>();
         for (Document d : documents) {

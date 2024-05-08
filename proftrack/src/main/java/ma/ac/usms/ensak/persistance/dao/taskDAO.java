@@ -12,11 +12,11 @@ import ma.ac.usms.ensak.metier.POJO.Task;
 
 public interface TaskDAO {
     void addTask(Task task);
-    Task getTaskById(int idtask);
+    Task getTaskById(String idtask);
     void updateTask(Task task);
-    void deleteTask(int idtask);
+    void deleteTask(String idtask);
     List<Task> getAllTasks();
-    List<Task> getTasksByProject(int idProjet);
+    List<Task> getTasksByProject(String idProjet);
     List<Task> searchTasksByKeyword(String keyword);
     List<Task> getTasksByCategory(String category);
 }
