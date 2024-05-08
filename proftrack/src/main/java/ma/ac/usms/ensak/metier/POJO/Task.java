@@ -1,5 +1,6 @@
 package ma.ac.usms.ensak.metier.POJO;
 
+import ma.ac.usms.ensak.util.Status;
 import java.util.Date;
 import java.util.UUID;
 
@@ -12,7 +13,7 @@ public class Task {
     private String description;
     private Date start_date;
     private Date end_date;
-    private String status;
+    private Status status;
     private String id_project;
     private String id_ListToDo;
     
@@ -30,7 +31,7 @@ public class Task {
      * @param id_project   the ID of the project associated with the task
      * @param id_ListToDo  the ID of the to-do list associated with the task
      */
-    public Task(String title, String description, Date start_date, Date end_date, String status, String id_project, String id_ListToDo) {
+    public Task(String title, String description, Date start_date, Date end_date, Status status, String id_project, String id_ListToDo) {
         this.id = UUID.randomUUID().toString();
         this.title = title;
         this.description = description;
@@ -110,7 +111,7 @@ public class Task {
      *
      * @return String the status of the task
      */
-    public String getStatus() {
+    public Status getStatus() {
         return status;
     }
     
@@ -119,7 +120,7 @@ public class Task {
      *
      * @param status the status to set
      */
-    public void setStatus(String status) {
+    public void setStatus(Status status) {
         this.status = status;
     }
     
@@ -167,8 +168,7 @@ public class Task {
         this.id_ListToDo = id_ListToDo;
     }
 
-    public boolean isClosed() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'isClosed'");
+    public boolean isDone() {
+        return status.equals(Status.DONE);
     }
 }

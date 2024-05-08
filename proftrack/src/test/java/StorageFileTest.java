@@ -12,7 +12,7 @@ public class StorageFileTest {
     @Test
     public void testSaveToJsonFile() {
         // Create a test instance
-        Document instance = new Document("Test", "123", "ghc", "56", "54", "65");
+        Document instance = new Document("Test","ghc", "123");
 
         // Save the instance to a JSON file
         StorageFile.saveToJsonFile(instance, "src/main/resources/databases/DocumentTest.json");
