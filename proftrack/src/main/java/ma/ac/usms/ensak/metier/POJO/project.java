@@ -31,24 +31,8 @@ public class Project {
      * @param type        the type of the project
      * @param archived      the status of the project
      */
-<<<<<<< HEAD
-    public Project(int id, String title, String description, Date start_date, Date end_date, String category,
-            String type, boolean archived) {
-        this.id = id;
-        this.title = title;
-        this.description = description;
-        this.start_date = start_date;
-        this.end_date = end_date;
-        this.category = category;
-        this.type = type;
-        this.archived = archived;
-    }
-
-    public Project(String title, String description, Date start_date, Date end_date, String category, String type, boolean archived) {
-=======
     public Project(String title, String description, Date start_date, Date end_date, String category, String type, boolean closed) {
         this.id = UUID.randomUUID().toString();
->>>>>>> 4c4fdcd77326d1795cd66bad168549a9d0b76d26
         this.title = title;
         this.description = description;
         this.start_date = start_date;
