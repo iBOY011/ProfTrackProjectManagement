@@ -1,11 +1,29 @@
 [
   {
-    "id": 2,
+    "id": 2.0,
     "description": "Test",
     "dateAdded": "123",
     "path": "ghc",
-    "id_task": 56,
-    "id_workSession": 54,
-    "id_project": 65
+    "id_task": 56.0,
+    "id_workSession": 54.0,
+    "id_project": 65.0
+  },
+  {
+    "id": "5dcb916a-7ec3-47bf-832b-1276f37507d9",
+    "description": "Test",
+    "dateAdded": "123",
+    "path": "ghc",
+    "id_task": "56",
+    "id_workSession": "54",
+    "id_project": "65"
+  },
+  {
+    "id": "1b4bbcff-3cc4-4ae4-9f9f-2f42439fe081",
+    "description": "Test",
+    "dateAdded": "123",
+    "path": "ghc",
+    "id_task": "56",
+    "id_workSession": "54",
+    "id_project": "65"
   }
 ]

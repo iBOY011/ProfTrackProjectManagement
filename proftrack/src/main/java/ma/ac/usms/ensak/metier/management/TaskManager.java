@@ -49,39 +49,39 @@ public class TaskManager {
         }
 
         // add task with id project and id list to do
-        public void createTask(String title, String description, Date start_date, Date end_date, String status, int id_project, int id_ListToDo) {
-            Task task = new Task(0, title, description, start_date, end_date, status, id_project, id_ListToDo);
+        public void createTask(String title, String description, Date start_date, Date end_date, String status, String id_project, String id_ListToDo) {
+            Task task = new Task(title, description, start_date, end_date, status, id_project, id_ListToDo);
             validate(task);
             tasks.add(task);
             taskImpl.addTask(task);
         }
 
         // add task with id project and without id list to do
-        public void createTask(String title, String description, Date start_date, Date end_date, String status, int id, boolean FLAG) {
+        public void createTask(String title, String description, Date start_date, Date end_date, String status, String id, boolean FLAG) {
             if (FLAG==true) {
                 
-                Task task = new Task(title, description, start_date, end_date, status, id, 0);
+                Task task = new Task(title, description, start_date, end_date, status, id, null);
                 validate(task); 
                 tasks.add(task);
                 taskImpl.addTask(task);
             } else {
-                Task task = new Task(title, description, start_date, end_date, status, 0, id );
+                Task task = new Task(title, description, start_date, end_date, status, null, id );
                 validate(task); 
                 taskImpl.addTask(task);
             }
         }
 
         // update task
-        public void updateTask(Task task, int id) {
+        public void updateTask(Task task, String id) {
             validate(task);
             taskImpl.updateTask(task);
         }
 
         // delete task
-        public void removeTask(int id) {
-            // check if the id is not null or less than 0
-            if (id <= 0) {
-                throw new IllegalArgumentException("The id cannot be less than 0.");
+        public void removeTask(String id) {
+            // check if the id is not null
+            if (id == null) {
+                throw new IllegalArgumentException("The id cannot be null.");
             }
             // check if the task exists
             Task task = taskImpl.getTaskById(id);
@@ -92,10 +92,10 @@ public class TaskManager {
         }
 
         // get task by id
-        public Task searchTaskById(int id) {
-            // check if the id is not null or less than 0
-            if (id <= 0) {
-                throw new IllegalArgumentException("The id cannot be less than 0.");
+        public Task searchTaskById(String id) {
+            // check if the id is not null
+            if (id == null) {
+                throw new IllegalArgumentException("The id cannot be null.");
             }
             // check if the task exists
             Task task = taskImpl.getTaskById(id);
@@ -116,9 +116,9 @@ public class TaskManager {
             if (project == null) {
                 throw new IllegalArgumentException("The project cannot be null.");
             }
-            // check if the id is not null or less than 0
-            if (project.getId() <= 0) {
-                throw new IllegalArgumentException("The id cannot be less than 0.");
+            // check if the id is not null
+            if (project.getId() == null) {
+                throw new IllegalArgumentException("The id cannot be null.");
             }
             // check if the project exists
             ProjectImpl projectImpl = new ProjectImpl();
@@ -137,10 +137,10 @@ public class TaskManager {
         }
 
         // get all tasks by id list to do
-        public List<Task> listTasksByIdListToDo(int id) {
-            // check if the id is not null or less than 0
-            if (id <= 0) {
-                throw new IllegalArgumentException("The id cannot be less than 0.");
+        public List<Task> listTasksByIdListToDo(String id) {
+            // check if the id is not null
+            if (id == null) {
+                throw new IllegalArgumentException("The id cannot be null.");
             }
             tasks = taskImpl.getAllTasks();
             List<Task> tasks1 = new ArrayList<Task>();
