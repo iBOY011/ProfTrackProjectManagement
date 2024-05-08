@@ -3,6 +3,8 @@ package ma.ac.usms.ensak.metier.POJO;
 import java.util.Date;
 import java.util.UUID;
 
+import ma.ac.usms.ensak.util.Category;
+
 /**
  * The `project` class represents a project with various attributes such as id,
  * description, start date, end date, category, and type.
@@ -13,7 +15,7 @@ public class Project {
     private String description;
     private Date start_date;
     private Date end_date;
-    private String category;
+    private Category category;
     private String type;
     private boolean archived;
 
@@ -31,7 +33,7 @@ public class Project {
      * @param type        the type of the project
      * @param archived    the status of the project
      */
-    public Project(String title, String description, Date start_date, Date end_date, String category, String type, boolean archived) {
+    public Project(String title, String description, Date start_date, Date end_date, Category category, String type, boolean archived) {
         this.id = UUID.randomUUID().toString();
         this.title = title;
         this.description = description;
@@ -110,7 +112,7 @@ public class Project {
      * 
      * @return the category of the project
      */
-    public String getCategory() {
+    public Category getCategory() {
         return category;
     }
 
@@ -119,7 +121,7 @@ public class Project {
      * 
      * @param category the category to set
      */
-    public void setCategory(String category) {
+    public void setCategory(Category category) {
         this.category = category;
     }
 

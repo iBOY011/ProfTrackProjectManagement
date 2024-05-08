@@ -7,6 +7,7 @@ import ma.ac.usms.ensak.metier.POJO.Project;
 import ma.ac.usms.ensak.metier.POJO.Task;
 import ma.ac.usms.ensak.metier.POJO.WorkSession;
 import ma.ac.usms.ensak.persistance.impl.ProjectImpl;
+import ma.ac.usms.ensak.util.Category;
 
 public class ProjectManager {
     private TaskManager taskManager;
@@ -14,7 +15,7 @@ public class ProjectManager {
 
     // implementer les methodes CRUD en utilisant les fonctions dans la package DAO
 
-    public void createProject(String title, String description, Date startDate, Date endDate, String category, String type) {
+    public void createProject(String title, String description, Date startDate, Date endDate, Category category, String type) {
         if (!isValidateSyntax(title, description, startDate, endDate, category, type)) {
             throw new IllegalArgumentException("Invalid syntax");
         }
@@ -26,7 +27,7 @@ public class ProjectManager {
 
     }
 
-    public void updateProject(String title, String description, Date startDate, Date endDate, String category, String type) {
+    public void updateProject(String title, String description, Date startDate, Date endDate, Category category, String type) {
         if (!isValidateSyntax(title, description, startDate, endDate, category, type)) {
             throw new IllegalArgumentException("Invalid syntax");
         }
@@ -53,7 +54,7 @@ public class ProjectManager {
         return projectImpl.getAllProjects();
     }
 
-    public boolean isValidateSyntax(String title, String description, Date startDate, Date endDate, String category, String type) {
+    public boolean isValidateSyntax(String title, String description, Date startDate, Date endDate, Category category, String type) {
         if (title == null || title.isEmpty() || title.isBlank()) {
             return false;
         }
@@ -66,12 +67,13 @@ public class ProjectManager {
         if (endDate == null || (endDate.equals(new Date()) && endDate.before(startDate))) {
             return false;
         }
-        if (category == null || category.isEmpty() || category.isBlank()) {
+        if (category == null) {
             return false;
         }
         return (type == null || type.isEmpty() || type.isBlank());
     }
 
+    // Méthodes pour filtrer et trier les projets
     public List<Project> filterProjectsByCategory(List<Project> projects, String category){
         return projects.stream().filter(project -> project.getCategory().equals(category)).toList();
     }
@@ -104,17 +106,12 @@ public class ProjectManager {
         return projects.stream().sorted((p1, p2) -> p1.getType().compareTo(p2.getType())).toList();
     }
 
-    public List<Project> sortProjectsByStatus(List<Project> projects){
-        return projects.stream().sorted((p1, p2) -> Boolean.compare(p1.isArchived(), p2.isArchived())).toList();
-    }
-
-    // Méthodes pour la recherche
     public boolean containsKeyword(String keyword){
-        return listProjects().stream().anyMatch(project -> project.getTitle().contains(keyword) || project.getDescription().contains(keyword) || project.getCategory().contains(keyword) || project.getType().contains(keyword));
+        return listProjects().stream().anyMatch(project -> project.getTitle().contains(keyword) || project.getDescription().contains(keyword) || project.getType().contains(keyword));
     }
 
     public List<Project> searchProjectsByKeyword(String keyword){
-        return listProjects().stream().filter(project -> project.getTitle().contains(keyword) || project.getDescription().contains(keyword) || project.getCategory().contains(keyword) || project.getType().contains(keyword)).toList();
+        return listProjects().stream().filter(project -> project.getTitle().contains(keyword) || project.getDescription().contains(keyword) || project.getType().contains(keyword)).toList();
     }
 
     // Méthodes pour archiver un projet
@@ -144,6 +141,14 @@ public class ProjectManager {
         }
         archiveProject(project);
     }
+
+    // Méthodes pour cloner un projet
+    public void cloneProject(Project project){
+        createProject(project.getTitle(), project.getDescription(), project.getStart_date(), project.getEnd_date(), project.getCategory(), project.getType());
+    }
+    
+    // Méthodes pour calculer les heures de travail total d'un projet
+    
 
     
 
