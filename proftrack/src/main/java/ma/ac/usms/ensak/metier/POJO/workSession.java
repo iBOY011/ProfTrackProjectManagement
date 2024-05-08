@@ -1,12 +1,13 @@
 package ma.ac.usms.ensak.metier.POJO;
 
+import java.util.Date;
 import java.util.UUID;
 
 public class WorkSession {
     private String id;
     private String description;
-    private String dateDebut;
-    private String dateFin;
+    private Date dateDebut;
+    private Date dateFin;
     private String note;
     private String id_project;
 
@@ -22,7 +23,7 @@ public class WorkSession {
      * @param note        the note for the work session
      * @param id_project  the ID of the project associated with the work session
      */
-    public WorkSession(String description, String dateDebut, String dateFin, String note, String id_project) {
+    public WorkSession(String description, Date dateDebut, Date dateFin, String note, String id_project) {
         this.id = UUID.randomUUID().toString();
         this.description = description;
         this.dateDebut = dateDebut;
@@ -55,28 +56,28 @@ public class WorkSession {
     /**
      * @return String return the dateDebut
      */
-    public String getDateDebut() {
+    public Date getDateDebut() {
         return dateDebut;
     }
 
     /**
      * @param dateDebut the dateDebut to set
      */
-    public void setDateDebut(String dateDebut) {
+    public void setDateDebut(Date dateDebut) {
         this.dateDebut = dateDebut;
     }
 
     /**
      * @return String return the dateFin
      */
-    public String getDateFin() {
+    public Date getDateFin() {
         return dateFin;
     }
 
     /**
      * @param dateFin the dateFin to set
      */
-    public void setDateFin(String dateFin) {
+    public void setDateFin(Date dateFin) {
         this.dateFin = dateFin;
     }
 
