@@ -118,4 +118,8 @@ public class WorkSession {
         this.id_project = id_project;
     }
 
+    public boolean isClosed() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
 }
