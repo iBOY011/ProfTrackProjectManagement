@@ -29,9 +29,9 @@ public class Project {
      * @param end_date    the end date of the project
      * @param category    the category of the project
      * @param type        the type of the project
-     * @param archived      the status of the project
+     * @param archived    the status of the project
      */
-    public Project(String title, String description, Date start_date, Date end_date, String category, String type, boolean closed) {
+    public Project(String title, String description, Date start_date, Date end_date, String category, String type, boolean archived) {
         this.id = UUID.randomUUID().toString();
         this.title = title;
         this.description = description;

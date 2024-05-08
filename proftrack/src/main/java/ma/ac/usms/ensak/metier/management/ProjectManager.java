@@ -3,7 +3,6 @@ package ma.ac.usms.ensak.metier.management;
 import java.util.Date;
 import java.util.List;
 
-import ma.ac.usms.ensak.metier.POJO.Document;
 import ma.ac.usms.ensak.metier.POJO.Project;
 import ma.ac.usms.ensak.metier.POJO.Task;
 import ma.ac.usms.ensak.metier.POJO.WorkSession;
@@ -214,12 +213,9 @@ public class ProjectManager {
 
 
 
-    // implementer les methodes de recherche
-    // implementer les methodes de filtrage
-    // implementer les methodes de tri
+    
     // implementer les methodes de statistiques
     // implementer les methodes de calculs
-    // implementer les methodes de validation
     // implementer les methodes de generation de rapports
     // implementer les methodes de generation de graphiques
     // implementer les methodes de generation de diagrammes
