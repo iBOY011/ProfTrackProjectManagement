@@ -1,13 +1,14 @@
 package ma.ac.usms.ensak.metier.POJO;
 
 import java.util.Date;
+import java.util.UUID;
 
 /**
  * The `project` class represents a project with various attributes such as id,
  * description, start date, end date, category, and type.
  */
 public class Project {
-    private int id;
+    private String id;
     private String title;
     private String description;
     private Date start_date;
@@ -22,7 +23,6 @@ public class Project {
     /**
      * Constructs a new `project` object with the specified attributes.
      * 
-     * @param id          the id of the project
      * @param title       the title of the project
      * @param description the description of the project
      * @param start_date  the start date of the project
@@ -31,19 +31,8 @@ public class Project {
      * @param type        the type of the project
      * @param closed      the status of the project
      */
-    public Project(int id, String title, String description, Date start_date, Date end_date, String category,
-            String type, boolean closed) {
-        this.id = id;
-        this.title = title;
-        this.description = description;
-        this.start_date = start_date;
-        this.end_date = end_date;
-        this.category = category;
-        this.type = type;
-        this.closed = closed;
-    }
-
     public Project(String title, String description, Date start_date, Date end_date, String category, String type, boolean closed) {
+        this.id = UUID.randomUUID().toString();
         this.title = title;
         this.description = description;
         this.start_date = start_date;
@@ -58,17 +47,8 @@ public class Project {
      * 
      * @return the id of the project
      */
-    public int getId() {
+    public String getId() {
         return id;
-    }
-
-    /**
-     * Sets the id of the project.
-     * 
-     * @param id the id to set
-     */
-    public void setId(int id) {
-        this.id = id;
     }
 
     /**

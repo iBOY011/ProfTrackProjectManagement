@@ -1,20 +1,21 @@
 package ma.ac.usms.ensak.metier.POJO;
 
+import java.util.UUID;
+
 /**
  * The `listToDo` class represents a to-do item in a list.
  */
 public class ListToDo {
-    private int id;
+    private String id;
     private String description;
     
     /**
      * Constructs a new `listToDo` object with the specified id and description.
      * 
-     * @param id          the id of the to-do item
      * @param description the description of the to-do item
      */
-    public ListToDo(int id, String description) {
-        this.id = id;
+    public ListToDo(String description) {
+        this.id = UUID.randomUUID().toString();
         this.description = description;
     }
 
@@ -29,17 +30,8 @@ public class ListToDo {
      * 
      * @return the id of the to-do item
      */
-    public int getId() {
+    public String getId() {
         return id;
-    }
-
-    /**
-     * Sets the id of the to-do item.
-     * 
-     * @param id the id to set
-     */
-    public void setId(int id) {
-        this.id = id;
     }
 
     /**

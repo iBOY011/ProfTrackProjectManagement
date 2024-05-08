@@ -13,10 +13,10 @@ import ma.ac.usms.ensak.metier.POJO.Document;
 
 public interface DocumentDAO {
     void addDocument(Document document);
-    Document getDocumentById(int idDocument);
+    Document getDocumentById(String idDocument);
     void updateDocument(Document document);
-    void deleteDocument(int idDocument);
+    void deleteDocument(String idDocument);
     List<Document> getAllDocuments();
-    List<Document> getDocumentsByProject(int idProjet);
+    List<Document> getDocumentsByProject(String idProjet);
     List<Document> searchDocumentsByKeyword(String keyword);
 }

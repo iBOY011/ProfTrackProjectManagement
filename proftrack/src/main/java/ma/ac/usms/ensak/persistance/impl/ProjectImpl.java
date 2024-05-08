@@ -11,7 +11,7 @@ import static ma.ac.usms.ensak.persistance.StorageFile.saveToJsonFile;
 import ma.ac.usms.ensak.persistance.dao.ProjectDAO;
 
 public class ProjectImpl implements ProjectDAO {
-    private static final String JSON_FILE_PATH = "projects.json";
+    private static final String JSON_FILE_PATH = "src/main/resources/databases/projects.json";
     private final Gson gson;
 
     public ProjectImpl() {
@@ -20,12 +20,6 @@ public class ProjectImpl implements ProjectDAO {
 
     @Override
     public void addProject(Project project) {
-        List<Project> projects = readObjectsFromJsonFile(JSON_FILE_PATH);
-        if (!projects.isEmpty()) {
-            project.setId(projects.get(projects.size() - 1).getId() + 1);
-        } else {
-            project.setId(1);
-        }
         saveToJsonFile(project, JSON_FILE_PATH);
     }
 
@@ -37,7 +31,7 @@ public class ProjectImpl implements ProjectDAO {
                 return project;
             }
         }
-        return null; // Project not found
+        return null;
     }
 
     @Override
@@ -62,7 +56,7 @@ public class ProjectImpl implements ProjectDAO {
     @Override
     public void deleteProject(String projetId) {
         List<Project> projets = readObjectsFromJsonFile(JSON_FILE_PATH);
-        int id = Integer.parseInt(projetId); // Convert projetId to integer
+        String id = projetId; // Convert projetId to integer
         projets.removeIf(projet -> projet.getId() == id); // Compare with the id property
         saveListToJsonFile(projets, JSON_FILE_PATH);
     }

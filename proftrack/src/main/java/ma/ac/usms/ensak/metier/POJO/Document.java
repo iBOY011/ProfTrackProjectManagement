@@ -1,21 +1,22 @@
 package ma.ac.usms.ensak.metier.POJO;
 
+import java.util.UUID;
+
 /**
  * The `document` class represents a document object.
  */
 public class Document {
-    private int id;
+    private String id;
     private String description;
     private String dateAdded;
     private String path;
-    private int id_task;
-    private int id_workSession;
-    private int id_project;
+    private String id_task;
+    private String id_workSession;
+    private String id_project;
 
     /**
      * Constructs a new `document` object with the specified parameters.
      * 
-     * @param id             the ID of the document
      * @param description    the description of the document
      * @param dateAdded      the date when the document was added
      * @param path           the path of the document
@@ -23,9 +24,9 @@ public class Document {
      * @param id_workSession the ID of the work session associated with the document
      * @param id_project     the ID of the project associated with the document
      */
-    public Document(int id, String description, String dateAdded, String path, int id_task, int id_workSession,
-            int id_project) {
-        this.id = id;
+    public Document(String description, String dateAdded, String path, String id_task, String id_workSession,
+    String id_project) {
+        this.id = UUID.randomUUID().toString();
         this.description = description;
         this.dateAdded = dateAdded;
         this.path = path;
@@ -45,17 +46,8 @@ public class Document {
      * 
      * @return the ID of the document
      */
-    public int getId() {
+    public String getId() {
         return this.id;
-    }
-
-    /**
-     * Set the ID of the document.
-     * 
-     * @param id the ID of the document
-     */
-    public void setId(int id) {
-        this.id = id;
     }
 
     /**
@@ -117,7 +109,7 @@ public class Document {
      * 
      * @return the ID of the task
      */
-    public int getId_task() {
+    public String getId_task() {
         return id_task;
     }
 
@@ -126,7 +118,7 @@ public class Document {
      * 
      * @param id_task the ID of the task
      */
-    public void setId_task(int id_task) {
+    public void setId_task(String id_task) {
         this.id_task = id_task;
     }
 
@@ -135,7 +127,7 @@ public class Document {
      * 
      * @return the ID of the work session
      */
-    public int getId_workSession() {
+    public String getId_workSession() {
         return id_workSession;
     }
 
@@ -144,7 +136,7 @@ public class Document {
      * 
      * @param id_workSession the ID of the work session
      */
-    public void setId_workSession(int id_workSession) {
+    public void setId_workSession(String id_workSession) {
         this.id_workSession = id_workSession;
     }
 
@@ -153,7 +145,7 @@ public class Document {
      * 
      * @return the ID of the project
      */
-    public int getId_project() {
+    public String getId_project() {
         return id_project;
     }
 
@@ -162,7 +154,7 @@ public class Document {
      * 
      * @param id_project the ID of the project
      */
-    public void setId_project(int id_project) {
+    public void setId_project(String id_project) {
         this.id_project = id_project;
     }
 
