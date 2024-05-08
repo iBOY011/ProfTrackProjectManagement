@@ -6,7 +6,7 @@ import java.util.Date;
 
 import ma.ac.usms.ensak.metier.POJO.Project;
 import ma.ac.usms.ensak.metier.POJO.WorkSession;
-import ma.ac.usms.ensak.util.Status;
+import ma.ac.usms.ensak.persistance.impl.ProjectImpl;
 import ma.ac.usms.ensak.persistance.impl.WorkSessionImpl;
 
 public class WorkSessionManager {
@@ -43,6 +43,10 @@ public class WorkSessionManager {
         if (workSession.getDateFin() == null ||
                 workSession.getDateFin().compareTo(workSession.getDateDebut()) < 0) {
             throw new IllegalArgumentException("The end date cannot be null.");
+        }
+        // check if start date and end date in the same day
+        if (workSession.getDateDebut().compareTo(workSession.getDateFin()) == 0) {
+            throw new IllegalArgumentException("The start date and end date cannot be the same.");
         }
     }
 
@@ -113,6 +117,42 @@ public class WorkSessionManager {
         return workSessionsByIdProject;
     }
 
-    
-    
+    // get work sessions by project date
+    public List<WorkSession> filterWorkSessionsByDate(Date date) {
+        // check if the date is not null
+        if (date == null) {
+            throw new IllegalArgumentException("The date cannot be null.");
+        }
+        // get all work sessions from the database
+        List<WorkSession> workSessions = workSessionImpl.getAllSeancesTravail();
+        List<WorkSession> workSessionsByDate = new ArrayList<WorkSession>();
+        // get the work sessions by date
+        for (WorkSession workSession : workSessions) {
+            if (workSession.getDateDebut().compareTo(date) <= 0 &&
+                    workSession.getDateFin().compareTo(date) >= 0) {
+                workSessionsByDate.add(workSession);
+            }
+        }
+        return workSessionsByDate;
+    }
+
+    // get work sessions by project category
+    public List<WorkSession> filterWorkSessionsByProjectCategory(String category) {
+        // check if the category is not null
+        if (category == null) {
+            throw new IllegalArgumentException("The category cannot be null.");
+        }
+        // get all work sessions from the database
+        List<WorkSession> workSessions = workSessionImpl.getAllSeancesTravail();
+        List<WorkSession> workSessionsByProjectCategory = new ArrayList<WorkSession>();
+        // get the work sessions by project category
+        for (WorkSession workSession : workSessions) {
+            ProjectImpl projectImpl = new ProjectImpl();
+            Project project = projectImpl.getProjectById(workSession.getId_project());
+            if (project.getCategory().equals(category)) {
+                workSessionsByProjectCategory.add(workSession);
+            }
+        }
+        return workSessionsByProjectCategory;
+    }
 }
