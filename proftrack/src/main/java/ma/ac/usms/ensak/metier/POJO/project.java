@@ -15,7 +15,7 @@ public class Project {
     private Date end_date;
     private String category;
     private String type;
-    private boolean closed;
+    private boolean archived;
 
     public Project() {
     }
@@ -29,17 +29,33 @@ public class Project {
      * @param end_date    the end date of the project
      * @param category    the category of the project
      * @param type        the type of the project
-     * @param closed      the status of the project
+     * @param archived      the status of the project
      */
-    public Project(String title, String description, Date start_date, Date end_date, String category, String type, boolean closed) {
-        this.id = UUID.randomUUID().toString();
+<<<<<<< HEAD
+    public Project(int id, String title, String description, Date start_date, Date end_date, String category,
+            String type, boolean archived) {
+        this.id = id;
         this.title = title;
         this.description = description;
         this.start_date = start_date;
         this.end_date = end_date;
         this.category = category;
         this.type = type;
-        this.closed = closed;
+        this.archived = archived;
+    }
+
+    public Project(String title, String description, Date start_date, Date end_date, String category, String type, boolean archived) {
+=======
+    public Project(String title, String description, Date start_date, Date end_date, String category, String type, boolean closed) {
+        this.id = UUID.randomUUID().toString();
+>>>>>>> 4c4fdcd77326d1795cd66bad168549a9d0b76d26
+        this.title = title;
+        this.description = description;
+        this.start_date = start_date;
+        this.end_date = end_date;
+        this.category = category;
+        this.type = type;
+        this.archived = archived;
     }
 
     /**
@@ -157,17 +173,17 @@ public class Project {
 
 
     /**
-     * @return boolean return the closed
+     * @return boolean return the archived
      */
-    public boolean isClosed() {
-        return closed;
+    public boolean isArchived() {
+        return archived;
     }
 
     /**
-     * @param closed the closed to set
+     * @param archived the archived to set
      */
-    public void setClosed(boolean closed) {
-        this.closed = closed;
+    public void setArchived(boolean archived) {
+        this.archived = archived;
     }
 
 }

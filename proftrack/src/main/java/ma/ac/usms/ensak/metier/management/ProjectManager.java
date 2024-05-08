@@ -10,9 +10,8 @@ import ma.ac.usms.ensak.metier.POJO.WorkSession;
 import ma.ac.usms.ensak.persistance.impl.ProjectImpl;
 
 public class ProjectManager {
-    private List<WorkSession> workSessions;
-    private List<Document> documents;
     private TaskManager taskManager;
+    private WorkSessionManager workSessionManager;
 
     // implementer les methodes CRUD en utilisant les fonctions dans la package DAO
 
@@ -74,12 +73,6 @@ public class ProjectManager {
         return (type == null || type.isEmpty() || type.isBlank());
     }
 
-    // Méthode pour la gestion de l'état du projet
-    public void closeProject(Project project){
-        project.setClosed(true);
-        updateProject(project.getTitle(), project.getDescription(), project.getStart_date(), project.getEnd_date(), project.getCategory(), project.getType());
-    }
-
     public List<Project> filterProjectsByCategory(List<Project> projects, String category){
         return projects.stream().filter(project -> project.getCategory().equals(category)).toList();
     }
@@ -92,8 +85,8 @@ public class ProjectManager {
         return projects.stream().filter(project -> project.getStart_date().after(startDate) && project.getEnd_date().before(endDate)).toList();
     }
 
-    public List<Project> filterProjectsByStatus(List<Project> projects, boolean closed){
-        return projects.stream().filter(project -> project.isClosed() == closed).toList();
+    public List<Project> filterProjectsByStatus(List<Project> projects, boolean archived){
+        return projects.stream().filter(project -> project.isArchived() == archived).toList();
     }
 
     public List<Project> sortProjectsByStartDate(List<Project> projects){
@@ -113,7 +106,7 @@ public class ProjectManager {
     }
 
     public List<Project> sortProjectsByStatus(List<Project> projects){
-        return projects.stream().sorted((p1, p2) -> Boolean.compare(p1.isClosed(), p2.isClosed())).toList();
+        return projects.stream().sorted((p1, p2) -> Boolean.compare(p1.isArchived(), p2.isArchived())).toList();
     }
 
     // Méthodes pour la recherche
@@ -126,17 +119,32 @@ public class ProjectManager {
     }
 
     // Méthodes pour archiver un projet
+    private void archiveProject(Project project) {
+        project.setArchived(true);
+        updateProject(project.getTitle(), project.getDescription(), project.getStart_date(), project.getEnd_date(), project.getCategory(), project.getType());
+    }
     
     public void archiveProjectByTasks(Project project){
         List<Task> tasks;
         tasks = taskManager.listTasksByIdProject(project);
         for (Task task : tasks) {
-            if (!(task.isClosed())) {
+            if (!task.isClosed()) {
                 throw new IllegalArgumentException("The project cannot be archived because there are still open tasks");
             }
         }
+        archiveProject(project);
     }
 
+    public void archiveProjectByWorkSessions(Project project){
+        List<WorkSession> workSessions;
+        workSessions = workSessionManager.listWorkSessionsByIdProject(project);
+        for (WorkSession workSession : workSessions) {
+            if (!workSession.isClosed()) {
+                throw new IllegalArgumentException("The project cannot be archived because there are still open work sessions");
+            }
+        }
+        archiveProject(project);
+    }
 
     
 
