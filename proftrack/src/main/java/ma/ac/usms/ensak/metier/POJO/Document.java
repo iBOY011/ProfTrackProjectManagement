@@ -21,10 +21,10 @@ public class Document {
      * @param path           the path of the document
      * @param id_project     the ID of the project associated with the document
      */
-    public Document(String description, Date dateAdded, String path, String id_project) {
+    public Document(String description,  String path, String id_project) {
         this.id = UUID.randomUUID().toString();
         this.description = description;
-        this.dateAdded = dateAdded;
+        this.dateAdded = new Date();
         this.path = path;
         this.id_project = id_project;
     }
