@@ -11,6 +11,7 @@ import ma.ac.usms.ensak.persistance.dao.TaskDAO;
  * Implementation of the taskDAO interface for managing tasks.
  */
 public class TaskImpl implements TaskDAO {
+    private static final String TASK_FILE_PATH = "src/main/resources/databases/TaskFile.json";
 
 
     /**
@@ -20,14 +21,7 @@ public class TaskImpl implements TaskDAO {
      */
     @Override
     public void addTask(Task task) {
-        List<Task> tasks = StorageFile.readObjectsFromJsonFile("src/main/resources/databases/TaskFile.json");
-
-        if (!tasks.isEmpty()) {
-            task.setId(tasks.get(tasks.size() - 1).getId() + 1);
-        } else {
-            task.setId(1);
-        }
-        StorageFile.saveToJsonFile(task, "src/main/resources/databases/TaskFile.json");
+        StorageFile.saveToJsonFile(task, TASK_FILE_PATH);
     }
 
     /**
@@ -37,8 +31,8 @@ public class TaskImpl implements TaskDAO {
      * @return The task with the specified ID, or null if not found.
      */
     @Override
-    public Task getTaskById(int idtask) {
-        List<Task> tasks = StorageFile.readObjectsFromJsonFile("src/main/resources/databases/TaskFile.json");
+    public Task getTaskById(String idtask) {
+        List<Task> tasks = StorageFile.readObjectsFromJsonFile(TASK_FILE_PATH);
 
         for (Task t : tasks) {
             if (t.getId() == idtask) {
@@ -64,7 +58,7 @@ public class TaskImpl implements TaskDAO {
             }
         }
 
-        StorageFile.saveListToJsonFile(tasks, "src/main/resources/databases/TaskFile.json");
+        StorageFile.saveListToJsonFile(tasks, TASK_FILE_PATH);
     }
 
     /**
@@ -73,7 +67,7 @@ public class TaskImpl implements TaskDAO {
      * @param idtask The ID of the task to be deleted.
      */
     @Override
-    public void deleteTask(int idtask) {
+    public void deleteTask(String idtask) {
         List<Task> tasks = getAllTasks();
 
         for (int i = 0; i < tasks.size(); i++) {
@@ -83,7 +77,7 @@ public class TaskImpl implements TaskDAO {
             }
         }
 
-        StorageFile.saveListToJsonFile(tasks, "src/main/resources/databases/TaskFile.json");
+        StorageFile.saveListToJsonFile(tasks, TASK_FILE_PATH);
     }
 
     /**
@@ -93,7 +87,7 @@ public class TaskImpl implements TaskDAO {
      */
     @Override
     public List<Task> getAllTasks() {
-        List<Task> tasks = StorageFile.readObjectsFromJsonFile("src/main/resources/databases/TaskFile.json");
+        List<Task> tasks = StorageFile.readObjectsFromJsonFile(TASK_FILE_PATH);
 
         return tasks;
     }
@@ -105,7 +99,7 @@ public class TaskImpl implements TaskDAO {
      * @return A list of tasks associated with the specified project.
      */
     @Override
-    public List<Task> getTasksByProject(int idProjet) {
+    public List<Task> getTasksByProject(String idProjet) {
         List<Task> tasks = getAllTasks();
 
         List<Task> tasksByProject = new ArrayList<>();

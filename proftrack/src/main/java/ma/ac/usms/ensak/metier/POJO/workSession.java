@@ -1,12 +1,15 @@
 package ma.ac.usms.ensak.metier.POJO;
 
+import java.rmi.server.UID;
+import java.util.UUID;
+
 public class WorkSession {
-    private int id;
+    private String id;
     private String description;
     private String dateDebut;
     private String dateFin;
     private String note;
-    private int id_project;
+    private String id_project;
 
     public WorkSession() {
     }
@@ -14,15 +17,14 @@ public class WorkSession {
     /**
      * Constructs a new work session with the specified parameters.
      *
-     * @param id          the ID of the work session
      * @param description the description of the work session
      * @param dateDebut   the start date of the work session
      * @param dateFin     the end date of the work session
      * @param note        the note for the work session
      * @param id_project  the ID of the project associated with the work session
      */
-    public WorkSession(int id, String description, String dateDebut, String dateFin, String note, int id_project) {
-        this.id = id;
+    public WorkSession(String description, String dateDebut, String dateFin, String note, String id_project) {
+        this.id = UUID.randomUUID().toString();
         this.description = description;
         this.dateDebut = dateDebut;
         this.dateFin = dateFin;
@@ -33,15 +35,8 @@ public class WorkSession {
     /**
      * @return int return the id
      */
-    public int getId() {
+    public String getId() {
         return id;
-    }
-
-    /**
-     * @param id the id to set
-     */
-    public void setId(int id) {
-        this.id = id;
     }
 
     /**
@@ -105,7 +100,7 @@ public class WorkSession {
      *
      * @return the ID of the project
      */
-    public int getId_project() {
+    public String getId_project() {
         return id_project;
     }
 
@@ -114,7 +109,7 @@ public class WorkSession {
      *
      * @param id_project the ID of the project
      */
-    public void setId_project(int id_project) {
+    public void setId_project(String id_project) {
         this.id_project = id_project;
     }
 

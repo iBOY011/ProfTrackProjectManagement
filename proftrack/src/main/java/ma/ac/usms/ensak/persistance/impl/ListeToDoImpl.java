@@ -10,7 +10,7 @@ import java.util.List;
 import static ma.ac.usms.ensak.persistance.StorageFile.*;
 
 public class ListeToDoImpl implements ListeToDoDAO {
-    private static final String JSON_FILE_PATH = "listestodo.json";
+    private static final String JSON_FILE_PATH = "src/main/resources/databases/listestodo.json";
     private Gson gson;
 
     public ListeToDoImpl() {
@@ -19,12 +19,6 @@ public class ListeToDoImpl implements ListeToDoDAO {
 
     @Override
     public void addListeToDo(ListToDo listeToDo) {
-        List<ListToDo> listesToDo = readObjectsFromJsonFile(JSON_FILE_PATH);
-        if (!listesToDo.isEmpty()) {
-            listeToDo.setId(listesToDo.get(listesToDo.size() - 1).getId() + 1);
-        } else {
-            listeToDo.setId(1);
-        }
         saveToJsonFile(listeToDo, JSON_FILE_PATH);
     }
 
@@ -61,7 +55,7 @@ public class ListeToDoImpl implements ListeToDoDAO {
     @Override
     public void deleteListeToDo(String listeToDoId) {
         List<ListToDo> listesToDo = readObjectsFromJsonFile(JSON_FILE_PATH);
-        int id = Integer.parseInt(listeToDoId); // Convert listeToDoId to integer
+        String id = listeToDoId; // Convert listeToDoId to integer
         listesToDo.removeIf(listeToDo -> listeToDo.getId() == id); // Compare with the id property
         saveListToJsonFile(listesToDo, JSON_FILE_PATH);
     }

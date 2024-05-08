@@ -1,19 +1,20 @@
 package ma.ac.usms.ensak.metier.POJO;
 
 import java.util.Date;
+import java.util.UUID;
 
 /**
  * The `task` class represents a task object.
  */
 public class Task {
-    private int id;
+    private String id;
     private String title;
     private String description;
     private Date start_date;
     private Date end_date;
     private String status;
-    private int id_project;
-    private int id_ListToDo;
+    private String id_project;
+    private String id_ListToDo;
     
     public Task() {
     }
@@ -21,7 +22,6 @@ public class Task {
     /**
      * Constructs a new task object with the specified parameters.
      *
-     * @param id           the ID of the task
      * @param title        the title of the task
      * @param description  the description of the task
      * @param start_date   the start date of the task
@@ -30,8 +30,8 @@ public class Task {
      * @param id_project   the ID of the project associated with the task
      * @param id_ListToDo  the ID of the to-do list associated with the task
      */
-    public Task(int id, String title, String description, Date start_date, Date end_date, String status, int id_project, int id_ListToDo) {
-        this.id = id;
+    public Task(String title, String description, Date start_date, Date end_date, String status, String id_project, String id_ListToDo) {
+        this.id = UUID.randomUUID().toString();
         this.title = title;
         this.description = description;
         this.start_date = start_date;
@@ -47,17 +47,8 @@ public class Task {
      *
      * @return int the ID of the task
      */
-    public int getId() {
+    public String getId() {
         return id;
-    }
-    
-    /**
-     * Sets the ID of the task.
-     *
-     * @param id the ID to set
-     */
-    public void setId(int id) {
-        this.id = id;
     }
     
     /**
@@ -145,7 +136,7 @@ public class Task {
      *
      * @return int the ID of the project associated with the task
      */
-    public int getId_project() {
+    public String getId_project() {
         return id_project;
     }
 
@@ -154,7 +145,7 @@ public class Task {
      *
      * @param id_project the ID of the project to set
      */
-    public void setId_project(int id_project) {
+    public void setId_project(String id_project) {
         this.id_project = id_project;
     }
 
@@ -163,7 +154,7 @@ public class Task {
      *
      * @return int the ID of the to-do list associated with the task
      */
-    public int getId_ListToDo() {
+    public String getId_ListToDo() {
         return id_ListToDo;
     }
 
@@ -172,7 +163,7 @@ public class Task {
      *
      * @param id_ListToDo the ID of the to-do list to set
      */
-    public void setId_ListToDo(int id_ListToDo) {
+    public void setId_ListToDo(String id_ListToDo) {
         this.id_ListToDo = id_ListToDo;
     }
 
