@@ -20,12 +20,14 @@ public class ProjectImpl implements ProjectDAO {
 
     @Override
     public void addProject(Project project) {
-        saveToJsonFile(project, JSON_FILE_PATH);
+        List<Project> projets = readObjectsFromJsonFile(JSON_FILE_PATH, Project.class);
+        projets.add(project);
+        saveListToJsonFile(projets, JSON_FILE_PATH);;
     }
 
     @Override
     public Project getProjectById(String projectId) {
-        List<Project> projects = readObjectsFromJsonFile(JSON_FILE_PATH);
+        List<Project> projects = readObjectsFromJsonFile(JSON_FILE_PATH, Project.class);
         for (Project project : projects) {
             if (String.valueOf(project.getId()).equals(projectId)) {
                 return project;
@@ -36,17 +38,17 @@ public class ProjectImpl implements ProjectDAO {
 
     @Override
     public List<Project> getAllProjects() {
-        return readObjectsFromJsonFile(JSON_FILE_PATH);
+        return readObjectsFromJsonFile(JSON_FILE_PATH, Project.class);
     }
 
     @Override
     public void updateProject(Project updatedProjet) {
-        List<Project> projets = readObjectsFromJsonFile(JSON_FILE_PATH);
+        List<Project> projets = readObjectsFromJsonFile(JSON_FILE_PATH, Project.class);
         for (int i = 0; i < projets.size(); i++) {
             Project project = projets.get(i);
             if (project.getId() == updatedProjet.getId()) {
                 projets.set(i, updatedProjet);
-                saveToJsonFile(projets, JSON_FILE_PATH);
+                saveListToJsonFile(projets, JSON_FILE_PATH);
                 return;
             }
         }
@@ -55,7 +57,7 @@ public class ProjectImpl implements ProjectDAO {
 
     @Override
     public void deleteProject(String projetId) {
-        List<Project> projets = readObjectsFromJsonFile(JSON_FILE_PATH);
+        List<Project> projets = readObjectsFromJsonFile(JSON_FILE_PATH, Project.class);
         String id = projetId; // Convert projetId to integer
         projets.removeIf(projet -> projet.getId() == id); // Compare with the id property
         saveListToJsonFile(projets, JSON_FILE_PATH);

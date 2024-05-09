@@ -106,6 +106,7 @@ public class ProjectManager {
         return projects.stream().sorted((p1, p2) -> p1.getType().compareTo(p2.getType())).toList();
     }
 
+    // Méthodes pour rechercher un projet par mot-clé
     public boolean containsKeyword(String keyword){
         return listProjects().stream().anyMatch(project -> project.getTitle().contains(keyword) || project.getDescription().contains(keyword) || project.getType().contains(keyword));
     }
