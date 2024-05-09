@@ -6,12 +6,11 @@ import com.google.gson.Gson;
 
 import ma.ac.usms.ensak.metier.POJO.Project;
 import static ma.ac.usms.ensak.persistance.StorageFile.readObjectsFromJsonFile;
-import static ma.ac.usms.ensak.persistance.StorageFile.saveListToJsonFile;
 import static ma.ac.usms.ensak.persistance.StorageFile.saveToJsonFile;
 import ma.ac.usms.ensak.persistance.dao.ProjectDAO;
 
 public class ProjectImpl implements ProjectDAO {
-    private static final String JSON_FILE_PATH = "src/main/resources/databases/projects.json";
+    private static final String JSON_FILE_PATH = "proftrack\\src\\main\\resources\\databases\\projects.json";
     private final Gson gson;
 
     public ProjectImpl() {
@@ -20,9 +19,7 @@ public class ProjectImpl implements ProjectDAO {
 
     @Override
     public void addProject(Project project) {
-        List<Project> projets = readObjectsFromJsonFile(JSON_FILE_PATH, Project.class);
-        projets.add(project);
-        saveListToJsonFile(projets, JSON_FILE_PATH);;
+        saveToJsonFile(project, JSON_FILE_PATH);
     }
 
     @Override
@@ -60,7 +57,7 @@ public class ProjectImpl implements ProjectDAO {
         List<Project> projets = readObjectsFromJsonFile(JSON_FILE_PATH, Project.class);
         String id = projetId; // Convert projetId to integer
         projets.removeIf(projet -> projet.getId() == id); // Compare with the id property
-        saveListToJsonFile(projets, JSON_FILE_PATH);
+        saveToJsonFile(projets, JSON_FILE_PATH);
     }
 
 }

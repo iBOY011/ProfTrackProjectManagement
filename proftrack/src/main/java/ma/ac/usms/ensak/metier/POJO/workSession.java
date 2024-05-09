@@ -1,8 +1,15 @@
 package ma.ac.usms.ensak.metier.POJO;
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.UUID;
 
+
+
+/**
+ * The `workSession` class represents a work session object.
+ */
 public class WorkSession {
     private String id;
     private String description;
@@ -10,6 +17,8 @@ public class WorkSession {
     private Date dateFin;
     private String note;
     private String id_project;
+    private Set<String> documentIds;
+    private boolean closed;
 
     public WorkSession() {
     }
@@ -30,6 +39,7 @@ public class WorkSession {
         this.dateFin = dateFin;
         this.note = note;
         this.id_project = id_project;
+        this.documentIds = new HashSet<>();
     }
 
     /**
@@ -113,8 +123,34 @@ public class WorkSession {
         this.id_project = id_project;
     }
 
+    /**
+     * Returns the set of document IDs associated with this work session.
+     *
+     * @return the set of document IDs
+     */
+    public Set<String> getDocumentIds() {
+        return documentIds;
+    }
+
+    /**
+     * Adds a document ID to the set of document IDs associated with this work session.
+     *
+     * @param documentId the document ID to add
+     */
+    public void addDocumentId(String documentId) {
+        this.documentIds.add(documentId);
+    }
+
+    public void setClosed(boolean b) {
+        this.closed = b;
+    }
+
     public boolean isClosed() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        return closed;
+    }
+
+    public void setId(String asString) {
+        this.id = asString;
     }
 
 }

@@ -9,8 +9,9 @@ import java.util.List;
 
 import static ma.ac.usms.ensak.persistance.StorageFile.*;
 
+
 public class ListeToDoImpl implements ListeToDoDAO {
-    private static final String JSON_FILE_PATH = "src/main/resources/databases/listestodo.json";
+    private static final String JSON_FILE_PATH = "proftrack\\src\\main\\resources\\databases\\listestodo.json";
     private Gson gson;
 
     public ListeToDoImpl() {
@@ -19,12 +20,14 @@ public class ListeToDoImpl implements ListeToDoDAO {
 
     @Override
     public void addListeToDo(ListToDo listeToDo) {
-        saveToJsonFile(listeToDo, JSON_FILE_PATH);
+        List<ListToDo> listesToDos = readObjectsFromJsonFile(JSON_FILE_PATH, ListToDo.class);
+        listesToDos.add(listeToDo);
+        saveToJsonFile(listesToDos, JSON_FILE_PATH);
     }
 
     @Override
     public ListToDo getListeToDoById(String listeToDoId) {
-        List<ListToDo> listesToDo = readObjectsFromJsonFile(JSON_FILE_PATH);
+        List<ListToDo> listesToDo = readObjectsFromJsonFile(JSON_FILE_PATH, ListToDo.class);;
         for (ListToDo listeToDo : listesToDo) {
             if (String.valueOf(listeToDo.getId()).equals(listeToDoId)) {
                 return listeToDo;
@@ -35,29 +38,29 @@ public class ListeToDoImpl implements ListeToDoDAO {
 
     @Override
     public List<ListToDo> getAllListesToDo() {
-        return readObjectsFromJsonFile(JSON_FILE_PATH);
+        return readObjectsFromJsonFile(JSON_FILE_PATH, ListToDo.class);
     }
 
     @Override
     public void updateListeToDo(ListToDo updatedListeToDo) {
-        List<ListToDo> listesToDo = readObjectsFromJsonFile(JSON_FILE_PATH);
+        List<ListToDo> listesToDo = readObjectsFromJsonFile(JSON_FILE_PATH, ListToDo.class);;
         for (int i = 0; i < listesToDo.size(); i++) {
             ListToDo listeToDo = listesToDo.get(i);
             if (listeToDo.getId() == updatedListeToDo.getId()) {
                 listesToDo.set(i, updatedListeToDo);
-                saveToJsonFile(listeToDo, JSON_FILE_PATH);
-                return;
+                break;
             }
         }
+        saveToJsonFile(listesToDo, JSON_FILE_PATH);
         // ListeToDo not found, do nothing or throw an exception
     }
 
     @Override
     public void deleteListeToDo(String listeToDoId) {
-        List<ListToDo> listesToDo = readObjectsFromJsonFile(JSON_FILE_PATH);
+        List<ListToDo> listesToDo = readObjectsFromJsonFile(JSON_FILE_PATH, ListToDo.class);;
         String id = listeToDoId; // Convert listeToDoId to integer
         listesToDo.removeIf(listeToDo -> listeToDo.getId() == id); // Compare with the id property
-        saveListToJsonFile(listesToDo, JSON_FILE_PATH);
+        saveToJsonFile(listesToDo, JSON_FILE_PATH);
     }
 
    

@@ -84,7 +84,7 @@ public class WorkSessionManager {
     }
 
     // get work session by ID
-    public WorkSession getWorkSessionById(String idworkSession) {
+    public WorkSession searchWorkSessionById(String idworkSession) {
         // check if idworkSession is not null
         if (idworkSession == null) {
             throw new IllegalArgumentException("The ID of the work session cannot be null.");
@@ -155,4 +155,5 @@ public class WorkSessionManager {
         }
         return workSessionsByProjectCategory;
     }
+
 }

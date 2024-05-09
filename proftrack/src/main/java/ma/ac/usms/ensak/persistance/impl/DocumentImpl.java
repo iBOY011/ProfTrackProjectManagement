@@ -13,7 +13,7 @@ import ma.ac.usms.ensak.persistance.StorageFile;
  * Implementation of the DocumentDAO interface that provides methods to create, read, update, and delete documents.
  */
 public class DocumentImpl implements DocumentDAO {
-    private static final String DOCUMENT_FILE = "src/main/resources/databases/DocumentFile.json";
+    private static final String DOCUMENT_FILE = "proftrack\\src\\main\\resources\\databases\\DocumentFile.json";
 
     /**
      * Creates a new document and saves it to the storage file.
@@ -22,7 +22,9 @@ public class DocumentImpl implements DocumentDAO {
      */
     @Override
     public void addDocument(Document document) {
-        StorageFile.saveToJsonFile(document, DOCUMENT_FILE);
+        List<Document> documents = StorageFile.readObjectsFromJsonFile(DOCUMENT_FILE, Document.class);
+        documents.add(document);
+        StorageFile.saveToJsonFile(documents, DOCUMENT_FILE);
     }
 
     /**
@@ -33,7 +35,7 @@ public class DocumentImpl implements DocumentDAO {
      */
     @Override
     public Document getDocumentById(String idDocument) {
-        List<Document> documents = StorageFile.readObjectsFromJsonFile(DOCUMENT_FILE);
+        List<Document> documents = StorageFile.readObjectsFromJsonFile(DOCUMENT_FILE, Document.class);
         for (Document d : documents) {
             if (d.getId() == idDocument) {
                 return d;
@@ -49,13 +51,13 @@ public class DocumentImpl implements DocumentDAO {
      */
     @Override
     public void updateDocument(Document document) {
-        List<Document> documents = StorageFile.readObjectsFromJsonFile(DOCUMENT_FILE);
+        List<Document> documents = StorageFile.readObjectsFromJsonFile(DOCUMENT_FILE, Document.class);
         for (Document d : documents) {
             if (d.getId() == document.getId()) {
                 d = document;
             }
         }
-        StorageFile.saveListToJsonFile(documents, DOCUMENT_FILE);
+        StorageFile.saveToJsonFile(documents, DOCUMENT_FILE);
     }
 
     /**
@@ -65,7 +67,7 @@ public class DocumentImpl implements DocumentDAO {
      */
     @Override
     public void deleteDocument(String idDocument) {
-        List<Document> documents = StorageFile.readObjectsFromJsonFile(DOCUMENT_FILE);
+        List<Document> documents = StorageFile.readObjectsFromJsonFile(DOCUMENT_FILE, Document.class);
 
         for (Document d : documents) {
             if (d.getId() == idDocument) {
@@ -73,7 +75,7 @@ public class DocumentImpl implements DocumentDAO {
                 break;
             }
         }
-        StorageFile.saveListToJsonFile(documents, "src/main/resources/databases/DocumentFile.json");
+        StorageFile.saveToJsonFile(documents, DOCUMENT_FILE);
     }
 
     /**
@@ -83,7 +85,7 @@ public class DocumentImpl implements DocumentDAO {
      */
     @Override
     public List<Document> getAllDocuments() {
-        return StorageFile.readObjectsFromJsonFile("src/main/resources/databases/DocumentFile.json");
+        return StorageFile.readObjectsFromJsonFile(DOCUMENT_FILE, Document.class);
     }
 
     /**
@@ -94,7 +96,7 @@ public class DocumentImpl implements DocumentDAO {
      */
     @Override
     public List<Document> getDocumentsByProject(String idProjet) {
-        List<Document> documents = StorageFile.readObjectsFromJsonFile("src/main/resources/databases/DocumentFile.json");
+        List<Document> documents = StorageFile.readObjectsFromJsonFile(DOCUMENT_FILE, Document.class);
         List<Document> documentsByProject = new ArrayList<>();
         for (Document d : documents) {
             if (d.getId_project() == idProjet) {
@@ -112,7 +114,7 @@ public class DocumentImpl implements DocumentDAO {
      */
     @Override
     public List<Document> searchDocumentsByKeyword(String keyword) {
-        List<Document> documents = StorageFile.readObjectsFromJsonFile("src/main/resources/databases/DocumentFile.json");
+        List<Document> documents = StorageFile.readObjectsFromJsonFile(DOCUMENT_FILE, Document.class);
         List<Document> documentsByKeyword = new ArrayList<>();
         for (Document d : documents) {
             if (d.getDescription().contains(keyword)) {
