@@ -19,7 +19,9 @@ public class ProjectImpl implements ProjectDAO {
 
     @Override
     public void addProject(Project project) {
-        saveToJsonFile(project, JSON_FILE_PATH);
+        List<Project> projects = readObjectsFromJsonFile(JSON_FILE_PATH, Project.class);
+        projects.add(project);
+        saveToJsonFile(projects, JSON_FILE_PATH);
     }
 
     @Override
@@ -45,7 +47,7 @@ public class ProjectImpl implements ProjectDAO {
             Project project = projets.get(i);
             if (project.getId() == updatedProjet.getId()) {
                 projets.set(i, updatedProjet);
-                saveListToJsonFile(projets, JSON_FILE_PATH);
+                saveToJsonFile(projets, JSON_FILE_PATH);
                 return;
             }
         }
