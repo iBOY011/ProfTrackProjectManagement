@@ -23,6 +23,9 @@ public class DocumentImpl implements DocumentDAO {
     @Override
     public void addDocument(Document document) {
         List<Document> documents = StorageFile.readObjectsFromJsonFile(DOCUMENT_FILE, Document.class);
+        if (documents == null) {
+            documents = new ArrayList<>();
+        }
         documents.add(document);
         StorageFile.saveToJsonFile(documents, DOCUMENT_FILE);
     }

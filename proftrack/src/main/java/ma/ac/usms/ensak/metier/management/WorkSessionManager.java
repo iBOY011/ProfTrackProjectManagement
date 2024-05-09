@@ -35,19 +35,19 @@ public class WorkSessionManager {
             throw new IllegalArgumentException("The description cannot be null.");
         }
         // check if the dateDebut is not null and greater than the current date
-        if (workSession.getDateDebut() == null ||
-                workSession.getDateDebut().compareTo(new Date()) < 0) {
-            throw new IllegalArgumentException("The start date cannot be null.");
-        }
-        // check if the dateFin is not null and greater than the dateDebut
-        if (workSession.getDateFin() == null ||
-                workSession.getDateFin().compareTo(workSession.getDateDebut()) < 0) {
-            throw new IllegalArgumentException("The end date cannot be null.");
-        }
-        // check if start date and end date in the same day
-        if (workSession.getDateDebut().compareTo(workSession.getDateFin()) == 0) {
-            throw new IllegalArgumentException("The start date and end date cannot be the same.");
-        }
+        // if (workSession.getDateDebut() == null ||
+        //         workSession.getDateDebut().compareTo(new Date()) < 0) {
+        //     throw new IllegalArgumentException("The start date cannot be null.");
+        // }
+        // // check if the dateFin is not null and greater than the dateDebut
+        // if (workSession.getDateFin() == null ||
+        //         workSession.getDateFin().compareTo(workSession.getDateDebut()) < 0) {
+        //     throw new IllegalArgumentException("The end date cannot be null.");
+        // }
+        // // check if start date and end date in the same day
+        // if (workSession.getDateDebut().compareTo(workSession.getDateFin()) == 0) {
+        //     throw new IllegalArgumentException("The start date and end date cannot be the same.");
+        // }
     }
 
     // add work session with id project

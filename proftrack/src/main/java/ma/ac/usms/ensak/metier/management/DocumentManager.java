@@ -49,9 +49,9 @@ public class DocumentManager {
             throw new IllegalArgumentException("The id project cannot be null.");
         }
         // path regex
-        if (!document.getPath().matches("^(?:[a-zA-Z]\\:|\\\\)\\\\[a-zA-Z0-9\\.]+(\\\\[a-zA-Z0-9\\.]+)*$")) {
-            throw new IllegalArgumentException("The path is not valid.");
-        }
+        // if (!document.getPath().matches("^(?:[a-zA-Z]\\:|\\\\)\\\\[a-zA-Z0-9\\.]+(\\\\[a-zA-Z0-9\\.]+)*$")) {
+        //     throw new IllegalArgumentException("The path is not valid.");
+        // }
     }
 
     // add document

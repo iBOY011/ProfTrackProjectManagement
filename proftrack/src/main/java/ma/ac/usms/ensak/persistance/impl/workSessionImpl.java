@@ -23,7 +23,9 @@ public class WorkSessionImpl implements WorkSessionDAO {
         // check if the file exists, if not create it
         List<WorkSession> workSessions = new ArrayList<WorkSession>();
         workSessions = StorageFile.readObjectsFromJsonFile(WORK_SESSION_FILE, WorkSession.class);
-        System.out.println(workSessions);
+        if (workSessions == null) {
+            workSessions = new ArrayList<WorkSession>();
+        }
         workSessions.add(workSession);
         StorageFile.saveToJsonFile(workSessions, WORK_SESSION_FILE);
     }

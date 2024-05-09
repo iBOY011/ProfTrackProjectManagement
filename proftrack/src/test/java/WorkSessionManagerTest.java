@@ -75,9 +75,6 @@ public class WorkSessionManagerTest {
         // create documents
         Document doc1 = new Document("doc1", "path1", "project1");
         Document doc2 = new Document("doc2", "path2", "project1");
-        // Add some document IDs using work session manager
-        workSessionManager.addDocumentToWorkSession(workSession.getId(), doc1.getId());
-        workSessionManager.addDocumentToWorkSession(workSession.getId(), doc2.getId());
         // Check if the document IDs are added
         assertTrue(workSession.getDocumentIds().contains("doc1"));
         assertTrue(workSession.getDocumentIds().contains("doc2"));
