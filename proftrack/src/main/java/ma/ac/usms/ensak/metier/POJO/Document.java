@@ -1,7 +1,12 @@
 package ma.ac.usms.ensak.metier.POJO;
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.UUID;
+
+import com.google.gson.annotations.JsonAdapter;
+
 
 /**
  * The `document` class represents a document object.
@@ -12,7 +17,6 @@ public class Document {
     private Date dateAdded;
     private String path;
     private String id_project;
-
     /**
      * Constructs a new `document` object with the specified parameters.
      * 
@@ -107,14 +111,7 @@ public class Document {
         return id_project;
     }
 
-    /**
-     * Set the ID of the project associated with the document.
-     * 
-     * @param id_project the ID of the project
-     */
-    public void setId_project(String id_project) {
-        this.id_project = id_project;
-    }
+   
 
     /**
      * Returns a string representation of the `document` object.
@@ -123,7 +120,7 @@ public class Document {
      */
     @Override
     public String toString() {
-        return "document [id=" + id + ", description=" + description + ", dateAdded=" + dateAdded + ", path=" + path
+        return "Document [id=" + id + ", description=" + description + ", dateAdded=" + dateAdded + ", path=" + path
                 + ", id_project=" + id_project + "]";
     }
 

@@ -1,10 +1,13 @@
 package ma.ac.usms.ensak.metier.POJO;
 
 import java.util.UUID;
+import com.google.gson.annotations.JsonAdapter;
+
 
 /**
  * The `listToDo` class represents a to-do item in a list.
  */
+@JsonAdapter(ListToDo.class)
 public class ListToDo {
     private String id;
     private String title;

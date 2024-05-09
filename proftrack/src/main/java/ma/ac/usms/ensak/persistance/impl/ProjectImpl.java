@@ -6,12 +6,11 @@ import com.google.gson.Gson;
 
 import ma.ac.usms.ensak.metier.POJO.Project;
 import static ma.ac.usms.ensak.persistance.StorageFile.readObjectsFromJsonFile;
-import static ma.ac.usms.ensak.persistance.StorageFile.saveListToJsonFile;
 import static ma.ac.usms.ensak.persistance.StorageFile.saveToJsonFile;
 import ma.ac.usms.ensak.persistance.dao.ProjectDAO;
 
 public class ProjectImpl implements ProjectDAO {
-    private static final String JSON_FILE_PATH = "src/main/resources/databases/projects.json";
+    private static final String JSON_FILE_PATH = "proftrack\\src\\main\\resources\\databases\\projects.json";
     private final Gson gson;
 
     public ProjectImpl() {
@@ -20,12 +19,14 @@ public class ProjectImpl implements ProjectDAO {
 
     @Override
     public void addProject(Project project) {
-        saveToJsonFile(project, JSON_FILE_PATH);
+        List<Project> projects = readObjectsFromJsonFile(JSON_FILE_PATH, Project.class);
+        projects.add(project);
+        saveToJsonFile(projects, JSON_FILE_PATH);
     }
 
     @Override
     public Project getProjectById(String projectId) {
-        List<Project> projects = readObjectsFromJsonFile(JSON_FILE_PATH);
+        List<Project> projects = readObjectsFromJsonFile(JSON_FILE_PATH, Project.class);
         for (Project project : projects) {
             if (String.valueOf(project.getId()).equals(projectId)) {
                 return project;
@@ -36,12 +37,12 @@ public class ProjectImpl implements ProjectDAO {
 
     @Override
     public List<Project> getAllProjects() {
-        return readObjectsFromJsonFile(JSON_FILE_PATH);
+        return readObjectsFromJsonFile(JSON_FILE_PATH, Project.class);
     }
 
     @Override
     public void updateProject(Project updatedProjet) {
-        List<Project> projets = readObjectsFromJsonFile(JSON_FILE_PATH);
+        List<Project> projets = readObjectsFromJsonFile(JSON_FILE_PATH, Project.class);
         for (int i = 0; i < projets.size(); i++) {
             Project project = projets.get(i);
             if (project.getId() == updatedProjet.getId()) {
@@ -55,10 +56,10 @@ public class ProjectImpl implements ProjectDAO {
 
     @Override
     public void deleteProject(String projetId) {
-        List<Project> projets = readObjectsFromJsonFile(JSON_FILE_PATH);
+        List<Project> projets = readObjectsFromJsonFile(JSON_FILE_PATH, Project.class);
         String id = projetId; // Convert projetId to integer
         projets.removeIf(projet -> projet.getId() == id); // Compare with the id property
-        saveListToJsonFile(projets, JSON_FILE_PATH);
+        saveToJsonFile(projets, JSON_FILE_PATH);
     }
 
 }

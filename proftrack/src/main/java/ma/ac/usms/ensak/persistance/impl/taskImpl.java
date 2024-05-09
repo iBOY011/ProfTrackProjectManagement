@@ -11,7 +11,7 @@ import ma.ac.usms.ensak.persistance.dao.TaskDAO;
  * Implementation of the taskDAO interface for managing tasks.
  */
 public class TaskImpl implements TaskDAO {
-    private static final String TASK_FILE_PATH = "src/main/resources/databases/TaskFile.json";
+    private static final String TASK_FILE_PATH = "proftrack\\src\\main\\resources\\databases\\TaskFile.json";
 
 
     /**
@@ -21,7 +21,9 @@ public class TaskImpl implements TaskDAO {
      */
     @Override
     public void addTask(Task task) {
-        StorageFile.saveToJsonFile(task, TASK_FILE_PATH);
+        List<Task> tasks = StorageFile.readObjectsFromJsonFile(TASK_FILE_PATH, Task.class);
+        tasks.add(task);
+        StorageFile.saveToJsonFile(tasks, TASK_FILE_PATH);
     }
 
     /**
@@ -32,7 +34,7 @@ public class TaskImpl implements TaskDAO {
      */
     @Override
     public Task getTaskById(String idtask) {
-        List<Task> tasks = StorageFile.readObjectsFromJsonFile(TASK_FILE_PATH);
+        List<Task> tasks = StorageFile.readObjectsFromJsonFile(TASK_FILE_PATH, Task.class);
 
         for (Task t : tasks) {
             if (t.getId() == idtask) {
@@ -58,7 +60,7 @@ public class TaskImpl implements TaskDAO {
             }
         }
 
-        StorageFile.saveListToJsonFile(tasks, TASK_FILE_PATH);
+        StorageFile.saveToJsonFile(tasks, TASK_FILE_PATH);
     }
 
     /**
@@ -77,7 +79,7 @@ public class TaskImpl implements TaskDAO {
             }
         }
 
-        StorageFile.saveListToJsonFile(tasks, TASK_FILE_PATH);
+        StorageFile.saveToJsonFile(tasks, TASK_FILE_PATH);
     }
 
     /**
@@ -87,7 +89,7 @@ public class TaskImpl implements TaskDAO {
      */
     @Override
     public List<Task> getAllTasks() {
-        List<Task> tasks = StorageFile.readObjectsFromJsonFile(TASK_FILE_PATH);
+        List<Task> tasks = StorageFile.readObjectsFromJsonFile(TASK_FILE_PATH, Task.class);
 
         return tasks;
     }
