@@ -8,8 +8,6 @@ import ma.ac.usms.ensak.persistance.impl.WorkSessionImpl;
 import java.util.Date;
 import java.util.List;
 
-import javax.swing.JPanel;
-
 public class WorkSessionImplTest {
 
     private WorkSessionImpl workSessionImpl;
