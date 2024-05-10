@@ -125,7 +125,7 @@ public class ProjectManager {
         List<Task> tasks;
         tasks = taskManager.listTasksByIdProject(project);
         for (Task task : tasks) {
-            if (!task.isDone()) {
+            if (!task.wasDone()) {
                 throw new IllegalArgumentException("The project cannot be archived because there are still open tasks");
             }
         }

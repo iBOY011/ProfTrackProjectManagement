@@ -4,14 +4,12 @@ import java.util.Date;
 import java.util.UUID;
 
 import ma.ac.usms.ensak.util.Category;
-import com.google.gson.annotations.JsonAdapter;
 
 
 /**
  * The `project` class represents a project with various attributes such as id,
  * description, start date, end date, category, and type.
  */
-@JsonAdapter(Project.class)
 public class Project {
     private String id;
     private String title;
