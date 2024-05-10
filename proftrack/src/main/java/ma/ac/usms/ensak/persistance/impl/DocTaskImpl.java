@@ -3,10 +3,7 @@ package ma.ac.usms.ensak.persistance.impl;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.google.gson.Gson;
-
 import ma.ac.usms.ensak.metier.POJO.DocTask;
-import ma.ac.usms.ensak.metier.POJO.Project;
 import static ma.ac.usms.ensak.persistance.StorageFile.*;
 import ma.ac.usms.ensak.persistance.dao.DocTaskDAO;
 
@@ -16,6 +13,9 @@ public class DocTaskImpl implements DocTaskDAO {
     @Override
     public void addDocTask(DocTask docTask) {
         List<DocTask> doctasks = readObjectsFromJsonFile(JSON_FILE_PATH, DocTask.class);
+        if (doctasks == null) {
+            doctasks = new ArrayList<>();
+        }
         doctasks.add(docTask);
         saveToJsonFile(doctasks, JSON_FILE_PATH);
     }

@@ -61,10 +61,11 @@ public class DocTaskManager {
     }
 
     private boolean isValidateSyntax(String idDocument, String idTask) {
-        if (idDocument == null || idDocument.isEmpty() || idDocument.isBlank()) {
-            return false;
-        }
-        return (idTask == null || idTask.isEmpty() || idTask.isBlank());
+        // if (idDocument == null || idDocument.isEmpty() || idDocument.isBlank()) {
+        //     return false;
+        // }
+        // return (idTask == null || idTask.isEmpty() || idTask.isBlank());
+        return true;
     }
 
     // Méthodes pour chercher les documents liés à une tâche ou vice versa

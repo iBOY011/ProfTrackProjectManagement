@@ -3,13 +3,11 @@ package ma.ac.usms.ensak.metier.POJO;
 import ma.ac.usms.ensak.util.Status;
 import java.util.Date;
 import java.util.UUID;
-import com.google.gson.annotations.JsonAdapter;
 
 
 /**
  * The `task` class represents a task object.
  */
-@JsonAdapter(Task.class)
 public class Task {
     private String id;
     private String title;
@@ -171,7 +169,7 @@ public class Task {
         this.id_ListToDo = id_ListToDo;
     }
 
-    public boolean isDone() {
+    public boolean wasDone() {
         return status.equals(Status.DONE);
     }
 }
