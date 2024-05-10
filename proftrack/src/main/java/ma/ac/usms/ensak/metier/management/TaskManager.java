@@ -42,15 +42,15 @@ public class TaskManager {
             throw new IllegalArgumentException("The description cannot be null.");
         }
         // check if the start_date is not null and greater than the current date
-        if (task.getStart_date() == null ||
-                task.getStart_date().compareTo(new Date()) < 0) {
-            throw new IllegalArgumentException("The start date cannot be null.");
-        }
-        // check if the end_date is not null and greater than the start_date
-        if (task.getEnd_date() == null ||
-                task.getEnd_date().compareTo(task.getStart_date()) < 0) {
-            throw new IllegalArgumentException("The end date cannot be null.");
-        }
+        // if (task.getStart_date() == null ||
+        // task.getStart_date().compareTo(new Date()) < 0) {
+        // throw new IllegalArgumentException("The start date cannot be null.");
+        // }
+        // // check if the end_date is not null and greater than the start_date
+        // if (task.getEnd_date() == null ||
+        // task.getEnd_date().compareTo(task.getStart_date()) < 0) {
+        // throw new IllegalArgumentException("The end date cannot be null.");
+        // }
     }
 
     // add task with id project and id list to do

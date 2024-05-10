@@ -22,6 +22,9 @@ public class TaskImpl implements TaskDAO {
     @Override
     public void addTask(Task task) {
         List<Task> tasks = StorageFile.readObjectsFromJsonFile(TASK_FILE_PATH, Task.class);
+        if (tasks == null) {
+            tasks = new ArrayList<>(); // Initialize the list if it's null
+        }
         tasks.add(task);
         StorageFile.saveToJsonFile(tasks, TASK_FILE_PATH);
     }
@@ -37,7 +40,7 @@ public class TaskImpl implements TaskDAO {
         List<Task> tasks = StorageFile.readObjectsFromJsonFile(TASK_FILE_PATH, Task.class);
 
         for (Task t : tasks) {
-            if (t.getId() == idtask) {
+            if (t.getId().contentEquals(idtask)) {
                 return t;
             }
         }

@@ -1,0 +1,20 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Main",
+            "request": "launch",
+            "mainClass": "ma.ac.usms.ensak.Main",
+            "projectName": "proftrack"
+        },
+        {
+            "type": "java",
+            "name": "JavaFX Application",
+            "request": "launch",
+            "mainClass": "ma.ac.usms.ensak.Main",
+            "projectName": "ProfTrackProjectManagement",
+            "args": []
+        }
+    ]
+}
