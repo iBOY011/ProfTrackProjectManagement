@@ -4,7 +4,6 @@ C:\Users\dell\Desktop\ProfTrackProjectManagement\ProfTrackProjectManagement\prof
 C:\Users\dell\Desktop\ProfTrackProjectManagement\ProfTrackProjectManagement\proftrack\src\main\java\ma\ac\usms\ensak\metier\management\DocumentManager.java
 C:\Users\dell\Desktop\ProfTrackProjectManagement\ProfTrackProjectManagement\proftrack\src\main\java\ma\ac\usms\ensak\metier\management\ListToDoManager.java
 C:\Users\dell\Desktop\ProfTrackProjectManagement\ProfTrackProjectManagement\proftrack\src\main\java\ma\ac\usms\ensak\metier\management\ProjectManager.java
-C:\Users\dell\Desktop\ProfTrackProjectManagement\ProfTrackProjectManagement\proftrack\src\main\java\ma\ac\usms\ensak\metier\management\RelationsManager.java
 C:\Users\dell\Desktop\ProfTrackProjectManagement\ProfTrackProjectManagement\proftrack\src\main\java\ma\ac\usms\ensak\metier\management\TaskManager.java
 C:\Users\dell\Desktop\ProfTrackProjectManagement\ProfTrackProjectManagement\proftrack\src\main\java\ma\ac\usms\ensak\metier\management\WorkSessionManager.java
 C:\Users\dell\Desktop\ProfTrackProjectManagement\ProfTrackProjectManagement\proftrack\src\main\java\ma\ac\usms\ensak\metier\POJO\DocSession.java
@@ -31,10 +30,11 @@ C:\Users\dell\Desktop\ProfTrackProjectManagement\ProfTrackProjectManagement\prof
 C:\Users\dell\Desktop\ProfTrackProjectManagement\ProfTrackProjectManagement\proftrack\src\main\java\ma\ac\usms\ensak\persistance\impl\WorkSessionImpl.java
 C:\Users\dell\Desktop\ProfTrackProjectManagement\ProfTrackProjectManagement\proftrack\src\main\java\ma\ac\usms\ensak\persistance\StorageFile.java
 C:\Users\dell\Desktop\ProfTrackProjectManagement\ProfTrackProjectManagement\proftrack\src\main\java\ma\ac\usms\ensak\presentation\controller\AuthController.java
-C:\Users\dell\Desktop\ProfTrackProjectManagement\ProfTrackProjectManagement\proftrack\src\main\java\ma\ac\usms\ensak\presentation\Views\Auth.java
-C:\Users\dell\Desktop\ProfTrackProjectManagement\ProfTrackProjectManagement\proftrack\src\main\java\ma\ac\usms\ensak\presentation\Views\Home.java
+C:\Users\dell\Desktop\ProfTrackProjectManagement\ProfTrackProjectManagement\proftrack\src\main\java\ma\ac\usms\ensak\presentation\Views\AuthentificationView.java
+C:\Users\dell\Desktop\ProfTrackProjectManagement\ProfTrackProjectManagement\proftrack\src\main\java\ma\ac\usms\ensak\presentation\Views\HomeView.java
 C:\Users\dell\Desktop\ProfTrackProjectManagement\ProfTrackProjectManagement\proftrack\src\main\java\ma\ac\usms\ensak\presentation\Views\TodayView.java
 C:\Users\dell\Desktop\ProfTrackProjectManagement\ProfTrackProjectManagement\proftrack\src\main\java\ma\ac\usms\ensak\presentation\Views\VBoxes\NavBarBox.java
+C:\Users\dell\Desktop\ProfTrackProjectManagement\ProfTrackProjectManagement\proftrack\src\main\java\ma\ac\usms\ensak\presentation\Views\VBoxes\ShowBox.java
 C:\Users\dell\Desktop\ProfTrackProjectManagement\ProfTrackProjectManagement\proftrack\src\main\java\ma\ac\usms\ensak\presentation\Views\VBoxes\TodayBox.java
 C:\Users\dell\Desktop\ProfTrackProjectManagement\ProfTrackProjectManagement\proftrack\src\main\java\ma\ac\usms\ensak\util\Category.java
 C:\Users\dell\Desktop\ProfTrackProjectManagement\ProfTrackProjectManagement\proftrack\src\main\java\ma\ac\usms\ensak\util\Statistics.java

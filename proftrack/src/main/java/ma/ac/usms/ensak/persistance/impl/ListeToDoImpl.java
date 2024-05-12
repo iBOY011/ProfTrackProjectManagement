@@ -5,13 +5,14 @@ import com.google.gson.Gson;
 import ma.ac.usms.ensak.metier.POJO.ListToDo;
 import ma.ac.usms.ensak.persistance.dao.ListeToDoDAO;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static ma.ac.usms.ensak.persistance.StorageFile.*;
 
 
 public class ListeToDoImpl implements ListeToDoDAO {
-    private static final String JSON_FILE_PATH = "proftrack\\src\\main\\resources\\databases\\listestodo.json";
+    private static final String JSON_FILE_PATH = "src\\main\\resources\\databases\\listestodo.json";
 
     public ListeToDoImpl() {
     }
@@ -19,6 +20,9 @@ public class ListeToDoImpl implements ListeToDoDAO {
     @Override
     public void addListeToDo(ListToDo listeToDo) {
         List<ListToDo> listesToDos = readObjectsFromJsonFile(JSON_FILE_PATH, ListToDo.class);
+        if (listesToDos == null) {
+            listesToDos = new ArrayList<>();
+        }
         listesToDos.add(listeToDo);
         saveToJsonFile(listesToDos, JSON_FILE_PATH);
     }

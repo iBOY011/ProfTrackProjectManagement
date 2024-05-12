@@ -2,6 +2,7 @@ package ma.ac.usms.ensak;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import ma.ac.usms.ensak.presentation.controller.AuthController;
@@ -15,6 +16,8 @@ public class Main extends Application {
         AuthController authController = new AuthController();
         scene = new Scene(authController.getAuthentification(), 800, 600);
         primaryStage.setScene(scene);
+        primaryStage.setTitle("ProfTrack");
+        primaryStage.getIcons().add(new Image("file:src/main/resources/Icons/image.png"));
         primaryStage.show();
     }
 
