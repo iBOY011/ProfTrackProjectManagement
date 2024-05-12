@@ -1,5 +1,12 @@
 ma\ac\usms\ensak\metier\POJO\WorkSession.class
+ma\ac\usms\ensak\presentation\Views\TodayView.class
 ma\ac\usms\ensak\metier\POJO\DocTask.class
+<<<<<<< HEAD
+=======
+ma\ac\usms\ensak\persistance\impl\WorkSessionImpl.class
+ma\ac\usms\ensak\presentation\Views\Auth.class
+ma\ac\usms\ensak\metier\management\WorkSessionManager.class
+>>>>>>> 1d35a40c437889b48cd676a79d653a2c06aeb9ee
 ma\ac\usms\ensak\persistance\dao\WorkSessionDAO.class
 ma\ac\usms\ensak\metier\POJO\ListToDo.class
 ma\ac\usms\ensak\persistance\dao\DocSessionDAO.class
@@ -7,10 +14,18 @@ ma\ac\usms\ensak\persistance\impl\DocumentImpl.class
 ma\ac\usms\ensak\util\Category.class
 ma\ac\usms\ensak\metier\management\DocumentManager.class
 ma\ac\usms\ensak\Main.class
+ma\ac\usms\ensak\presentation\controller\AuthController.class
+ma\ac\usms\ensak\presentation\Views\NavBarBox.class
+ma\ac\usms\ensak\metier\Services\GoogleOAuth2Login.class
 ma\ac\usms\ensak\util\Status.class
 ma\ac\usms\ensak\persistance\impl\DocTaskImpl.class
 ma\ac\usms\ensak\persistance\dao\ListeToDoDAO.class
 ma\ac\usms\ensak\persistance\dao\TaskDAO.class
+<<<<<<< HEAD
+=======
+ma\ac\usms\ensak\presentation\Views\TodayBox.class
+ma\ac\usms\ensak\metier\POJO\Project.class
+>>>>>>> 1d35a40c437889b48cd676a79d653a2c06aeb9ee
 ma\ac\usms\ensak\persistance\dao\DocTaskDAO.class
 ma\ac\usms\ensak\metier\management\DocTaskManager.class
 ma\ac\usms\ensak\persistance\impl\DocSessionImpl.class
