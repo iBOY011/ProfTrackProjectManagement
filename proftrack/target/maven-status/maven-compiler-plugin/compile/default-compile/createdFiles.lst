@@ -14,7 +14,6 @@ ma\ac\usms\ensak\persistance\dao\DocTaskDAO.class
 ma\ac\usms\ensak\persistance\StorageFile.class
 ma\ac\usms\ensak\persistance\impl\ListeToDoImpl.class
 ma\ac\usms\ensak\metier\POJO\DocTask.class
-ma\ac\usms\ensak\presentation\Views\Auth.class
 ma\ac\usms\ensak\metier\management\WorkSessionManager.class
 ma\ac\usms\ensak\persistance\dao\DocSessionDAO.class
 ma\ac\usms\ensak\Main.class

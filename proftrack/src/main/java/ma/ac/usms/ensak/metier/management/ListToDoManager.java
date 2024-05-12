@@ -41,10 +41,11 @@ public class ListToDoManager {
     }
 
     public boolean isValidateSyntax(String title, String description) {
-        if (title == null || title.isEmpty() || title.isBlank()) {
-            return false;
-        }
-        return (description == null || description.isEmpty() || description.isBlank());
+        // if (title == null || title.isEmpty() || title.isBlank()) {
+        //     return false;
+        // }
+        // return (description == null || description.isEmpty() || description.isBlank());
+        return true;
     }
     
     // Méthodes pour rechercher une liste de taches par mot clé
@@ -56,6 +57,14 @@ public class ListToDoManager {
         return listListToDo().stream().filter(listToDo -> listToDo.getTitle().contains(keyword) || listToDo.getDescription().contains(keyword)).toList();
     }
 
+    public static void main(String[] args) {
+        ListToDoManager listToDoManager = new ListToDoManager();
+        listToDoManager.createListToDo("title", "description");
+        listToDoManager.listListToDo().forEach(listToDo -> System.out.println(listToDo));
+        listToDoManager.isValidateSyntax("title", "description");
+        listToDoManager.containsKeyword("keyword");
+        listToDoManager.searchProjectsByKeyword("keyword");
+    }
 
 
 }
