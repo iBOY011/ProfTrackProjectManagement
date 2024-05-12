@@ -1,4 +1,4 @@
-package ma.ac.usms.ensak.presentation.Views;
+package ma.ac.usms.ensak.presentation.Views.VBoxes;
 
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;

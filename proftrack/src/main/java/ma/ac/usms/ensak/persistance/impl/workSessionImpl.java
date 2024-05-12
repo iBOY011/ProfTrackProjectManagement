@@ -1,9 +1,7 @@
 package ma.ac.usms.ensak.persistance.impl;
 import java.util.ArrayList;
 import java.util.List;
-import java.io.File;
 
-import ma.ac.usms.ensak.metier.POJO.Project;
 import ma.ac.usms.ensak.metier.POJO.WorkSession;
 import ma.ac.usms.ensak.persistance.dao.WorkSessionDAO;
 import ma.ac.usms.ensak.persistance.StorageFile;

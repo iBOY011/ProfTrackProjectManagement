@@ -1,7 +1,5 @@
 package ma.ac.usms.ensak.metier.Services;
 
-import com.google.api.client.auth.oauth2.AuthorizationCodeFlow;
-import com.google.api.client.auth.oauth2.AuthorizationCodeRequestUrl;
 import com.google.api.client.auth.oauth2.Credential;
 import com.google.api.client.extensions.java6.auth.oauth2.AuthorizationCodeInstalledApp;
 import com.google.api.client.extensions.jetty.auth.oauth2.LocalServerReceiver;
@@ -10,7 +8,7 @@ import com.google.api.client.googleapis.auth.oauth2.GoogleClientSecrets;
 import com.google.api.client.googleapis.javanet.GoogleNetHttpTransport;
 import com.google.api.client.http.HttpTransport;
 import com.google.api.client.json.JsonFactory;
-import com.google.api.client.json.gson.GsonFactory; // Updated import
+import com.google.api.client.json.gson.GsonFactory;
 
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -37,5 +35,6 @@ public class GoogleOAuth2Login {
 
                 return new AuthorizationCodeInstalledApp(flow, new LocalServerReceiver.Builder().setPort(8888).build())
                                 .authorize("user");
+                                        // khasha traje3na l application nichane
         }
 }

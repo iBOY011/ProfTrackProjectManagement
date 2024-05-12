@@ -18,7 +18,7 @@ public class Statistics {
     public int getTotalWorkHoursByProject(String projectId) {
         int TotalHours = 0;
         projectManager = new ProjectManager();
-        Project project = projectManager.searchProjectById(projectId);
+        // Project project = projectManager.searchProjectById(projectId);
         
         
         return TotalHours;

@@ -12,10 +12,8 @@ import static ma.ac.usms.ensak.persistance.StorageFile.*;
 
 public class ListeToDoImpl implements ListeToDoDAO {
     private static final String JSON_FILE_PATH = "proftrack\\src\\main\\resources\\databases\\listestodo.json";
-    private Gson gson;
 
     public ListeToDoImpl() {
-        gson = new Gson();
     }
 
     @Override

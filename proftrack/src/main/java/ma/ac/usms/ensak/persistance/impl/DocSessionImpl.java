@@ -1,6 +1,5 @@
 package ma.ac.usms.ensak.persistance.impl;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
