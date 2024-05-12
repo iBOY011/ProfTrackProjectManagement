@@ -7,19 +7,19 @@ import com.google.api.client.auth.oauth2.Credential;
 
 import ma.ac.usms.ensak.Main;
 import ma.ac.usms.ensak.metier.Services.GoogleOAuth2Login;
-import ma.ac.usms.ensak.presentation.Views.Auth;
-import ma.ac.usms.ensak.presentation.Views.TodayView;
+import ma.ac.usms.ensak.presentation.Views.AuthentificationView;
+import ma.ac.usms.ensak.presentation.Views.HomeView;
 
 public class AuthController {
-    private Auth authentification;
+    private AuthentificationView authentification;
 
     public AuthController() {
-        authentification = new Auth();
+        authentification = new AuthentificationView();
         authentification.getLoginButton().setOnMouseClicked(e -> {
             try {
                 Credential credential = GoogleOAuth2Login.authorize();
                 if (credential != null) {
-                    Main.setRoot(new TodayView());
+                    Main.setRoot(new HomeView());
                 }
             } catch (IOException | InterruptedException | GeneralSecurityException ev) {
             }
@@ -27,7 +27,7 @@ public class AuthController {
         
     }
 
-    public Auth getAuthentification() {
+    public AuthentificationView getAuthentification() {
         return authentification;
     }
 

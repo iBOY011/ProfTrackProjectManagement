@@ -3,7 +3,6 @@ package ma.ac.usms.ensak.persistance.impl;
 import java.util.ArrayList;
 import java.util.List;
 import ma.ac.usms.ensak.metier.POJO.Document;
-import ma.ac.usms.ensak.metier.POJO.WorkSession;
 import ma.ac.usms.ensak.persistance.dao.DocumentDAO;
 import ma.ac.usms.ensak.persistance.StorageFile;
 

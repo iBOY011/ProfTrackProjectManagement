@@ -1,11 +1,9 @@
 package ma.ac.usms.ensak.metier.management;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import ma.ac.usms.ensak.metier.POJO.Document;
-import ma.ac.usms.ensak.metier.POJO.WorkSession;
 import ma.ac.usms.ensak.persistance.impl.DocumentImpl;
 
 /**
