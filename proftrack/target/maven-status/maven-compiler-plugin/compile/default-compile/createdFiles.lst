@@ -1,6 +1,8 @@
 ma\ac\usms\ensak\metier\POJO\WorkSession.class
+ma\ac\usms\ensak\presentation\Views\TodayView.class
 ma\ac\usms\ensak\metier\POJO\DocTask.class
 ma\ac\usms\ensak\persistance\impl\WorkSessionImpl.class
+ma\ac\usms\ensak\presentation\Views\Auth.class
 ma\ac\usms\ensak\metier\management\WorkSessionManager.class
 ma\ac\usms\ensak\persistance\dao\WorkSessionDAO.class
 ma\ac\usms\ensak\util\Statistics.class
@@ -12,10 +14,14 @@ ma\ac\usms\ensak\util\Category.class
 ma\ac\usms\ensak\metier\management\DocumentManager.class
 ma\ac\usms\ensak\metier\management\TaskManager.class
 ma\ac\usms\ensak\Main.class
+ma\ac\usms\ensak\presentation\controller\AuthController.class
+ma\ac\usms\ensak\presentation\Views\NavBarBox.class
+ma\ac\usms\ensak\metier\Services\GoogleOAuth2Login.class
 ma\ac\usms\ensak\util\Status.class
 ma\ac\usms\ensak\persistance\impl\DocTaskImpl.class
 ma\ac\usms\ensak\persistance\dao\ListeToDoDAO.class
 ma\ac\usms\ensak\persistance\dao\TaskDAO.class
+ma\ac\usms\ensak\presentation\Views\TodayBox.class
 ma\ac\usms\ensak\metier\POJO\Project.class
 ma\ac\usms\ensak\persistance\dao\DocTaskDAO.class
 ma\ac\usms\ensak\metier\management\DocSessionManager.class
