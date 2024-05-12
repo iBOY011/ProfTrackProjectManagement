@@ -1,4 +1,5 @@
 package ma.ac.usms.ensak.metier.Services;
+
 import com.google.api.client.auth.oauth2.AuthorizationCodeFlow;
 import com.google.api.client.auth.oauth2.AuthorizationCodeRequestUrl;
 import com.google.api.client.auth.oauth2.Credential;
@@ -18,22 +19,23 @@ import java.util.Arrays;
 import java.util.List;
 
 public class GoogleOAuth2Login {
-    private static final String CLIENT_SECRET_FILE = "/.configs/client_secret.json";
-    private static final List<String> SCOPES = Arrays.asList("https://www.googleapis.com/auth/drive.metadata.readonly");
-    private static final JsonFactory JSON_FACTORY = GsonFactory.getDefaultInstance();
-    private static HttpTransport httpTransport;
+        private static final String CLIENT_SECRET_FILE = "/.configs/client_secret.json";
+        private static final List<String> SCOPES = Arrays
+                        .asList("https://www.googleapis.com/auth/drive.metadata.readonly");
+        private static final JsonFactory JSON_FACTORY = GsonFactory.getDefaultInstance();
+        private static HttpTransport httpTransport;
 
-    public static Credential authorize() throws IOException, GeneralSecurityException, InterruptedException {
-        httpTransport = GoogleNetHttpTransport.newTrustedTransport();
-        
-        GoogleClientSecrets clientSecrets = GoogleClientSecrets.load(JSON_FACTORY,
-                new InputStreamReader(GoogleOAuth2Login.class.getResourceAsStream(CLIENT_SECRET_FILE)));
+        public static Credential authorize() throws IOException, GeneralSecurityException, InterruptedException {
+                httpTransport = GoogleNetHttpTransport.newTrustedTransport();
 
-        GoogleAuthorizationCodeFlow flow = new GoogleAuthorizationCodeFlow.Builder(
-                httpTransport, JSON_FACTORY, clientSecrets, SCOPES)
-                .build();
+                GoogleClientSecrets clientSecrets = GoogleClientSecrets.load(JSON_FACTORY,
+                                new InputStreamReader(GoogleOAuth2Login.class.getResourceAsStream(CLIENT_SECRET_FILE)));
 
-        return new AuthorizationCodeInstalledApp(flow, new LocalServerReceiver.Builder().setPort(8888).build())
-                .authorize("user");
-    }
+                GoogleAuthorizationCodeFlow flow = new GoogleAuthorizationCodeFlow.Builder(
+                                httpTransport, JSON_FACTORY, clientSecrets, SCOPES)
+                                .build();
+
+                return new AuthorizationCodeInstalledApp(flow, new LocalServerReceiver.Builder().setPort(8888).build())
+                                .authorize("user");
+        }
 }
