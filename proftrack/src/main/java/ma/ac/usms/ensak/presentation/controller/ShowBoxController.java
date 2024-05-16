@@ -1,16 +1,22 @@
 package ma.ac.usms.ensak.presentation.controller;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.checkerframework.checker.units.qual.A;
 import org.checkerframework.checker.units.qual.s;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ContextMenu;
+import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
+import javafx.scene.control.MenuItem;
+import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import ma.ac.usms.ensak.metier.POJO.Project;
@@ -21,8 +27,10 @@ import ma.ac.usms.ensak.presentation.Views.VBoxes.ShowBox;
 import ma.ac.usms.ensak.util.ListItem;
 
 /**
- * The ShowBoxController class is responsible for managing the display and interaction
- * with the ShowBox view. It handles the logic for showing a list of items, handling
+ * The ShowBoxController class is responsible for managing the display and
+ * interaction
+ * with the ShowBox view. It handles the logic for showing a list of items,
+ * handling
  * item selection, and adding new lists.
  */
 public class ShowBoxController {
@@ -40,11 +48,11 @@ public class ShowBoxController {
         }
         showList(showBox.getList());
         showProject(showBox.getProject());
-        addButton();
     }
 
     /**
      * Displays a list of ListToDo items in the given VBox.
+     * 
      * @param list
      */
     public static void showList(VBox list) {
@@ -61,11 +69,15 @@ public class ShowBoxController {
         });
         listView.setStyle("-fx-font-size: 15px; -fx-padding: 0; -fx-background-color: #f4f4f4;");
         list.getChildren().add(listView);
-        handleSelection(listView);
+        ListContextMenu(listView, true);
+        handleSelection(listView, true);
+        addListButton();
+
     }
 
     /**
      * Displays a list of Project items in the given VBox.
+     * 
      * @param list
      */
     public static void showProject(VBox list) {
@@ -82,29 +94,39 @@ public class ShowBoxController {
         });
         listView.setStyle("-fx-font-size: 15px; -fx-padding: 0; -fx-background-color: #f4f4f4;");
         list.getChildren().add(listView);
-        handleSelection(listView);
+        ListContextMenu(listView, false);
+        handleSelection(listView, false);
+        addProjectButton();
     }
 
     /**
      * Handles the selection of an item in the list view.
+     * 
      * @param listView The list view to handle selection for.
      */
-    public static void handleSelection(ListView<ListItem> listView) {
+    public static void handleSelection(ListView<ListItem> listView, Boolean FLAG) {
         listView.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                ListItem item = listView.getSelectionModel().getSelectedItem();
-                if (item != null) {
-                    showIDAlert(item.getId());
-                    idListSelected = item.getId();
+                if (event.getButton() == MouseButton.PRIMARY && event.getClickCount() == 1) {
+                    // Left-clicked
+                    ListItem item = listView.getSelectionModel().getSelectedItem();
+                    if (item != null) {
+                        showIDAlert(item.getId());
+                        if (FLAG) {
+                            idListSelected = item.getId();
+                        } else {
+                            idProjectSelected = item.getId();
+                        }
+                    }
                 }
             }
         });
     }
-    
 
     /*
      * Displays an alert with the ID of the selected item.
+     * 
      * @param id The ID of the selected item.
      */
     private static void showIDAlert(String id) {
@@ -119,16 +141,63 @@ public class ShowBoxController {
             }
         });
 
-
         alert.showAndWait();
     }
 
-
-    public static void addButton() {
-        showBox.getButton().setOnAction(e -> {
+    public static void addListButton() {
+        showBox.getListButton().setOnAction(e -> {
             AddListController addListController = new AddListController();
             addListController.createView();
         });
+    }
+
+    public static void addProjectButton() {
+        showBox.getProjectButton().setOnAction(e -> {
+            AddProjectController addProjectController = new AddProjectController();
+            addProjectController.createView();
+        });
+    }
+
+    public static void ListContextMenu(ListView<ListItem> listView, Boolean FLAG) {
+        ContextMenu contextMenu = new ContextMenu();
+        MenuItem deleteItem = new MenuItem("Delete");
+        MenuItem archiveItem = null;
+
+        // Event handler for delete item
+        EventHandler<ActionEvent> deleteHandler = e -> {
+            ListItem selectedItem = listView.getSelectionModel().getSelectedItem();
+            if (selectedItem != null) {
+                if (FLAG) {
+                    listToDoManager.removeListToDo(selectedItem.getId());
+                    showList(showBox.getList());
+                } else {
+                    projectManager.removeProject(selectedItem.getId());
+                    showProject(showBox.getProject());
+                }
+            }
+        };
+
+        // Event handler for archive item (only for projects)
+        EventHandler<ActionEvent> archiveHandler = e -> {
+            ListItem selectedItem = listView.getSelectionModel().getSelectedItem();
+            if (selectedItem != null) {
+                Project project = projectManager.searchProjectById(selectedItem.getId());
+                project.setArchived(true);
+                showProject(showBox.getProject());
+            }
+        };
+
+        deleteItem.setOnAction(deleteHandler); // Set delete handler always
+
+        // Add archive item only if FLAG is false (for projects)
+        if (!FLAG) {
+            archiveItem = new MenuItem("Archive");
+            archiveItem.setOnAction(archiveHandler);
+            contextMenu.getItems().add(archiveItem);
+        }
+
+        contextMenu.getItems().addAll(deleteItem);
+        listView.setContextMenu(contextMenu); // Set context menu to the ListView
     }
 
     public ShowBox getShowBox() {

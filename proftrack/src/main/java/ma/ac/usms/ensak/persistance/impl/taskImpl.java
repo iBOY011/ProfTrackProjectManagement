@@ -56,7 +56,7 @@ public class TaskImpl implements TaskDAO {
         List<Task> tasks = getAllTasks();
 
         for (int i = 0; i < tasks.size(); i++) {
-            if (tasks.get(i).getId() == task.getId()) {
+            if (tasks.get(i).getId().contentEquals(task.getId())) {
                 tasks.set(i, task);
                 break;
             }
@@ -75,7 +75,7 @@ public class TaskImpl implements TaskDAO {
         List<Task> tasks = getAllTasks();
 
         for (int i = 0; i < tasks.size(); i++) {
-            if (tasks.get(i).getId() == idtask) {
+            if (tasks.get(i).getId().contentEquals(idtask)) {
                 tasks.remove(i);
                 break;
             }
@@ -109,7 +109,7 @@ public class TaskImpl implements TaskDAO {
         List<Task> tasksByProject = new ArrayList<>();
 
         for (Task t : tasks) {
-            if (t.getId_project() == idProjet) {
+            if (t.getId_project().contentEquals(idProjet)) {
                 tasksByProject.add(t);
             }
         }

@@ -74,7 +74,7 @@ public class TodayBoxController {
                     button.setStyle(
                             "-fx-background-color: transparent; -fx-border-color: transparent; -fx-cursor: hand; -fx-font-size: 10px;");
                     // Get the Project object by its ID
-                    Project project = projectManager.searchProjectById(t.getId_Project());
+                    Project project = projectManager.searchProjectById(t.getId_project());
 
                     // Create a label with the title of the ListToDo
                     Label label = new Label(project.getTitle());

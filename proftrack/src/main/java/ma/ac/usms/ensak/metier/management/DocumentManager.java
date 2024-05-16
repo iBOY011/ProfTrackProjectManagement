@@ -6,7 +6,6 @@ import java.util.List;
 import ma.ac.usms.ensak.metier.POJO.DocTask;
 import ma.ac.usms.ensak.metier.POJO.Document;
 import ma.ac.usms.ensak.persistance.impl.DocumentImpl;
-import ma.ac.usms.ensak.metier.management.DocTaskManager;
 
 /**
  * 
