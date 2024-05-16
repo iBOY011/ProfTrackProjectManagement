@@ -12,10 +12,6 @@ import ma.ac.usms.ensak.persistance.dao.TaskDAO;
  */
 public class TaskImpl implements TaskDAO {
     private static final String TASK_FILE_PATH = "src\\main\\resources\\databases\\TaskFile.json";
-<<<<<<< HEAD
-=======
-
->>>>>>> 45a786bfa39adcf625216e588c4d78f45c8d147a
 
     /**
      * Creates a new task and saves it to the storage file.
