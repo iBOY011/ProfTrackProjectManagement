@@ -184,7 +184,7 @@ public class TaskManager {
         tasks = taskImpl.getAllTasks();
         List<Task> tasks1 = new ArrayList<Task>();
         for (Task task : tasks) {
-            if (task.getId_ListToDo() == id) {
+            if (task.getId_ListToDo().contentEquals(id)) {
                 tasks1.add(task);
             }
         }

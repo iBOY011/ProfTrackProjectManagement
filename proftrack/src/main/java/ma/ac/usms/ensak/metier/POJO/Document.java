@@ -126,6 +126,11 @@ public class Document {
         this.id_project = id_project;
     }
 
+    public String getTitle() {
+       // get the title of the document from path
+        return this.path.substring(this.path.lastIndexOf("\\") + 1);
+    }
+
    
 
     

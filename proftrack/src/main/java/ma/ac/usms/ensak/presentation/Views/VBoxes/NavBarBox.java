@@ -29,7 +29,7 @@ public class NavBarBox extends VBox {
             HBox.prefHeightProperty().bind(heightProperty().multiply(percentages[i] / 100));
         }
 
-        addButtonWithImage(UserEmail, "https://cdn-icons-png.flaticon.com/512/3135/3135715.png");
+        addButtonWithImage(UserEmail, getClass().getResource("/Icons/profile.png").toString());
         addButtonWithImage(Tasks, "https://cdn-icons-png.flaticon.com/512/7072/7072982.png");
         addButtonWithImage(Calendar, "https://cdn-icons-png.flaticon.com/512/1048/1048953.png");
         addButtonWithImage(Settings, "https://cdn-icons-png.flaticon.com/512/1835/1835942.png");
