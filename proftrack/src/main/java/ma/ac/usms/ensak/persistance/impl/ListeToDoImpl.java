@@ -10,7 +10,6 @@ import java.util.List;
 
 import static ma.ac.usms.ensak.persistance.StorageFile.*;
 
-
 public class ListeToDoImpl implements ListeToDoDAO {
     private static final String JSON_FILE_PATH = "src\\main\\resources\\databases\\listestodo.json";
 
@@ -29,9 +28,9 @@ public class ListeToDoImpl implements ListeToDoDAO {
 
     @Override
     public ListToDo getListeToDoById(String listeToDoId) {
-        List<ListToDo> listesToDo = readObjectsFromJsonFile(JSON_FILE_PATH, ListToDo.class);;
+        List<ListToDo> listesToDo = readObjectsFromJsonFile(JSON_FILE_PATH, ListToDo.class);
         for (ListToDo listeToDo : listesToDo) {
-            if (String.valueOf(listeToDo.getId()).equals(listeToDoId)) {
+            if (String.valueOf(listeToDo.getId()).contentEquals(listeToDoId)) {
                 return listeToDo;
             }
         }
@@ -45,7 +44,8 @@ public class ListeToDoImpl implements ListeToDoDAO {
 
     @Override
     public void updateListeToDo(ListToDo updatedListeToDo) {
-        List<ListToDo> listesToDo = readObjectsFromJsonFile(JSON_FILE_PATH, ListToDo.class);;
+        List<ListToDo> listesToDo = readObjectsFromJsonFile(JSON_FILE_PATH, ListToDo.class);
+        ;
         for (int i = 0; i < listesToDo.size(); i++) {
             ListToDo listeToDo = listesToDo.get(i);
             if (listeToDo.getId() == updatedListeToDo.getId()) {
@@ -59,11 +59,11 @@ public class ListeToDoImpl implements ListeToDoDAO {
 
     @Override
     public void deleteListeToDo(String listeToDoId) {
-        List<ListToDo> listesToDo = readObjectsFromJsonFile(JSON_FILE_PATH, ListToDo.class);;
+        List<ListToDo> listesToDo = readObjectsFromJsonFile(JSON_FILE_PATH, ListToDo.class);
+        ;
         String id = listeToDoId; // Convert listeToDoId to integer
         listesToDo.removeIf(listeToDo -> listeToDo.getId() == id); // Compare with the id property
         saveToJsonFile(listesToDo, JSON_FILE_PATH);
     }
 
-   
 }

@@ -53,18 +53,23 @@ public class ListToDoManager {
         return listListToDo().stream().anyMatch(listToDo -> listToDo.getTitle().contains(keyword) || listToDo.getDescription().contains(keyword));
     }
 
-    public List<ListToDo> searchProjectsByKeyword(String keyword){
+    public List<ListToDo> searchLitsByKeyword(String keyword){
         return listListToDo().stream().filter(listToDo -> listToDo.getTitle().contains(keyword) || listToDo.getDescription().contains(keyword)).toList();
     }
 
-    public static void main(String[] args) {
-        ListToDoManager listToDoManager = new ListToDoManager();
-        listToDoManager.createListToDo("title", "description");
-        listToDoManager.listListToDo().forEach(listToDo -> System.out.println(listToDo));
-        listToDoManager.isValidateSyntax("title", "description");
-        listToDoManager.containsKeyword("keyword");
-        listToDoManager.searchProjectsByKeyword("keyword");
+    public ListToDo searchListeToDoById(String listeToDoId) {
+        ListeToDoImpl listToDoImpl = new ListeToDoImpl();
+        return listToDoImpl.getListeToDoById(listeToDoId);
     }
+
+    // public static void main(String[] args) {
+    //     ListToDoManager listToDoManager = new ListToDoManager();
+    //     listToDoManager.createListToDo("title", "description");
+    //     listToDoManager.listListToDo().forEach(listToDo -> System.out.println(listToDo));
+    //     listToDoManager.isValidateSyntax("title", "description");
+    //     listToDoManager.containsKeyword("keyword");
+    //     listToDoManager.searchListsByKeyword("keyword");
+    // }
 
 
 }

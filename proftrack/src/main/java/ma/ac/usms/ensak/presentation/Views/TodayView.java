@@ -1,12 +1,11 @@
 package ma.ac.usms.ensak.presentation.Views;
 
-
 import org.checkerframework.checker.units.qual.s;
-
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import ma.ac.usms.ensak.presentation.Views.VBoxes.ShowBox;
 import ma.ac.usms.ensak.presentation.Views.VBoxes.TodayBox;
+import ma.ac.usms.ensak.presentation.controller.TodayBoxController;
 import ma.ac.usms.ensak.presentation.controller.DetailsController;
 import ma.ac.usms.ensak.presentation.controller.ShowBoxController;
 
@@ -15,9 +14,10 @@ public class TodayView extends HBox {
 
     public TodayView() {
         // Create 4 vBoxs
+        TodayBoxController todayBoxController = new TodayBoxController();
+        TodayBox Today = todayBoxController.getTodayBox();
         ShowBoxController showBoxController = new ShowBoxController();
         DetailsController detailsController = new DetailsController();
-        TodayBox Today = new TodayBox();
         ShowBox showBox = showBoxController.getShowBox();
         VBox detailsBox = detailsController.getDetailsBox();
 

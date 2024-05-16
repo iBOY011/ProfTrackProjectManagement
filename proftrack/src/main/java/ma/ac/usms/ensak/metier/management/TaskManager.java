@@ -265,4 +265,16 @@ public class TaskManager {
         }
         return tasks1;
     }
+
+    public List<Task> getTasksOfToday() {
+        tasks = taskImpl.getAllTasks();
+        List<Task> result = new ArrayList<>();
+        Task tasktest = tasks.get(0);
+        for (Task task : tasks) {
+            if (task.getStart_date().compareTo(tasktest.getStart_date()) == 0) {
+                result.add(task);
+            }
+        }
+        return result;
+    }
 }
