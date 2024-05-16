@@ -11,7 +11,7 @@ import ma.ac.usms.ensak.persistance.dao.TaskDAO;
  * Implementation of the taskDAO interface for managing tasks.
  */
 public class TaskImpl implements TaskDAO {
-    private static final String TASK_FILE_PATH = "proftrack\\src\\main\\resources\\databases\\TaskFile.json";
+    private static final String TASK_FILE_PATH = "src\\main\\resources\\databases\\TaskFile.json";
 
 
     /**

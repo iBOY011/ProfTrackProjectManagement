@@ -3,8 +3,10 @@ package ma.ac.usms.ensak.metier.management;
 import java.util.ArrayList;
 import java.util.List;
 
+import ma.ac.usms.ensak.metier.POJO.DocTask;
 import ma.ac.usms.ensak.metier.POJO.Document;
 import ma.ac.usms.ensak.persistance.impl.DocumentImpl;
+import ma.ac.usms.ensak.metier.management.DocTaskManager;
 
 /**
  * 
@@ -97,6 +99,17 @@ public class DocumentManager {
     // get documents by project
     public List<Document> ListDocumentsByProject(String idProjet) {
         return documentImpl.getDocumentsByProject(idProjet);
+    }
+
+    // search documents by task
+    public List<Document> ListDocumentsByTask(String idTask) {
+        DocTaskManager docTaskManager = new DocTaskManager();
+        List<DocTask> Ids = docTaskManager.searchDocTaskByTask(idTask);
+        List<Document> documents = new ArrayList<Document>();
+        for (DocTask docTask : Ids) {
+            documents.add(documentImpl.getDocumentById(docTask.getIdDocument()));
+        }
+        return documents;
     }
 
 }

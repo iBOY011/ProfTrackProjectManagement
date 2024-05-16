@@ -14,7 +14,7 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         AuthController authController = new AuthController();
-        scene = new Scene(authController.getAuthentification(), 800, 600);
+        scene = new Scene(authController.getAuthentification(), 1024, 600);
         primaryStage.setScene(scene);
         primaryStage.setTitle("ProfTrack");
         primaryStage.getIcons().add(new Image("file:src/main/resources/Icons/image.png"));

@@ -1,5 +1,6 @@
 package ma.ac.usms.ensak.persistance.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.google.gson.Gson;
@@ -10,7 +11,7 @@ import static ma.ac.usms.ensak.persistance.StorageFile.saveToJsonFile;
 import ma.ac.usms.ensak.persistance.dao.ProjectDAO;
 
 public class ProjectImpl implements ProjectDAO {
-    private static final String JSON_FILE_PATH = "proftrack\\src\\main\\resources\\databases\\projects.json";
+    private static final String JSON_FILE_PATH = "src\\main\\resources\\databases\\projects.json";
     private final Gson gson;
 
     public ProjectImpl() {
@@ -20,6 +21,9 @@ public class ProjectImpl implements ProjectDAO {
     @Override
     public void addProject(Project project) {
         List<Project> projects = readObjectsFromJsonFile(JSON_FILE_PATH, Project.class);
+        if (projects == null) {
+            projects = new ArrayList<>();
+        }
         projects.add(project);
         saveToJsonFile(projects, JSON_FILE_PATH);
     }
