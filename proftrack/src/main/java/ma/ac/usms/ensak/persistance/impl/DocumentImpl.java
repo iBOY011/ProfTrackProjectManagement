@@ -13,7 +13,7 @@ import ma.ac.usms.ensak.persistance.StorageFile;
  * Implementation of the DocumentDAO interface that provides methods to create, read, update, and delete documents.
  */
 public class DocumentImpl implements DocumentDAO {
-    private static final String DOCUMENT_FILE = "proftrack\\src\\main\\resources\\databases\\DocumentFile.json";
+    private static final String DOCUMENT_FILE = "src\\main\\resources\\databases\\DocumentFile.json";
 
     /**
      * Creates a new document and saves it to the storage file.
@@ -56,7 +56,7 @@ public class DocumentImpl implements DocumentDAO {
     public void updateDocument(Document document) {
         List<Document> documents = StorageFile.readObjectsFromJsonFile(DOCUMENT_FILE, Document.class);
         for (Document d : documents) {
-            if (d.getId() == document.getId()) {
+            if (d.getId().contentEquals(document.getId())) {
                 d = document;
             }
         }
@@ -73,7 +73,7 @@ public class DocumentImpl implements DocumentDAO {
         List<Document> documents = StorageFile.readObjectsFromJsonFile(DOCUMENT_FILE, Document.class);
 
         for (Document d : documents) {
-            if (d.getId() == idDocument) {
+            if (d.getId().contentEquals(idDocument)) {
                 documents.remove(d);
                 break;
             }
@@ -102,7 +102,7 @@ public class DocumentImpl implements DocumentDAO {
         List<Document> documents = StorageFile.readObjectsFromJsonFile(DOCUMENT_FILE, Document.class);
         List<Document> documentsByProject = new ArrayList<>();
         for (Document d : documents) {
-            if (d.getId_project() == idProjet) {
+            if (d.getId_project().contentEquals(idProjet)) {
                 documentsByProject.add(d);
             }
         }

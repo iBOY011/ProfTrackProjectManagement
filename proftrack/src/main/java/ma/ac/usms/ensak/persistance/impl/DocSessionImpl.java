@@ -8,7 +8,7 @@ import ma.ac.usms.ensak.persistance.dao.DocSessionDAO;
 import ma.ac.usms.ensak.persistance.StorageFile;
 
 public class DocSessionImpl implements DocSessionDAO {
-    private final String DOCSESSION_FILE_PATH = "proftrack\\src\\main\\resources\\databases\\DocSession.json";
+    private final String DOCSESSION_FILE_PATH = "src\\main\\resources\\databases\\DocSession.json";
 
 
     @Override

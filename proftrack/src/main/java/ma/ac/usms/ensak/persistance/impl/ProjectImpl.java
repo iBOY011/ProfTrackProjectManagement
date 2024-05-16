@@ -49,20 +49,19 @@ public class ProjectImpl implements ProjectDAO {
         List<Project> projets = readObjectsFromJsonFile(JSON_FILE_PATH, Project.class);
         for (int i = 0; i < projets.size(); i++) {
             Project project = projets.get(i);
-            if (project.getId() == updatedProjet.getId()) {
+            if (project.getId().contentEquals(updatedProjet.getId())) {
                 projets.set(i, updatedProjet);
                 saveToJsonFile(projets, JSON_FILE_PATH);
                 return;
             }
         }
-        // Projet not found, do nothing or throw an exception
     }
 
     @Override
     public void deleteProject(String projetId) {
         List<Project> projets = readObjectsFromJsonFile(JSON_FILE_PATH, Project.class);
         String id = projetId; // Convert projetId to integer
-        projets.removeIf(projet -> projet.getId() == id); // Compare with the id property
+        projets.removeIf(projet -> projet.getId().contentEquals(id)); // Compare with the id property
         saveToJsonFile(projets, JSON_FILE_PATH);
     }
 

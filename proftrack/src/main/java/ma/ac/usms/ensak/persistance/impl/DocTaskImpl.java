@@ -8,7 +8,7 @@ import static ma.ac.usms.ensak.persistance.StorageFile.*;
 import ma.ac.usms.ensak.persistance.dao.DocTaskDAO;
 
 public class DocTaskImpl implements DocTaskDAO {
-    private static final String JSON_FILE_PATH = "proftrack\\src\\main\\resources\\databases\\doctasks.json";
+    private static final String JSON_FILE_PATH = "src\\main\\resources\\databases\\doctasks.json";
 
     @Override
     public void addDocTask(DocTask docTask) {

@@ -48,7 +48,7 @@ public class ListeToDoImpl implements ListeToDoDAO {
         ;
         for (int i = 0; i < listesToDo.size(); i++) {
             ListToDo listeToDo = listesToDo.get(i);
-            if (listeToDo.getId() == updatedListeToDo.getId()) {
+            if (listeToDo.getId().contentEquals(updatedListeToDo.getId())) {
                 listesToDo.set(i, updatedListeToDo);
                 break;
             }
@@ -60,9 +60,8 @@ public class ListeToDoImpl implements ListeToDoDAO {
     @Override
     public void deleteListeToDo(String listeToDoId) {
         List<ListToDo> listesToDo = readObjectsFromJsonFile(JSON_FILE_PATH, ListToDo.class);
-        ;
         String id = listeToDoId; // Convert listeToDoId to integer
-        listesToDo.removeIf(listeToDo -> listeToDo.getId() == id); // Compare with the id property
+        listesToDo.removeIf(listeToDo -> listeToDo.getId().contentEquals(id)); // Compare with the id property
         saveToJsonFile(listesToDo, JSON_FILE_PATH);
     }
 

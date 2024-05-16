@@ -10,7 +10,7 @@ import ma.ac.usms.ensak.persistance.StorageFile;
  * Provides methods to create, read, update, and delete work sessions.
  */
 public class WorkSessionImpl implements WorkSessionDAO {
-    private static final String WORK_SESSION_FILE = "proftrack\\src\\main\\resources\\databases\\WorkSessionFile.json";
+    private static final String WORK_SESSION_FILE = "src\\main\\resources\\databases\\WorkSessionFile.json";
 
     /**
      * Creates a new work session.
@@ -50,7 +50,6 @@ public class WorkSessionImpl implements WorkSessionDAO {
      */
     @Override
     public void updateWorkSession(WorkSession workSession) {
-        // TODO Auto-generated method stub
         List<WorkSession> workSessions = StorageFile.readObjectsFromJsonFile(WORK_SESSION_FILE, WorkSession.class);
    
         for (int i = 0; i < workSessions.size(); i++) {
@@ -69,11 +68,10 @@ public class WorkSessionImpl implements WorkSessionDAO {
      */
     @Override
     public void deleteWorkSession(String idworkSession) {
-        // TODO Auto-generated method stub
         List<WorkSession> workSessions = StorageFile.readObjectsFromJsonFile(WORK_SESSION_FILE, WorkSession.class);
 
         for (WorkSession ws : workSessions) {
-            if (ws.getId() == idworkSession) {
+            if (ws.getId().contentEquals(idworkSession)) {
                 workSessions.remove(ws);
                 break;
             }
@@ -87,7 +85,6 @@ public class WorkSessionImpl implements WorkSessionDAO {
      */
     @Override
     public List<WorkSession> getAllSeancesTravail() {
-        // TODO Auto-generated method stub
         return StorageFile.readObjectsFromJsonFile(WORK_SESSION_FILE, WorkSession.class);
     }
 
@@ -98,11 +95,10 @@ public class WorkSessionImpl implements WorkSessionDAO {
      */
     @Override
     public List<WorkSession> getSeancesTravailByProject(String idProjet) {
-        // TODO Auto-generated method stub
         List<WorkSession> workSessions = StorageFile.readObjectsFromJsonFile(WORK_SESSION_FILE, WorkSession.class);
         List<WorkSession> workSessionsByProject = new ArrayList<WorkSession>();
         for (WorkSession ws : workSessions) {
-            if (ws.getId_project() == idProjet) {
+            if (ws.getId_project().contentEquals(idProjet)) {
                 workSessionsByProject.add(ws);
             }
         }
@@ -116,7 +112,6 @@ public class WorkSessionImpl implements WorkSessionDAO {
      */
     @Override
     public List<WorkSession> searchSeancesTravailByKeyword(String keyword) {
-        // TODO Auto-generated method stub
         List<WorkSession> workSessions = StorageFile.readObjectsFromJsonFile(WORK_SESSION_FILE, WorkSession.class);
         List<WorkSession> workSessionsByKeyword = new ArrayList<WorkSession>();
         for (WorkSession ws : workSessions) {
