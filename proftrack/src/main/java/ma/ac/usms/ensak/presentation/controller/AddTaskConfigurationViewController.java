@@ -5,16 +5,13 @@ import javafx.stage.Stage;
 import ma.ac.usms.ensak.presentation.Views.AddTaskConfigurationView;
 
 public class AddTaskConfigurationViewController {
-    
 
     private AddTaskConfigurationView AddTaskConfigurationView;
 
     public AddTaskConfigurationViewController() {
         AddTaskConfigurationView = new AddTaskConfigurationView();
+
     }
-
-
-
 
     public void createView() {
         Stage stage = new Stage();

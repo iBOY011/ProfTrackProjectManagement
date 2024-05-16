@@ -9,6 +9,11 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 
 public class AddTaskConfigurationView extends GridPane {
+    ChoiceBox<String> projectChoiceBox;
+    ChoiceBox<String> listChoiceBox;
+    DatePicker startDatePicker;
+    DatePicker endDatePicker;
+    TextField descriptionTextField;
 
     public AddTaskConfigurationView() {
         setPadding(new Insets(20, 20, 20, 20));
@@ -32,24 +37,24 @@ public class AddTaskConfigurationView extends GridPane {
         GridPane.setConstraints(descriptionLabel, 0, 4);
 
         // ChoiceBox for projects
-        ChoiceBox<String> projectChoiceBox = new ChoiceBox<>();
+        projectChoiceBox = new ChoiceBox<>();
         projectChoiceBox.getItems().addAll("Project 1", "Project 2", "Project 3");
         GridPane.setConstraints(projectChoiceBox, 1, 0);
 
         // ChoiceBox for lists
-        ChoiceBox<String> listChoiceBox = new ChoiceBox<>();
+        listChoiceBox = new ChoiceBox<>();
         listChoiceBox.getItems().addAll("List 1", "List 2", "List 3");
         GridPane.setConstraints(listChoiceBox, 1, 1);
 
         // DatePickers for start and end dates
-        DatePicker startDatePicker = new DatePicker();
+        startDatePicker = new DatePicker();
         GridPane.setConstraints(startDatePicker, 1, 2);
 
-        DatePicker endDatePicker = new DatePicker();
+        endDatePicker = new DatePicker();
         GridPane.setConstraints(endDatePicker, 1, 3);
 
         // TextField for description
-        TextField descriptionTextField = new TextField();
+        descriptionTextField = new TextField();
         descriptionTextField.setPromptText("Enter description");
         GridPane.setConstraints(descriptionTextField, 1, 4);
 
