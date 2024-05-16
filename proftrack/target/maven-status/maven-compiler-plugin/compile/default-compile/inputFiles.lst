@@ -31,6 +31,7 @@ C:\Users\haita\Desktop\Gi1 Project\Java\Github\ProfTrackProjectManagement\proftr
 C:\Users\haita\Desktop\Gi1 Project\Java\Github\ProfTrackProjectManagement\proftrack\src\main\java\ma\ac\usms\ensak\persistance\StorageFile.java
 C:\Users\haita\Desktop\Gi1 Project\Java\Github\ProfTrackProjectManagement\proftrack\src\main\java\ma\ac\usms\ensak\presentation\controller\AddDocumentController.java
 C:\Users\haita\Desktop\Gi1 Project\Java\Github\ProfTrackProjectManagement\proftrack\src\main\java\ma\ac\usms\ensak\presentation\controller\AddListController.java
+C:\Users\haita\Desktop\Gi1 Project\Java\Github\ProfTrackProjectManagement\proftrack\src\main\java\ma\ac\usms\ensak\presentation\controller\AddTaskConfigurationViewController.java
 C:\Users\haita\Desktop\Gi1 Project\Java\Github\ProfTrackProjectManagement\proftrack\src\main\java\ma\ac\usms\ensak\presentation\controller\AuthController.java
 C:\Users\haita\Desktop\Gi1 Project\Java\Github\ProfTrackProjectManagement\proftrack\src\main\java\ma\ac\usms\ensak\presentation\controller\DetailsController.java
 C:\Users\haita\Desktop\Gi1 Project\Java\Github\ProfTrackProjectManagement\proftrack\src\main\java\ma\ac\usms\ensak\presentation\controller\DocumentController.java
@@ -38,6 +39,7 @@ C:\Users\haita\Desktop\Gi1 Project\Java\Github\ProfTrackProjectManagement\proftr
 C:\Users\haita\Desktop\Gi1 Project\Java\Github\ProfTrackProjectManagement\proftrack\src\main\java\ma\ac\usms\ensak\presentation\controller\TodayBoxController.java
 C:\Users\haita\Desktop\Gi1 Project\Java\Github\ProfTrackProjectManagement\proftrack\src\main\java\ma\ac\usms\ensak\presentation\controller\TodayViewController.java
 C:\Users\haita\Desktop\Gi1 Project\Java\Github\ProfTrackProjectManagement\proftrack\src\main\java\ma\ac\usms\ensak\presentation\Views\AddListView.java
+C:\Users\haita\Desktop\Gi1 Project\Java\Github\ProfTrackProjectManagement\proftrack\src\main\java\ma\ac\usms\ensak\presentation\Views\AddTaskConfigurationView.java
 C:\Users\haita\Desktop\Gi1 Project\Java\Github\ProfTrackProjectManagement\proftrack\src\main\java\ma\ac\usms\ensak\presentation\Views\AuthentificationView.java
 C:\Users\haita\Desktop\Gi1 Project\Java\Github\ProfTrackProjectManagement\proftrack\src\main\java\ma\ac\usms\ensak\presentation\Views\HomeView.java
 C:\Users\haita\Desktop\Gi1 Project\Java\Github\ProfTrackProjectManagement\proftrack\src\main\java\ma\ac\usms\ensak\presentation\Views\TodayView.java

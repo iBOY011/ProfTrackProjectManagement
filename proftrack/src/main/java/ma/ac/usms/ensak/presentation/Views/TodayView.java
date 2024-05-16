@@ -37,6 +37,10 @@ public class TodayView extends HBox {
 
         // add VBox to HBox
         getChildren().addAll(showBox, Today, detailsBox);
+
+
+        
+
     }
 
     public VBox[] getVBoxs() {
