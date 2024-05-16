@@ -18,6 +18,8 @@ public class TodayBox extends VBox {
     Button addButton;
     Button showListOfToday;
     VBox listToday;
+    VBox projectToday;
+    Button showProjectOfToday;
 
     public TodayBox() {
 
@@ -66,9 +68,16 @@ public class TodayBox extends VBox {
         listToday.getChildren().add(showListOfToday);
         // Add padding to move the VBox down
         listToday.setPadding(new Insets(10, 0, 0, 5)); // Top, Right, Bottom, Left
-        
 
-        this.getChildren().addAll(headerContainer, listToday);
+        // all i did for showing the tasks of lists , iwant to di it for projects
+        projectToday = new VBox();
+        showProjectOfToday = new Button("Project of Today");
+        showProjectOfToday.setStyle("-fx-background-color: transparent; -fx-text-fill: #000000; -fx-font-size: 24px;");
+        projectToday.getChildren().add(showProjectOfToday);
+        // Add padding to move the VBox down
+        projectToday.setPadding(new Insets(10, 0, 0, 5)); // Top, Right, Bottom, Left
+
+        this.getChildren().addAll(headerContainer, listToday, projectToday);
 
     }
 
@@ -98,5 +107,13 @@ public class TodayBox extends VBox {
 
     public VBox getListToday() {
         return listToday;
+    }
+
+    public VBox getProjectToday() {
+        return projectToday;
+    }
+
+    public Button getShowProjectOfToday() {
+        return showProjectOfToday;
     }
 }
