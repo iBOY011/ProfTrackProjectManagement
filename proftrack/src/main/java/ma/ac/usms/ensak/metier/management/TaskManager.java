@@ -71,7 +71,6 @@ public class TaskManager {
                 id_project,
                 id_ListToDo);
         validate(task);
-        tasks.add(task);
         taskImpl.addTask(task);
     }
 
@@ -92,9 +91,8 @@ public class TaskManager {
                     end_date,
                     status,
                     id,
-                    null);
+                    "null");
             validate(task);
-            tasks.add(task);
             taskImpl.addTask(task);
         } else {
             Task task = new Task(
@@ -103,7 +101,7 @@ public class TaskManager {
                     start_date,
                     end_date,
                     status,
-                    null,
+                    "null",
                     id);
             validate(task);
             taskImpl.addTask(task);
