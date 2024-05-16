@@ -38,8 +38,7 @@ public class ProjectManager {
         }
     }
 
-    public void removeProject(Project project) {
-        String projectId = String.valueOf(project.getId());
+    public void removeProject(String projectId) {
         ProjectImpl projectImpl = new ProjectImpl();
         projectImpl.deleteProject(projectId);
     }

@@ -15,6 +15,7 @@ public class ShowBox extends VBox {
     private VBox Project;
     private VBox Completed;
     private Button addButton;
+    private Button projectButton;
 
     public ShowBox() {
         Today = new VBox();
@@ -22,6 +23,7 @@ public class ShowBox extends VBox {
         Project = new VBox();
         Completed = new VBox();
         addButton = new Button();
+        projectButton = new Button();
         // add button of Today
         Button TodayButton = new Button("Today",
                 new ImageView("https://cdn-icons-png.flaticon.com/512/10875/10875695.png"));
@@ -77,8 +79,12 @@ public class ShowBox extends VBox {
         return Completed;
     }
 
-    public Button getButton() {
+    public Button getListButton() {
         return addButton;
+    }
+
+    public Button getProjectButton() {
+        return projectButton;
     }
 
 }

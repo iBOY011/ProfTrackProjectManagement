@@ -29,8 +29,7 @@ public class ListToDoManager {
         }
     }
 
-    public void removeListToDo(ListToDo listToDo) {
-        String listToDoId = String.valueOf(listToDo.getId());
+    public void removeListToDo(String listToDoId) {
         ListeToDoImpl listToDoImpl = new ListeToDoImpl();
         listToDoImpl.deleteListeToDo(listToDoId);
     }
