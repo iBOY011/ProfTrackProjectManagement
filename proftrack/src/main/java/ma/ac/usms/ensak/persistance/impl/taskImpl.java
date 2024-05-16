@@ -1,18 +1,17 @@
 
 package ma.ac.usms.ensak.persistance.impl;
+
 import java.util.List;
 import java.util.ArrayList;
 import ma.ac.usms.ensak.persistance.StorageFile;
 import ma.ac.usms.ensak.metier.POJO.Task;
 import ma.ac.usms.ensak.persistance.dao.TaskDAO;
 
-
 /**
  * Implementation of the taskDAO interface for managing tasks.
  */
 public class TaskImpl implements TaskDAO {
-    private static final String TASK_FILE_PATH = "proftrack\\src\\main\\resources\\databases\\TaskFile.json";
-
+    private static final String TASK_FILE_PATH = "src\\main\\resources\\databases\\TaskFile.json";
 
     /**
      * Creates a new task and saves it to the storage file.
@@ -122,7 +121,8 @@ public class TaskImpl implements TaskDAO {
      * Searches for tasks containing a specific keyword in their description.
      *
      * @param keyword The keyword to search for.
-     * @return A list of tasks containing the specified keyword in their description.
+     * @return A list of tasks containing the specified keyword in their
+     *         description.
      */
     @Override
     public List<Task> searchTasksByKeyword(String keyword) {

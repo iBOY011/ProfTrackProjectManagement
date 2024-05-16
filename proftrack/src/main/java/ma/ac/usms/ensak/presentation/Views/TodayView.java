@@ -1,17 +1,18 @@
 package ma.ac.usms.ensak.presentation.Views;
 
-
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import ma.ac.usms.ensak.presentation.Views.VBoxes.ShowBox;
 import ma.ac.usms.ensak.presentation.Views.VBoxes.TodayBox;
+import ma.ac.usms.ensak.presentation.controller.TodayBoxController;
 
 public class TodayView extends HBox {
     private VBox[] vBoxs;
 
     public TodayView() {
         // Create 4 vBoxs
-        TodayBox Today = new TodayBox();
+        TodayBoxController todayBoxController = new TodayBoxController();
+        TodayBox Today = todayBoxController.getTodayBox();
         ShowBox showBox = new ShowBox();
         VBox detailsBox = new VBox();
 

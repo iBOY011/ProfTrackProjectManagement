@@ -1,65 +1,102 @@
 package ma.ac.usms.ensak.presentation.Views.VBoxes;
 
-import javafx.geometry.Pos;
+import javafx.geometry.Insets;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
+import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 
-public class TodayBox extends VBox{
-    private HBox header;
-    private HBox search;
-    private HBox list;
-    private HBox project;
-    private HBox footer;
-
+public class TodayBox extends VBox {
+    Button arrowButton;
+    ComboBox<String> filterComboBox;
+    TextField addTask;
+    Button informationButton;
+    Button addButton;
+    Button showListOfToday;
+    VBox listToday;
 
     public TodayBox() {
-        header = createHeader();
-        search = new HBox();
-        list = new HBox();
-        project = new HBox();
-        footer = new HBox();
 
-        HBox[] HBoxes = new HBox[] { header, search, list, project, footer };
-        double[] percentages = { 20, 10, 30, 30, 10 };
-        for (int i = 0; i < HBoxes.length; i++) {
-            HBox HBox = HBoxes[i];
-            HBox.prefHeightProperty().bind(heightProperty().multiply(percentages[i] / 100));
-        }
+        // creating a header container
+        HBox header = new HBox();
+        arrowButton = new Button("<");
+        arrowButton.setStyle(
+                "-fx-background-color: transparent; -fx-text-fill: black; -fx-font-size: 14px; -fx-cursor: hand;");
+        Label headerLabel = new Label("Today");
+        headerLabel.setStyle("-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #4CAF50;");
+        // create filter buttin with image
+        filterComboBox = new ComboBox<>();
+        filterComboBox.getItems().addAll("All", "Completed", "Uncompleted");
+        filterComboBox.setStyle(
+                "-fx-background-color: transparent; -fx-text-fill: black; -fx-font-size: 14px; -fx-cursor: hand;");
 
-        header.setStyle("-fx-background-color: #f0f0f0;");
+        // Create an invisible Region to add space
+        Region spacer = new Region();
+        HBox.setHgrow(spacer, Priority.ALWAYS);
 
-        getChildren().addAll(HBoxes);
+        // Add the spacer to the HBox
+        header.getChildren().addAll(arrowButton, headerLabel, spacer, filterComboBox);
+        header.setStyle("-fx-spacing: 10px; -fx-alignment: center-left;");
+
+        // create a VBox super container of the header
+        VBox headerContainer = new VBox();
+        // add Text feil to add tasks
+        addTask = new TextField();
+        addTask.setPromptText("+Add a task on \"Today\"");
+
+        // Create
+        informationButton = new Button("+");
+        addButton = new Button("Add");
+
+        // Create a HBox to contain the TextField and the Button
+        HBox addFeild = new HBox(addTask, informationButton, addButton);
+        addFeild.setStyle("-fx-spacing: 15px; -fx-alignment: center;");
+
+        headerContainer.getChildren().addAll(header, addFeild);
+        // Set the spacing between each child of the VBox
+        headerContainer.setSpacing(10);
+
+        listToday = new VBox();
+        showListOfToday = new Button("List of Today");
+        showListOfToday.setStyle("-fx-background-color: transparent; -fx-text-fill: #000000; -fx-font-size: 24px;");
+        listToday.getChildren().add(showListOfToday);
+        // Add padding to move the VBox down
+        listToday.setPadding(new Insets(10, 0, 0, 5)); // Top, Right, Bottom, Left
+        
+
+        this.getChildren().addAll(headerContainer, listToday);
+
     }
-    
-    public static void addButtonWithImage(HBox hbox, String imageUrl) {
-        Image image = new Image(imageUrl);
-        ImageView imageView = new ImageView(image);
-        imageView.setFitWidth(20);
-        imageView.setFitHeight(20);
-        Button button = new Button();
-        button.setGraphic(imageView);
-        // set the style of the button 
-        button.setStyle("-fx-background-color: transparent; -fx-border-color: transparent; -fx-cursor: hand;");
-        button.setAlignment(Pos.BASELINE_RIGHT);       // add the button to the right of hbox
-        hbox.getChildren().add(button);
-    } 
 
-    public static HBox createHeader() {
-        // create hbox
-        HBox hbox = new HBox();
-        // create a label named Today and add it to the hbox
-        Label label = new Label("<< Today");
-        // set the style of the label
-        label.setStyle("-fx-font-size: 20px; -fx-font-weight: bold;");
-        hbox.getChildren().add(label);
-        // add preference button to the hbox
-        addButtonWithImage(hbox, "https://cdn-icons-png.flaticon.com/512/3185/3185894.png");
-
-        return hbox;
+    public Button getArrowButton() {
+        return arrowButton;
     }
-    
+
+    public ComboBox<String> getFilterComboBox() {
+        return filterComboBox;
+    }
+
+    public TextField getAddTask() {
+        return addTask;
+    }
+
+    public Button getInformationButton() {
+        return informationButton;
+    }
+
+    public Button getAddButton() {
+        return addButton;
+    }
+
+    public Button getShowListOfToday() {
+        return showListOfToday;
+    }
+
+    public VBox getListToday() {
+        return listToday;
+    }
 }
