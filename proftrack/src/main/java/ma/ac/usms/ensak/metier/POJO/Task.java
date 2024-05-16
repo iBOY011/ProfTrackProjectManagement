@@ -172,4 +172,8 @@ public class Task {
     public boolean wasDone() {
         return status.equals(Status.DONE);
     }
+
+    public String getId_Project() {
+        return id_project;
+    }
 }
