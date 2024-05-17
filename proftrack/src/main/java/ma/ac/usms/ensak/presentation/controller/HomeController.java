@@ -8,6 +8,7 @@ import ma.ac.usms.ensak.presentation.Views.TodayView;
 import ma.ac.usms.ensak.presentation.Views.VBoxes.NavBarBox;
 
 public class HomeController {
+    private static double normalWidth;
     private static HomeView homeView;
     private static NavBarBox navbar = new NavBarBox();
     private static TodayView todayView = new TodayView();
@@ -44,29 +45,25 @@ public class HomeController {
         return todayView;
     }
 
-    public static void toggleShowBox() {
-        TranslateTransition translateTransition = new TranslateTransition();
-        translateTransition.setDuration(Duration.seconds(1));
-        translateTransition.setNode(todayView.getShowBox());
-    
-        if (isShowBoxVisible) {
-            // Déplacer ShowBox vers la gauche pour le cacher
-            translateTransition.setByX(-todayView.getShowBox().getWidth());
-            translateTransition.setOnFinished(e -> {
-                // Réduire la largeur du ShowBox à 0 pour le cacher complètement
-                todayView.getShowBox().setPrefWidth(0);
-                isShowBoxVisible = false;
-            });
-        } else {
-            // Agrandir la largeur du ShowBox pour l'afficher
-            todayView.getShowBox().setPrefWidth(20); // Réinitialiser la largeur à 20
-            translateTransition.setByX(todayView.getShowBox().getWidth());
-            translateTransition.setOnFinished(e -> {
-                isShowBoxVisible = true;
-            });
+    private static double calculateNormalWidth() {
+        double[] percentages = { 20, 40, 40 };
+        double totalWidth = todayView.getShowBox().getParent().getLayoutBounds().getWidth();
+        double normalWidth = 0;
+        for (double percentage : percentages) {
+            normalWidth += totalWidth * (percentage / 100);
         }
+        return normalWidth;
+    }
     
-        translateTransition.play();
+    public static void toggleShowBoxSize() {
+        calculateNormalWidth();
+        // Check if the current width is 0, if so, set it back to normal width
+        if (todayView.getShowBox().getPrefWidth() == 0) {
+            todayView.getShowBox().setPrefWidth(normalWidth);
+        } else {
+            // Otherwise, set the width to 0
+            todayView.getShowBox().setPrefWidth(0);
+        }
     }
 
 

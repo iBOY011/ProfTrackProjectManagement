@@ -28,7 +28,7 @@ public class TodayBox extends VBox {
         HBox header = new HBox();
         arrowButton = new Button("<");
         arrowButton.setOnAction(e ->
-        HomeController.toggleShowBox());
+        HomeController.toggleShowBoxSize());
         arrowButton.setStyle(
                 "-fx-background-color: transparent; -fx-text-fill: black; -fx-font-size: 14px; -fx-cursor: hand;");
         Label headerLabel = new Label("Today");
