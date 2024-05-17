@@ -9,6 +9,8 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
+import ma.ac.usms.ensak.presentation.controller.HomeController;
+import ma.ac.usms.ensak.presentation.controller.ShowBoxController;
 
 public class TasksView extends VBox{
     Label headerLabel;
@@ -16,7 +18,7 @@ public class TasksView extends VBox{
     ComboBox<String> filterComboBox;
     TextField addTask;
     Button informationButton;
-    Button showTask;
+    Label showTask;
     VBox listTasks;
     VBox listWorkSession;
     Button showWorkSession;
@@ -26,9 +28,11 @@ public class TasksView extends VBox{
         // creating a header container
         HBox header = new HBox();
         arrowButton = new Button("<");
+        arrowButton.setOnAction(e ->
+        HomeController.toggleShowBox());
         arrowButton.setStyle(
                 "-fx-background-color: transparent; -fx-text-fill: black; -fx-font-size: 14px; -fx-cursor: hand;");
-        headerLabel = new Label("Today");
+        headerLabel = new Label("");
         headerLabel.setStyle("-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #4CAF50;");
         // create filter buttin with image
         filterComboBox = new ComboBox<>();
@@ -63,7 +67,7 @@ public class TasksView extends VBox{
 
         // Create a VBox to contain the list of tasks
         listTasks = new VBox();
-        showTask = new Button("Tasks:");
+        showTask = new Label();
         showTask.setStyle("-fx-background-color: transparent; -fx-text-fill: #000000; -fx-font-size: 24px;");
         listTasks.getChildren().add(showTask);
         // Add padding to move the VBox down
@@ -100,7 +104,7 @@ public class TasksView extends VBox{
         return listTasks;
     }
     
-    public Button getShowTask() {
+    public Label getShowTask() {
         return showTask;
     }
     

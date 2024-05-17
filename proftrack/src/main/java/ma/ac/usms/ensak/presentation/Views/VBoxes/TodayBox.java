@@ -9,6 +9,8 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
+import ma.ac.usms.ensak.presentation.controller.HomeController;
+import ma.ac.usms.ensak.presentation.controller.ShowBoxController;
 
 public class TodayBox extends VBox {
     Button arrowButton;
@@ -25,6 +27,8 @@ public class TodayBox extends VBox {
         // creating a header container
         HBox header = new HBox();
         arrowButton = new Button("<");
+        arrowButton.setOnAction(e ->
+        HomeController.toggleShowBox());
         arrowButton.setStyle(
                 "-fx-background-color: transparent; -fx-text-fill: black; -fx-font-size: 14px; -fx-cursor: hand;");
         Label headerLabel = new Label("Today");

@@ -1,5 +1,7 @@
 package ma.ac.usms.ensak.presentation.controller;
 
+import javafx.animation.TranslateTransition;
+import javafx.util.Duration;
 import ma.ac.usms.ensak.presentation.Views.CalendarView;
 import ma.ac.usms.ensak.presentation.Views.HomeView;
 import ma.ac.usms.ensak.presentation.Views.TodayView;
@@ -11,6 +13,7 @@ public class HomeController {
     private static TodayView todayView = new TodayView();
     private static CalendarView calendarView = new CalendarView();
     private static HomeController homeController;
+    private static boolean isShowBoxVisible = true;
 
     public HomeController() {
         homeController = this;
@@ -39,6 +42,31 @@ public class HomeController {
 
     public static TodayView getTodayView() {
         return todayView;
+    }
+
+    public static void toggleShowBox() {
+        TranslateTransition translateTransition = new TranslateTransition();
+        translateTransition.setDuration(Duration.seconds(1));
+        translateTransition.setNode(todayView.getShowBox());
+    
+        if (isShowBoxVisible) {
+            // Déplacer ShowBox vers la gauche pour le cacher
+            translateTransition.setByX(-todayView.getShowBox().getWidth());
+            translateTransition.setOnFinished(e -> {
+                // Réduire la largeur du ShowBox à 0 pour le cacher complètement
+                todayView.getShowBox().setPrefWidth(0);
+                isShowBoxVisible = false;
+            });
+        } else {
+            // Agrandir la largeur du ShowBox pour l'afficher
+            todayView.getShowBox().setPrefWidth(20); // Réinitialiser la largeur à 20
+            translateTransition.setByX(todayView.getShowBox().getWidth());
+            translateTransition.setOnFinished(e -> {
+                isShowBoxVisible = true;
+            });
+        }
+    
+        translateTransition.play();
     }
 
 

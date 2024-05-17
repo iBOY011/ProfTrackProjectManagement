@@ -16,39 +16,34 @@ public class TaskController {
     private static TaskController Instance = new TaskController();
     private static TaskManager taskManager = new TaskManager();
     private static TasksView taskView = new TasksView();
-    private static boolean isListDisplayed = false;
-    private boolean isProjectDisplayed = false;
 
     private TaskController() {
     }
 
     public void createView() {
-        
 
     }
 
     public static void showTasks() {
-        taskView.getShowTask().setOnMouseClicked(e -> {
-            if (!isListDisplayed) {
-                List<Task> tasks = taskManager.listTasksByIdListToDo(ShowBoxController.getIdListSelected());
-                for (Task t : tasks) {
-                    CheckBox checkBox = new CheckBox();
-                    checkBox.setStyle("-fx-cursor: hand; -fx-font-size: 14px;");
-                    Button button = new Button(t.getTitle());
-                    button.setStyle(
-                            "-fx-background-color: transparent; -fx-border-color: transparent; -fx-cursor: hand; -fx-font-size: 10px;");
-                    
+        ListToDoManager listToDoManager = new ListToDoManager();
+        ListToDo list = listToDoManager.searchListeToDoById(ShowBoxController.getIdListSelected());
+        taskView.getHeaderLabel().setText(list.getTitle() + " List:");
+        taskView.setVisibleListWorkSession(false);
+        taskView.getListTask().getChildren().clear();
+        taskView.getShowTask().setText("Tasks:");
+        taskView.getListTask().getChildren().add(taskView.getShowTask());
+        List<Task> tasks = taskManager.listTasksByIdListToDo(ShowBoxController.getIdListSelected());
+        for (Task t : tasks) {
+            CheckBox checkBox = new CheckBox();
+            checkBox.setStyle("-fx-cursor: hand; -fx-font-size: 14px;");
+            Button button = new Button(t.getTitle());
+            button.setStyle(
+                    "-fx-background-color: transparent; -fx-border-color: transparent; -fx-cursor: hand; -fx-font-size: 10px;");
 
-                    HBox hBox = new HBox(checkBox, button, new Label(t.getStart_date().toString()), new Label(t.getEnd_date().toString()));
-                    hBox.setStyle("-fx-spacing: 5px; -fx-alignment: center-left;");
-                    taskView.getListTask().getChildren().add(hBox);
-                }
-                isListDisplayed = true;
-            } else {
-                taskView.getListTask().getChildren().remove(1, taskView.getListTask().getChildren().size());
-                isListDisplayed = false;
-            }
-        });
+            HBox hBox = new HBox(checkBox, button);
+            hBox.setStyle("-fx-spacing: 10px; -fx-alignment: center-left;");
+            taskView.getListTask().getChildren().add(hBox);
+        }
     }
 
     public static TasksView getTaskView() {
