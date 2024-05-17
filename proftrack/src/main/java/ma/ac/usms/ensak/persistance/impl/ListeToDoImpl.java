@@ -8,6 +8,7 @@ import ma.ac.usms.ensak.persistance.dao.ListeToDoDAO;
 import java.util.ArrayList;
 import java.util.List;
 
+import ma.ac.usms.ensak.persistance.StorageFile;
 import static ma.ac.usms.ensak.persistance.StorageFile.*;
 
 public class ListeToDoImpl implements ListeToDoDAO {
@@ -39,7 +40,8 @@ public class ListeToDoImpl implements ListeToDoDAO {
 
     @Override
     public List<ListToDo> getAllListesToDo() {
-        return readObjectsFromJsonFile(JSON_FILE_PATH, ListToDo.class);
+        List<ListToDo> listesToDo = StorageFile.readObjectsFromJsonFile(JSON_FILE_PATH, ListToDo.class);
+        return listesToDo;
     }
 
     @Override

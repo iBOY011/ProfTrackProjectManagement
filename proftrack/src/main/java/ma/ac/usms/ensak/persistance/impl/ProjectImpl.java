@@ -8,6 +8,8 @@ import com.google.gson.Gson;
 import ma.ac.usms.ensak.metier.POJO.Project;
 import static ma.ac.usms.ensak.persistance.StorageFile.readObjectsFromJsonFile;
 import static ma.ac.usms.ensak.persistance.StorageFile.saveToJsonFile;
+
+import ma.ac.usms.ensak.persistance.StorageFile;
 import ma.ac.usms.ensak.persistance.dao.ProjectDAO;
 
 public class ProjectImpl implements ProjectDAO {
@@ -39,7 +41,8 @@ public class ProjectImpl implements ProjectDAO {
 
     @Override
     public List<Project> getAllProjects() {
-        return readObjectsFromJsonFile(JSON_FILE_PATH, Project.class);
+        List<Project> projects = StorageFile.readObjectsFromJsonFile(JSON_FILE_PATH, Project.class);
+        return projects;
     }
 
     @Override

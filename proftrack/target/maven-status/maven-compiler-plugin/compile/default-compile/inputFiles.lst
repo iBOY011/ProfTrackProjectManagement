@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 C:\Users\dell\Desktop\ProfTrackProjectManagement\ProfTrackProjectManagement\proftrack\src\main\java\ma\ac\usms\ensak\Main.java
 C:\Users\dell\Desktop\ProfTrackProjectManagement\ProfTrackProjectManagement\proftrack\src\main\java\ma\ac\usms\ensak\metier\management\DocSessionManager.java
 C:\Users\dell\Desktop\ProfTrackProjectManagement\ProfTrackProjectManagement\proftrack\src\main\java\ma\ac\usms\ensak\metier\management\DocTaskManager.java
@@ -57,3 +58,62 @@ C:\Users\dell\Desktop\ProfTrackProjectManagement\ProfTrackProjectManagement\prof
 C:\Users\dell\Desktop\ProfTrackProjectManagement\ProfTrackProjectManagement\proftrack\src\main\java\ma\ac\usms\ensak\util\Statistics.java
 C:\Users\dell\Desktop\ProfTrackProjectManagement\ProfTrackProjectManagement\proftrack\src\main\java\ma\ac\usms\ensak\util\Status.java
 C:\Users\dell\Desktop\ProfTrackProjectManagement\ProfTrackProjectManagement\proftrack\src\main\java\ma\ac\usms\ensak\util\Type.java
+=======
+C:\Users\haita\Desktop\Gi1 Project\Java\Github\ProfTrackProjectManagement\proftrack\src\main\java\ma\ac\usms\ensak\Main.java
+C:\Users\haita\Desktop\Gi1 Project\Java\Github\ProfTrackProjectManagement\proftrack\src\main\java\ma\ac\usms\ensak\metier\management\DocSessionManager.java
+C:\Users\haita\Desktop\Gi1 Project\Java\Github\ProfTrackProjectManagement\proftrack\src\main\java\ma\ac\usms\ensak\metier\management\DocTaskManager.java
+C:\Users\haita\Desktop\Gi1 Project\Java\Github\ProfTrackProjectManagement\proftrack\src\main\java\ma\ac\usms\ensak\metier\management\DocumentManager.java
+C:\Users\haita\Desktop\Gi1 Project\Java\Github\ProfTrackProjectManagement\proftrack\src\main\java\ma\ac\usms\ensak\metier\management\ListToDoManager.java
+C:\Users\haita\Desktop\Gi1 Project\Java\Github\ProfTrackProjectManagement\proftrack\src\main\java\ma\ac\usms\ensak\metier\management\ProjectManager.java
+C:\Users\haita\Desktop\Gi1 Project\Java\Github\ProfTrackProjectManagement\proftrack\src\main\java\ma\ac\usms\ensak\metier\management\TaskManager.java
+C:\Users\haita\Desktop\Gi1 Project\Java\Github\ProfTrackProjectManagement\proftrack\src\main\java\ma\ac\usms\ensak\metier\management\WorkSessionManager.java
+C:\Users\haita\Desktop\Gi1 Project\Java\Github\ProfTrackProjectManagement\proftrack\src\main\java\ma\ac\usms\ensak\metier\POJO\DocSession.java
+C:\Users\haita\Desktop\Gi1 Project\Java\Github\ProfTrackProjectManagement\proftrack\src\main\java\ma\ac\usms\ensak\metier\POJO\DocTask.java
+C:\Users\haita\Desktop\Gi1 Project\Java\Github\ProfTrackProjectManagement\proftrack\src\main\java\ma\ac\usms\ensak\metier\POJO\Document.java
+C:\Users\haita\Desktop\Gi1 Project\Java\Github\ProfTrackProjectManagement\proftrack\src\main\java\ma\ac\usms\ensak\metier\POJO\ListToDo.java
+C:\Users\haita\Desktop\Gi1 Project\Java\Github\ProfTrackProjectManagement\proftrack\src\main\java\ma\ac\usms\ensak\metier\POJO\Project.java
+C:\Users\haita\Desktop\Gi1 Project\Java\Github\ProfTrackProjectManagement\proftrack\src\main\java\ma\ac\usms\ensak\metier\POJO\Task.java
+C:\Users\haita\Desktop\Gi1 Project\Java\Github\ProfTrackProjectManagement\proftrack\src\main\java\ma\ac\usms\ensak\metier\POJO\WorkSession.java
+C:\Users\haita\Desktop\Gi1 Project\Java\Github\ProfTrackProjectManagement\proftrack\src\main\java\ma\ac\usms\ensak\metier\Services\GoogleOAuth2Login.java
+C:\Users\haita\Desktop\Gi1 Project\Java\Github\ProfTrackProjectManagement\proftrack\src\main\java\ma\ac\usms\ensak\persistance\dao\DocSessionDAO.java
+C:\Users\haita\Desktop\Gi1 Project\Java\Github\ProfTrackProjectManagement\proftrack\src\main\java\ma\ac\usms\ensak\persistance\dao\DocTaskDAO.java
+C:\Users\haita\Desktop\Gi1 Project\Java\Github\ProfTrackProjectManagement\proftrack\src\main\java\ma\ac\usms\ensak\persistance\dao\DocumentDAO.java
+C:\Users\haita\Desktop\Gi1 Project\Java\Github\ProfTrackProjectManagement\proftrack\src\main\java\ma\ac\usms\ensak\persistance\dao\ListeToDoDAO.java
+C:\Users\haita\Desktop\Gi1 Project\Java\Github\ProfTrackProjectManagement\proftrack\src\main\java\ma\ac\usms\ensak\persistance\dao\ProjectDAO.java
+C:\Users\haita\Desktop\Gi1 Project\Java\Github\ProfTrackProjectManagement\proftrack\src\main\java\ma\ac\usms\ensak\persistance\dao\TaskDAO.java
+C:\Users\haita\Desktop\Gi1 Project\Java\Github\ProfTrackProjectManagement\proftrack\src\main\java\ma\ac\usms\ensak\persistance\dao\WorkSessionDAO.java
+C:\Users\haita\Desktop\Gi1 Project\Java\Github\ProfTrackProjectManagement\proftrack\src\main\java\ma\ac\usms\ensak\persistance\impl\DocSessionImpl.java
+C:\Users\haita\Desktop\Gi1 Project\Java\Github\ProfTrackProjectManagement\proftrack\src\main\java\ma\ac\usms\ensak\persistance\impl\DocTaskImpl.java
+C:\Users\haita\Desktop\Gi1 Project\Java\Github\ProfTrackProjectManagement\proftrack\src\main\java\ma\ac\usms\ensak\persistance\impl\DocumentImpl.java
+C:\Users\haita\Desktop\Gi1 Project\Java\Github\ProfTrackProjectManagement\proftrack\src\main\java\ma\ac\usms\ensak\persistance\impl\ListeToDoImpl.java
+C:\Users\haita\Desktop\Gi1 Project\Java\Github\ProfTrackProjectManagement\proftrack\src\main\java\ma\ac\usms\ensak\persistance\impl\ProjectImpl.java
+C:\Users\haita\Desktop\Gi1 Project\Java\Github\ProfTrackProjectManagement\proftrack\src\main\java\ma\ac\usms\ensak\persistance\impl\TaskImpl.java
+C:\Users\haita\Desktop\Gi1 Project\Java\Github\ProfTrackProjectManagement\proftrack\src\main\java\ma\ac\usms\ensak\persistance\impl\WorkSessionImpl.java
+C:\Users\haita\Desktop\Gi1 Project\Java\Github\ProfTrackProjectManagement\proftrack\src\main\java\ma\ac\usms\ensak\persistance\StorageFile.java
+C:\Users\haita\Desktop\Gi1 Project\Java\Github\ProfTrackProjectManagement\proftrack\src\main\java\ma\ac\usms\ensak\presentation\controller\AddDocumentController.java
+C:\Users\haita\Desktop\Gi1 Project\Java\Github\ProfTrackProjectManagement\proftrack\src\main\java\ma\ac\usms\ensak\presentation\controller\AddListController.java
+C:\Users\haita\Desktop\Gi1 Project\Java\Github\ProfTrackProjectManagement\proftrack\src\main\java\ma\ac\usms\ensak\presentation\controller\AddProjectController.java
+C:\Users\haita\Desktop\Gi1 Project\Java\Github\ProfTrackProjectManagement\proftrack\src\main\java\ma\ac\usms\ensak\presentation\controller\AddTaskConfigurationViewController.java
+C:\Users\haita\Desktop\Gi1 Project\Java\Github\ProfTrackProjectManagement\proftrack\src\main\java\ma\ac\usms\ensak\presentation\controller\AuthController.java
+C:\Users\haita\Desktop\Gi1 Project\Java\Github\ProfTrackProjectManagement\proftrack\src\main\java\ma\ac\usms\ensak\presentation\controller\DetailsController.java
+C:\Users\haita\Desktop\Gi1 Project\Java\Github\ProfTrackProjectManagement\proftrack\src\main\java\ma\ac\usms\ensak\presentation\controller\DocumentController.java
+C:\Users\haita\Desktop\Gi1 Project\Java\Github\ProfTrackProjectManagement\proftrack\src\main\java\ma\ac\usms\ensak\presentation\controller\ShowBoxController.java
+C:\Users\haita\Desktop\Gi1 Project\Java\Github\ProfTrackProjectManagement\proftrack\src\main\java\ma\ac\usms\ensak\presentation\controller\TodayBoxController.java
+C:\Users\haita\Desktop\Gi1 Project\Java\Github\ProfTrackProjectManagement\proftrack\src\main\java\ma\ac\usms\ensak\presentation\controller\TodayViewController.java
+C:\Users\haita\Desktop\Gi1 Project\Java\Github\ProfTrackProjectManagement\proftrack\src\main\java\ma\ac\usms\ensak\presentation\Views\AddListView.java
+C:\Users\haita\Desktop\Gi1 Project\Java\Github\ProfTrackProjectManagement\proftrack\src\main\java\ma\ac\usms\ensak\presentation\Views\AddProjectView.java
+C:\Users\haita\Desktop\Gi1 Project\Java\Github\ProfTrackProjectManagement\proftrack\src\main\java\ma\ac\usms\ensak\presentation\Views\AddTaskConfigurationView.java
+C:\Users\haita\Desktop\Gi1 Project\Java\Github\ProfTrackProjectManagement\proftrack\src\main\java\ma\ac\usms\ensak\presentation\Views\AuthentificationView.java
+C:\Users\haita\Desktop\Gi1 Project\Java\Github\ProfTrackProjectManagement\proftrack\src\main\java\ma\ac\usms\ensak\presentation\Views\HomeView.java
+C:\Users\haita\Desktop\Gi1 Project\Java\Github\ProfTrackProjectManagement\proftrack\src\main\java\ma\ac\usms\ensak\presentation\Views\TodayView.java
+C:\Users\haita\Desktop\Gi1 Project\Java\Github\ProfTrackProjectManagement\proftrack\src\main\java\ma\ac\usms\ensak\presentation\Views\VBoxes\DetailsBox.java
+C:\Users\haita\Desktop\Gi1 Project\Java\Github\ProfTrackProjectManagement\proftrack\src\main\java\ma\ac\usms\ensak\presentation\Views\VBoxes\DocumentBox.java
+C:\Users\haita\Desktop\Gi1 Project\Java\Github\ProfTrackProjectManagement\proftrack\src\main\java\ma\ac\usms\ensak\presentation\Views\VBoxes\NavBarBox.java
+C:\Users\haita\Desktop\Gi1 Project\Java\Github\ProfTrackProjectManagement\proftrack\src\main\java\ma\ac\usms\ensak\presentation\Views\VBoxes\ShowBox.java
+C:\Users\haita\Desktop\Gi1 Project\Java\Github\ProfTrackProjectManagement\proftrack\src\main\java\ma\ac\usms\ensak\presentation\Views\VBoxes\TodayBox.java
+C:\Users\haita\Desktop\Gi1 Project\Java\Github\ProfTrackProjectManagement\proftrack\src\main\java\ma\ac\usms\ensak\util\Category.java
+C:\Users\haita\Desktop\Gi1 Project\Java\Github\ProfTrackProjectManagement\proftrack\src\main\java\ma\ac\usms\ensak\util\ListItem.java
+C:\Users\haita\Desktop\Gi1 Project\Java\Github\ProfTrackProjectManagement\proftrack\src\main\java\ma\ac\usms\ensak\util\SharedData.java
+C:\Users\haita\Desktop\Gi1 Project\Java\Github\ProfTrackProjectManagement\proftrack\src\main\java\ma\ac\usms\ensak\util\Statistics.java
+C:\Users\haita\Desktop\Gi1 Project\Java\Github\ProfTrackProjectManagement\proftrack\src\main\java\ma\ac\usms\ensak\util\Status.java
+>>>>>>> 8eb33131d7394f68a52ea828e4b77d5f98d8c34f
