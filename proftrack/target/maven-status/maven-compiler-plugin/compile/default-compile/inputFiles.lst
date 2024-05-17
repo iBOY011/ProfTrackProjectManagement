@@ -13,6 +13,8 @@ C:\Users\dell\Desktop\ProfTrackProjectManagement\ProfTrackProjectManagement\prof
 C:\Users\dell\Desktop\ProfTrackProjectManagement\ProfTrackProjectManagement\proftrack\src\main\java\ma\ac\usms\ensak\metier\POJO\Project.java
 C:\Users\dell\Desktop\ProfTrackProjectManagement\ProfTrackProjectManagement\proftrack\src\main\java\ma\ac\usms\ensak\metier\POJO\Task.java
 C:\Users\dell\Desktop\ProfTrackProjectManagement\ProfTrackProjectManagement\proftrack\src\main\java\ma\ac\usms\ensak\metier\POJO\WorkSession.java
+C:\Users\dell\Desktop\ProfTrackProjectManagement\ProfTrackProjectManagement\proftrack\src\main\java\ma\ac\usms\ensak\metier\Services\GoogleCalendarExample.java
+C:\Users\dell\Desktop\ProfTrackProjectManagement\ProfTrackProjectManagement\proftrack\src\main\java\ma\ac\usms\ensak\metier\Services\GoogleCalendarService.java
 C:\Users\dell\Desktop\ProfTrackProjectManagement\ProfTrackProjectManagement\proftrack\src\main\java\ma\ac\usms\ensak\metier\Services\GoogleOAuth2Login.java
 C:\Users\dell\Desktop\ProfTrackProjectManagement\ProfTrackProjectManagement\proftrack\src\main\java\ma\ac\usms\ensak\persistance\dao\DocSessionDAO.java
 C:\Users\dell\Desktop\ProfTrackProjectManagement\ProfTrackProjectManagement\proftrack\src\main\java\ma\ac\usms\ensak\persistance\dao\DocTaskDAO.java

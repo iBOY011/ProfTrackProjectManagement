@@ -16,7 +16,6 @@ public class TasksView extends VBox{
     ComboBox<String> filterComboBox;
     TextField addTask;
     Button informationButton;
-    Button addButton;
     Button showTask;
     VBox listTasks;
     VBox listWorkSession;
@@ -53,10 +52,9 @@ public class TasksView extends VBox{
 
         // Create
         informationButton = new Button("+");
-        addButton = new Button("Add");
 
         // Create a HBox to contain the TextField and the Button
-        HBox addFeild = new HBox(addTask, informationButton, addButton);
+        HBox addFeild = new HBox(addTask, informationButton);
         addFeild.setStyle("-fx-spacing: 15px; -fx-alignment: center;");
 
         headerContainer.getChildren().addAll(header, addFeild);
@@ -96,10 +94,6 @@ public class TasksView extends VBox{
 
     public Button getInformationButton() {
         return informationButton;
-    }
-
-    public Button getAddButton() {
-        return addButton;
     }
 
     public VBox getListTask() {
