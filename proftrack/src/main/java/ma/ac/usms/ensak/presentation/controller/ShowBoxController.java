@@ -121,6 +121,7 @@ public class ShowBoxController {
                             todayBox.getChildren().clear();
                             todayBox.getChildren().add(TaskController.getTaskView());
                             TaskController.showTasks();
+                            
                         } else {
                             idProjectSelected = item.getId();
                             DetailsController.showDocument();
