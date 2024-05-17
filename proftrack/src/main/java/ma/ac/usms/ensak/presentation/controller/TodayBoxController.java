@@ -19,6 +19,7 @@ import ma.ac.usms.ensak.metier.management.TaskManager;
 import ma.ac.usms.ensak.persistance.impl.ListeToDoImpl;
 import ma.ac.usms.ensak.presentation.Views.AddTaskConfigurationView;
 import ma.ac.usms.ensak.presentation.Views.VBoxes.TodayBox;
+import ma.ac.usms.ensak.util.SharedData;
 import ma.ac.usms.ensak.util.Status;
 
 public class TodayBoxController {
@@ -31,11 +32,16 @@ public class TodayBoxController {
     private static ProjectManager projectManager = new ProjectManager();
 
     public TodayBoxController() {
-        todayBox.getAddButton().setOnMouseClicked(e -> {
-            String task = todayBox.getAddTask().getText();
-            taskManager.createTask(task, "description", new Date(), new Date(), Status.IN_PROGRESS,
-                    "de445f0a-3cfe-4f8f-934c-33ab2c7d655a", false);
-        });
+
+        // Add the TodayBox to the SharedData
+        SharedData.getInstance().setTodayBoxController(this);
+
+        // todayBox.getAddButton().setOnMouseClicked(e -> {
+        // String task = todayBox.getAddTask().getText();
+        // taskManager.createTask(task, "description", new Date(), new Date(),
+        // Status.IN_PROGRESS,
+        // "de445f0a-3cfe-4f8f-934c-33ab2c7d655a", false);
+        // });
 
         todayBox.getShowListOfToday().setOnMouseClicked(e -> {
             if (!isListDisplayed) {

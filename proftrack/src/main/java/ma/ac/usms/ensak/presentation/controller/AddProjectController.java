@@ -8,11 +8,6 @@ public class AddProjectController {
     private static AddProjectView addProject = new AddProjectView();
 
     public void createView() {
-        addProject.getAddButton().setOnAction(e -> {
-            projectManager.addProject(addProject.getProjectFromFields());
-            addProject.close();
-        });
-
-    }
+    };
 
 }
