@@ -6,12 +6,14 @@ import ma.ac.usms.ensak.presentation.Views.TodayView;
 import ma.ac.usms.ensak.presentation.Views.VBoxes.NavBarBox;
 
 public class HomeController {
-    private HomeView homeView;
+    private static HomeView homeView;
     private static NavBarBox navbar = new NavBarBox();
     private static TodayView todayView = new TodayView();
     private static CalendarView calendarView = new CalendarView();
+    private static HomeController homeController;
 
     public HomeController() {
+        homeController = this;
         homeView = new HomeView();
         homeView.setLeft(navbar);
         homeView.setCenter(todayView);
@@ -31,7 +33,13 @@ public class HomeController {
         });
     }
 
-    public HomeView getHomeView() {
+    public static HomeView getHomeView() {
         return homeView;
     }
+
+    public static TodayView getTodayView() {
+        return todayView;
+    }
+
+
 }

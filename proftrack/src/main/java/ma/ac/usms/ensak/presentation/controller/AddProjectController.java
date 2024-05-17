@@ -8,7 +8,6 @@ public class AddProjectController {
     private static AddProjectView addProject = new AddProjectView();
 
     public void createView() {
-<<<<<<< HEAD
         addProject.getAddButton().setOnAction(e -> {
             projectManager.createProject(addProject.getProjectFromFields().getTitle(),
                     addProject.getProjectFromFields().getDescription(),
@@ -21,9 +20,6 @@ public class AddProjectController {
         });
 
     }
-=======
-    };
->>>>>>> 8eb33131d7394f68a52ea828e4b77d5f98d8c34f
 
     public AddProjectView getAddProject() {
         return addProject;

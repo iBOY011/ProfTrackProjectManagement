@@ -1,6 +1,8 @@
 package ma.ac.usms.ensak.presentation.Views;
 
 import org.checkerframework.checker.units.qual.s;
+
+import javafx.scene.Parent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import ma.ac.usms.ensak.presentation.Views.VBoxes.ShowBox;
@@ -11,15 +13,18 @@ import ma.ac.usms.ensak.presentation.controller.ShowBoxController;
 
 public class TodayView extends HBox {
     private VBox[] vBoxs;
+    private ShowBox showBox;
+    private VBox Today;
+    private VBox detailsBox;
 
     public TodayView() {
         // Create 4 vBoxs
         TodayBoxController todayBoxController = new TodayBoxController();
-        TodayBox Today = todayBoxController.getTodayBox();
+        Today = todayBoxController.getTodayBox();
         ShowBoxController showBoxController = new ShowBoxController();
         DetailsController detailsController = new DetailsController();
-        ShowBox showBox = showBoxController.getShowBox();
-        VBox detailsBox = detailsController.getDetailsBox();
+        showBox = showBoxController.getShowBox();
+        detailsBox = detailsController.getDetailsBox();
 
         // Set the preferred size of each VBox by percentage 1 -> 10% 2 -> 20% 3 -> 40%
         // 4 -> 30%
@@ -43,8 +48,20 @@ public class TodayView extends HBox {
 
     }
 
-    public VBox[] getVBoxs() {
+    public VBox[] getVBox() {
         return vBoxs;
+    }
+
+    public ShowBox getShowBox() {
+        return showBox;
+    }
+
+    public VBox getTodayBox() {
+        return Today;
+    }
+
+    public VBox getDetailsBox() {
+        return detailsBox;
     }
 
 }

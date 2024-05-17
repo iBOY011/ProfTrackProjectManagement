@@ -8,6 +8,7 @@ import org.checkerframework.checker.units.qual.s;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Alert;
@@ -116,6 +117,10 @@ public class ShowBoxController {
                             idListSelected = item.getId();
                             showListDescription();
                             DetailsController.DisableDocumentBox(true);
+                            VBox todayBox = HomeController.getTodayView().getTodayBox(); 
+                            todayBox.getChildren().clear();
+                            todayBox.getChildren().add(TaskController.getTaskView());
+                            TaskController.showTasks();
                         } else {
                             idProjectSelected = item.getId();
                             DetailsController.showDocument();
