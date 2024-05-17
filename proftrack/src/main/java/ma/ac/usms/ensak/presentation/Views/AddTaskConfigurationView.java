@@ -1,5 +1,8 @@
 package ma.ac.usms.ensak.presentation.Views;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
@@ -7,6 +10,10 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
+import ma.ac.usms.ensak.metier.POJO.ListToDo;
+import ma.ac.usms.ensak.metier.POJO.Project;
+import ma.ac.usms.ensak.metier.management.ListToDoManager;
+import ma.ac.usms.ensak.metier.management.ProjectManager;
 
 public class AddTaskConfigurationView extends GridPane {
     ChoiceBox<String> projectChoiceBox;
@@ -14,6 +21,8 @@ public class AddTaskConfigurationView extends GridPane {
     DatePicker startDatePicker;
     DatePicker endDatePicker;
     TextField descriptionTextField;
+    Button submitButton;
+    Button cancelButton;
 
     public AddTaskConfigurationView() {
         setPadding(new Insets(20, 20, 20, 20));
@@ -38,12 +47,10 @@ public class AddTaskConfigurationView extends GridPane {
 
         // ChoiceBox for projects
         projectChoiceBox = new ChoiceBox<>();
-        projectChoiceBox.getItems().addAll("Project 1", "Project 2", "Project 3");
         GridPane.setConstraints(projectChoiceBox, 1, 0);
 
         // ChoiceBox for lists
         listChoiceBox = new ChoiceBox<>();
-        listChoiceBox.getItems().addAll("List 1", "List 2", "List 3");
         GridPane.setConstraints(listChoiceBox, 1, 1);
 
         // DatePickers for start and end dates
@@ -59,10 +66,10 @@ public class AddTaskConfigurationView extends GridPane {
         GridPane.setConstraints(descriptionTextField, 1, 4);
 
         // Buttons
-        Button submitButton = new Button("Submit");
+        submitButton = new Button("Submit");
         GridPane.setConstraints(submitButton, 0, 5);
 
-        Button cancelButton = new Button("Cancel");
+        cancelButton = new Button("Cancel");
         GridPane.setConstraints(cancelButton, 1, 5);
 
         // Add elements to grid
@@ -75,4 +82,35 @@ public class AddTaskConfigurationView extends GridPane {
         submitButton.setStyle("-fx-background-color: #4caf50; -fx-text-fill: white;");
         cancelButton.setStyle("-fx-background-color: #f44336; -fx-text-fill: white;");
     }
+
+    public ChoiceBox<String> getProjectChoiceBox() {
+        return projectChoiceBox;
+    }
+
+    public ChoiceBox<String> getListChoiceBox() {
+        return listChoiceBox;
+    }
+
+    public DatePicker getStartDatePicker() {
+        return startDatePicker;
+    }
+
+    public DatePicker getEndDatePicker() {
+        return endDatePicker;
+    }
+
+    public TextField getDescriptionTextField() {
+        return descriptionTextField;
+    }
+
+    public Button getSubmitButton() {
+        return submitButton;
+    }
+
+    public Button getCancelButton() {
+        return cancelButton;
+    }
+
+    
+
 }
