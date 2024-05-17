@@ -3,6 +3,8 @@ package ma.ac.usms.ensak.metier.POJO;
 import java.util.Date;
 import java.util.UUID;
 
+import org.checkerframework.checker.units.qual.t;
+
 import ma.ac.usms.ensak.util.Category;
 
 
@@ -173,4 +175,8 @@ public class Project {
         this.archived = archived;
     }
 
+    @Override
+    public String toString() {
+        return title;
+    }
 }

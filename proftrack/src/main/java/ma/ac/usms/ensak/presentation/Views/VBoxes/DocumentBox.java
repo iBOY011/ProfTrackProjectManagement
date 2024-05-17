@@ -7,25 +7,27 @@ import javafx.scene.control.ListView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
-import ma.ac.usms.ensak.util.ListItem;
+import ma.ac.usms.ensak.metier.POJO.Document;
 
 public class DocumentBox extends VBox{
     private Label documentLabel;
-    private Button AddButton;
-    private Button DeleteButton;
-    private ListView<ListItem> documentList;
+    private static Button AddButton = new Button("Add Document");
+    private static Button DeleteButton = new Button("Delete Document");
+    private ListView<Document> documentList;
 
     public DocumentBox() {
         documentLabel = new Label("Documents:");
         documentLabel.setStyle("-fx-font-size: 20px; -fx-font-weight: bold; -fx-font-family: Arial;");
-        AddButton = new Button("Add Document");
-        DeleteButton = new Button("Delete Document");
-        documentList = new ListView<ListItem>();
+        documentList = new ListView<Document>();
         HBox buttonsBox = new HBox(AddButton, DeleteButton);
         buttonsBox.setAlignment(Pos.CENTER_RIGHT);
         HBox stackPane = new HBox(documentLabel, buttonsBox);
         HBox.setHgrow(buttonsBox, Priority.ALWAYS);
         getChildren().addAll(stackPane, documentList);
+    }
+
+    public ListView<Document> getDocumentList() {
+        return documentList;
     }
 
     public Label getDocumentLabel() {
@@ -38,6 +40,10 @@ public class DocumentBox extends VBox{
 
     public Button getDeleteButton() {
         return DeleteButton;
+    }
+
+    public ListView<Document> getListView() {
+        return documentList;
     }
     
 }

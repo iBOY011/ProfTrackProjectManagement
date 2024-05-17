@@ -12,10 +12,8 @@ import ma.ac.usms.ensak.persistance.dao.ProjectDAO;
 
 public class ProjectImpl implements ProjectDAO {
     private static final String JSON_FILE_PATH = "src\\main\\resources\\databases\\projects.json";
-    private final Gson gson;
 
     public ProjectImpl() {
-        gson = new Gson();
     }
 
     @Override
@@ -32,7 +30,7 @@ public class ProjectImpl implements ProjectDAO {
     public Project getProjectById(String projectId) {
         List<Project> projects = readObjectsFromJsonFile(JSON_FILE_PATH, Project.class);
         for (Project project : projects) {
-            if (String.valueOf(project.getId()).equals(projectId)) {
+            if (project.getId().contentEquals(projectId)) {
                 return project;
             }
         }

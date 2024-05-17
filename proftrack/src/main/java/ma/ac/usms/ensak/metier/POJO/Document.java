@@ -10,6 +10,7 @@ import java.util.UUID;
  */
 public class Document {
     private String id;
+    private String title;
     private String description;
     private Date dateAdded;
     private String path;
@@ -17,6 +18,7 @@ public class Document {
     /**
      * Constructs a new `document` object with the specified parameters.
      * 
+     * @param title          the title of the document
      * @param description    the description of the document
      * @param dateAdded      the date when the document was added
      * @param path           the path of the document
@@ -127,8 +129,23 @@ public class Document {
     }
 
     public String getTitle() {
-       // get the title of the document from path
         return this.path.substring(this.path.lastIndexOf("\\") + 1);
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+
+    /**
+        * Returns a string representation of the Document object.
+        *
+        * @return the string representation of the Document object, which includes the title, date added, and description.
+        */
+    @Override
+    public String toString() {
+        
+        return getTitle() + " | Desc: " + getDescription() + " | Date Added: " + getDateAdded().getDay() + "/" + getDateAdded().getMonth() + "/" + getDateAdded().getYear();
     }
 
    

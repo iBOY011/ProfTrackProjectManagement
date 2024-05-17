@@ -37,23 +37,30 @@ public class ShowBox extends VBox {
 
     }
 
-    public HBox createLabel(String text) {
+    public HBox createLabel(String text, Boolean isList) {
         Label label = new Label(text);
         label.setStyle("-fx-font-size: 20px;");
 
         Image addImage = new Image(getClass().getResource("/Icons/add.png").toString());
-        addButton = new Button("", new ImageView(addImage));
-        addButton.setStyle(
+        Button button = new Button("", new ImageView(addImage));
+        button = new Button("", new ImageView(addImage));
+        button.setStyle(
                 "-fx-background-color: transparent; -fx-border-color: transparent; -fx-cursor: hand; -fx-font-size: 20px; -fx-padding: 0;");
-        addButton.getGraphic().setStyle("-fx-fit-width: 20px; -fx-fit-height: 20px;");
+        button.getGraphic().setStyle("-fx-fit-width: 20px; -fx-fit-height: 20px;");
 
         Image arrowDownImage = new Image(getClass().getResource("/Icons/down-arrow.png").toString());
         Button showMoreButton = new Button("", new ImageView(arrowDownImage));
         showMoreButton.setStyle(
                 "-fx-background-color: transparent; -fx-border-color: transparent; -fx-cursor: hand; -fx-font-size: 20px; -fx-padding: 0;");
         showMoreButton.getGraphic().setStyle("-fx-fit-width: 20px; -fx-fit-height: 20px;");
-
-        HBox buttonsBox = new HBox(addButton, showMoreButton);
+        HBox buttonsBox = new HBox();
+            if (isList) {
+                addButton = button;
+                buttonsBox.getChildren().addAll(addButton, showMoreButton);
+            } else {
+                projectButton = button;
+                buttonsBox.getChildren().addAll(projectButton, showMoreButton);
+            }
         buttonsBox.setAlignment(Pos.CENTER_RIGHT);
 
         HBox stackPane = new HBox(label, buttonsBox);
