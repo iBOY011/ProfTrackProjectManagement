@@ -1,5 +1,5 @@
 package ma.ac.usms.ensak.util;
 
 public enum Category {
-    ACADEMIC, RESEARCH, SUPERVISION
+    ACADEMIC, RESEARCH, SUPERVISION, OTHER
 }

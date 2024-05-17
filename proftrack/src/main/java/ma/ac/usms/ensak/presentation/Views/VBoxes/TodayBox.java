@@ -15,7 +15,6 @@ public class TodayBox extends VBox {
     ComboBox<String> filterComboBox;
     TextField addTask;
     Button informationButton;
-    Button addButton;
     Button showListOfToday;
     VBox listToday;
     VBox projectToday;
@@ -52,10 +51,9 @@ public class TodayBox extends VBox {
 
         // Create
         informationButton = new Button("+");
-        addButton = new Button("Add");
 
         // Create a HBox to contain the TextField and the Button
-        HBox addFeild = new HBox(addTask, informationButton, addButton);
+        HBox addFeild = new HBox(addTask, informationButton);
         addFeild.setStyle("-fx-spacing: 15px; -fx-alignment: center;");
 
         headerContainer.getChildren().addAll(header, addFeild);
@@ -97,9 +95,6 @@ public class TodayBox extends VBox {
         return informationButton;
     }
 
-    public Button getAddButton() {
-        return addButton;
-    }
 
     public Button getShowListOfToday() {
         return showListOfToday;

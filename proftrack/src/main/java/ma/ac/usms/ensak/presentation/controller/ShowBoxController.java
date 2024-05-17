@@ -8,6 +8,7 @@ import org.checkerframework.checker.units.qual.s;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Alert;
@@ -57,7 +58,7 @@ public class ShowBoxController {
      */
     public static void showList(VBox list) {
         list.getChildren().clear();
-        list.getChildren().add(showBox.createLabel("Lists"));
+        list.getChildren().add(showBox.createLabel("Lists", true));
 
         ObservableList<ListItem> items = FXCollections.observableArrayList();
         ListView<ListItem> listView = new ListView<>(items);
@@ -82,7 +83,7 @@ public class ShowBoxController {
      */
     public static void showProject(VBox list) {
         list.getChildren().clear();
-        list.getChildren().add(showBox.createLabel("Projects"));
+        list.getChildren().add(showBox.createLabel("Projects", false));
 
         ObservableList<ListItem> items = FXCollections.observableArrayList();
         ListView<ListItem> listView = new ListView<>(items);
@@ -112,11 +113,20 @@ public class ShowBoxController {
                     // Left-clicked
                     ListItem item = listView.getSelectionModel().getSelectedItem();
                     if (item != null) {
-                        showIDAlert(item.getId());
                         if (FLAG) {
                             idListSelected = item.getId();
+                            showListDescription();
+                            DetailsController.DisableDocumentBox(true);
+                            VBox todayBox = HomeController.getTodayView().getTodayBox(); 
+                            todayBox.getChildren().clear();
+                            todayBox.getChildren().add(TaskController.getTaskView());
+                            TaskController.showTasks();
+                            
                         } else {
                             idProjectSelected = item.getId();
+                            DetailsController.showDocument();
+                            showProjectDescription();
+                            DetailsController.DisableDocumentBox(false);
                         }
                     }
                 }
@@ -218,6 +228,26 @@ public class ShowBoxController {
 
     public static String getIdListSelected() {
         return idListSelected;
+    }
+
+    public static String getIdProjectSelected() {
+        return idProjectSelected;
+    }
+
+    public static VBox getProject() {
+        return showBox.getProject();
+    }
+
+    private static void showProjectDescription() {
+        if (idProjectSelected != null) {
+            DetailsController.showDetails(idProjectSelected, false);
+        }
+    }
+
+    private static void showListDescription() {
+        if (idListSelected != null) {
+            DetailsController.showDetails(idListSelected, true);
+        }
     }
 
 }

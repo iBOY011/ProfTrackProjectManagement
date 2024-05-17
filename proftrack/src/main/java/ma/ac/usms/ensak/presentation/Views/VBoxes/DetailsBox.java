@@ -1,20 +1,22 @@
 package ma.ac.usms.ensak.presentation.Views.VBoxes;
 
+
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
+import javafx.scene.control.ListView;
 import javafx.scene.layout.VBox;
-import ma.ac.usms.ensak.presentation.controller.DocumentController;
+import ma.ac.usms.ensak.metier.POJO.Document;
+import ma.ac.usms.ensak.util.ListItem;
 
 public class DetailsBox extends VBox{
     private VBox descriptionBox;
-    private VBox DocumentsBox;
+    private  DocumentBox DocumentsBox;
     private VBox WorkSessionBox;
     private Label descriptionArea;
 
     public DetailsBox() {
-        DocumentController d = new DocumentController();
         descriptionBox = new VBox();
-        DocumentsBox = d.getDocumentBox();
+        DocumentsBox = new DocumentBox();
         WorkSessionBox = new VBox();
         // desing descriptionBox
         Label descriptionLabel = new Label("Description:");
@@ -25,6 +27,7 @@ public class DetailsBox extends VBox{
         descriptionArea.setWrapText(true);
         descriptionArea.setMaxWidth(730);
         descriptionBox.getChildren().addAll(descriptionLabel, descriptionArea);
+        // DocumentsBox.setVisible(false);
         getChildren().addAll(descriptionBox, DocumentsBox, WorkSessionBox);
     }
 
@@ -32,7 +35,7 @@ public class DetailsBox extends VBox{
         return descriptionBox;
     }
 
-    public VBox getDocumentsBox() {
+    public DocumentBox getDocumentsBox() {
         return DocumentsBox;
     }
 
@@ -43,5 +46,17 @@ public class DetailsBox extends VBox{
     public Label getDescriptionArea() {
         return descriptionArea;
     }
+
+    public Button getAddDocumentButton() {
+        return DocumentsBox.getAddButton();
+    }
     
+    public Button getDeleteDocumentButton() {
+        return DocumentsBox.getDeleteButton();
+    }
+
+    public ListView<Document> getDocumentList() {
+        return DocumentsBox.getDocumentList();
+    }
+
 }

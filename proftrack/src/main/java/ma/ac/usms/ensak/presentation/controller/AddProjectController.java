@@ -8,6 +8,22 @@ public class AddProjectController {
     private static AddProjectView addProject = new AddProjectView();
 
     public void createView() {
-    };
+        addProject.getAddButton().setOnAction(e -> {
+            projectManager.createProject(addProject.getProjectFromFields().getTitle(),
+                    addProject.getProjectFromFields().getDescription(),
+                    addProject.getProjectFromFields().getStart_date(),
+                    addProject.getProjectFromFields().getEnd_date(),
+                    addProject.getProjectFromFields().getCategory(),
+                    addProject.getProjectFromFields().getType());
+                    ShowBoxController.showProject(ShowBoxController.getProject());
+            addProject.getStage().close();
+        });
+
+    }
+
+    public AddProjectView getAddProject() {
+        return addProject;
+    }
+
 
 }

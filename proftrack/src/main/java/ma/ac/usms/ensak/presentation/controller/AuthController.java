@@ -22,7 +22,7 @@ public class AuthController {
             //     }
             // } catch (IOException | InterruptedException | GeneralSecurityException ev) {
             // }
-            Main.setRoot(new HomeView());
+            Main.setRoot(new HomeController().getHomeView());
         });
         
     }

@@ -25,10 +25,10 @@ import java.util.List;
 public class GoogleCalendarService {
     private static final String APPLICATION_NAME = "ProfTrack";
     private static final JsonFactory JSON_FACTORY = JacksonFactory.getDefaultInstance();
-    private static final String TOKENS_DIRECTORY_PATH = "tokens";
+    private static final String TOKENS_DIRECTORY_PATH = "proftrack\\\\src\\\\main\\\\resources\\\\.tokens";
 
     private static final List<String> SCOPES = Collections.singletonList(CalendarScopes.CALENDAR);
-    private static final String CREDENTIALS_FILE_PATH = "C:\\\\Users\\\\haita\\\\Desktop\\\\Gi1 Project\\\\Java\\\\Github\\\\ProfTrackProjectManagement\\\\proftrack\\\\src\\\\main\\\\resources\\\\.configs\\\\client_secret_282900748335-tsn3efmdv9nc56ce3r7iq5p4ajet62f8.apps.googleusercontent.com.json"; // Chemin vers votre fichier JSON
+    private static final String CREDENTIALS_FILE_PATH = "proftrack\\\\src\\\\main\\\\resources\\\\.configs\\\\client_secret_282900748335-tsn3efmdv9nc56ce3r7iq5p4ajet62f8.apps.googleusercontent.com.json"; // Chemin vers votre fichier JSON
 
     private static Credential getCredentials(final NetHttpTransport HTTP_TRANSPORT) throws IOException {
         FileInputStream in = new FileInputStream(CREDENTIALS_FILE_PATH);

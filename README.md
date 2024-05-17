@@ -43,4 +43,4 @@ This project is licensed under the [MIT License](LICENSE).
 
 ## Contact
 
-For any inquiries or questions, please contact  at [haitamlahlaouti01@gmail.com] or [mohammedmajidi321@gmail.com]
+For any inquiries or questions, please contact  at [LAHLAOUTI](haitamlahlaouti01@gmail.com) or [MAJIDI](mohammedmajidi321@gmail.com)
