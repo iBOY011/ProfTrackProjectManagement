@@ -6,12 +6,14 @@ import java.util.List;
 import org.checkerframework.checker.units.qual.A;
 import org.checkerframework.checker.units.qual.s;
 
+import javafx.animation.TranslateTransition;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.ListCell;
@@ -19,6 +21,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.MenuItem;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import ma.ac.usms.ensak.metier.POJO.Project;
 import ma.ac.usms.ensak.metier.management.ListToDoManager;
@@ -26,6 +29,7 @@ import ma.ac.usms.ensak.metier.management.ProjectManager;
 import ma.ac.usms.ensak.metier.management.TaskManager;
 import ma.ac.usms.ensak.presentation.Views.VBoxes.ShowBox;
 import ma.ac.usms.ensak.util.ListItem;
+import javafx.util.Duration;
 
 /**
  * The ShowBoxController class is responsible for managing the display and
@@ -42,6 +46,7 @@ public class ShowBoxController {
     private static ArrayList<ListItem> ProjectID = new ArrayList<>();
     private static String idListSelected;
     private static String idProjectSelected;
+    private static boolean isBoxOpen = true;
 
     public ShowBoxController() {
         if (showBox == null) {
@@ -121,7 +126,7 @@ public class ShowBoxController {
                             todayBox.getChildren().clear();
                             todayBox.getChildren().add(TaskController.getTaskView());
                             TaskController.showTasks();
-                            
+
                         } else {
                             idProjectSelected = item.getId();
                             DetailsController.showDocument();
@@ -249,5 +254,6 @@ public class ShowBoxController {
             DetailsController.showDetails(idListSelected, true);
         }
     }
+
 
 }
