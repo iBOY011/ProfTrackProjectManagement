@@ -114,7 +114,7 @@ public class DocTaskImpl implements DocTaskDAO {
         result.clear();
         for (int i = 0; i < doctasks.size(); i++) {
             DocTask doctask = doctasks.get(i);
-            if (doctask.getIdTask().equals(idTask)) {
+            if (doctask.getIdTask().contentEquals(idTask)) {
                 result.add(doctask);
             }
         }

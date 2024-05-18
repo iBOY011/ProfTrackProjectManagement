@@ -109,6 +109,20 @@ public class DocumentManager {
             documents.add(documentImpl.getDocumentById(docTask.getIdDocument()));
         }
         return documents;
+
+    }
+    
+    public static void main(String[] args) {
+        // ListDocumentsByTask
+        DocumentManager documentManager = new DocumentManager();
+        List<Document> documents = documentManager.ListDocumentsByTask("a297401f-5d75-434a-bd51-4fbf44db0df4");
+        documents.forEach(doc -> {
+            System.out.println(doc.getId());
+        });
+    }
+
+    public void createDocument(Document document) {
+        documentImpl.addDocument(document);
     }
 
 }

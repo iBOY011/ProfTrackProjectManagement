@@ -38,7 +38,7 @@ public class AddListController {
 
     public void createView() {
         Stage stage = new Stage();
-        stage.setScene(new Scene(addListView, 900, 400));
+        stage.setScene(new Scene(addListView, 640, 400));
         stage.setTitle("Add List");
         stage.setResizable(false);
         stage.show();

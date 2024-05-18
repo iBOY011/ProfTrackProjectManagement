@@ -79,9 +79,7 @@ public class AddDocumentView extends VBox {
         String path = pathField.getText();
         
         // Create and return Document object
-        if (description.isEmpty() || path.isEmpty()
-                || ShowBoxController.getIdProjectSelected() == null
-                || ShowBoxController.getIdProjectSelected().isEmpty()) {
+        if (description.isEmpty() || path.isEmpty()) {
             return null; 
         }
         return new Document(description, path, ShowBoxController.getIdProjectSelected());

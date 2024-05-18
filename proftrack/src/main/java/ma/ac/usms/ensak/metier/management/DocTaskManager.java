@@ -96,4 +96,13 @@ public class DocTaskManager {
         }
     }
 
+    public static void main(String[] args) {
+        // searchDocTaskByTask 
+        DocTaskManager docTaskManager = new DocTaskManager();
+        List<DocTask> docTasks = docTaskManager.searchDocTaskByTask("a297401f-5d75-434a-bd51-4fbf44db0df4");
+        for (DocTask docTask : docTasks) {
+            System.out.println(docTask.getIdDocument());
+        }
+    }
+
 }

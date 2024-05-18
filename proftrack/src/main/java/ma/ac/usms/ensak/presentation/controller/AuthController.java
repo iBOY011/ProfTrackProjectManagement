@@ -16,13 +16,13 @@ public class AuthController {
     public AuthController() {
         authentification = new AuthentificationView();
         authentification.getLoginButton().setOnMouseClicked(e -> {
-            // try {
-            //     Credential credential = GoogleOAuth2Login.authorize();
-            //     if (credential != null) {
-            //     }
-            // } catch (IOException | InterruptedException | GeneralSecurityException ev) {
-            // }
-            Main.setRoot(new HomeController().getHomeView());
+            try {
+                Credential credential = GoogleOAuth2Login.authorize();
+                if (credential != null) {
+                    Main.setRoot(new HomeController().getHomeView());
+                }
+            } catch (IOException | InterruptedException | GeneralSecurityException ev) {
+            }
         });
         
     }

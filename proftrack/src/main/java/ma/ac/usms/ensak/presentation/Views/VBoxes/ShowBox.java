@@ -1,5 +1,7 @@
 package ma.ac.usms.ensak.presentation.Views.VBoxes;
 
+import org.checkerframework.checker.units.qual.t;
+
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -16,6 +18,8 @@ public class ShowBox extends VBox {
     private VBox Completed;
     private Button addButton;
     private Button projectButton;
+    private Button TodayButton;
+    private Button filter;
 
     public ShowBox() {
         Today = new VBox();
@@ -25,7 +29,7 @@ public class ShowBox extends VBox {
         addButton = new Button();
         projectButton = new Button();
         // add button of Today
-        Button TodayButton = new Button("Today",
+        TodayButton = new Button("Today",
                 new ImageView("https://cdn-icons-png.flaticon.com/512/10875/10875695.png"));
         TodayButton.setStyle(
                 "-fx-background-color: transparent; -fx-border-color: transparent; -fx-cursor: hand; -fx-font-size: 20px;");
@@ -48,18 +52,18 @@ public class ShowBox extends VBox {
                 "-fx-background-color: transparent; -fx-border-color: transparent; -fx-cursor: hand; -fx-font-size: 20px; -fx-padding: 0;");
         button.getGraphic().setStyle("-fx-fit-width: 20px; -fx-fit-height: 20px;");
 
-        Image arrowDownImage = new Image(getClass().getResource("/Icons/down-arrow.png").toString());
-        Button showMoreButton = new Button("", new ImageView(arrowDownImage));
-        showMoreButton.setStyle(
+        Image arrowDownImage = new Image(getClass().getResource("/Icons/filter.png").toString());
+        filter = new Button("", new ImageView(arrowDownImage));
+        filter.setStyle(
                 "-fx-background-color: transparent; -fx-border-color: transparent; -fx-cursor: hand; -fx-font-size: 20px; -fx-padding: 0;");
-        showMoreButton.getGraphic().setStyle("-fx-fit-width: 20px; -fx-fit-height: 20px;");
+        filter.getGraphic().setStyle("-fx-fit-width: 20px; -fx-fit-height: 20px;");
         HBox buttonsBox = new HBox();
             if (isList) {
                 addButton = button;
-                buttonsBox.getChildren().addAll(addButton, showMoreButton);
+                buttonsBox.getChildren().addAll(addButton);
             } else {
                 projectButton = button;
-                buttonsBox.getChildren().addAll(projectButton, showMoreButton);
+                buttonsBox.getChildren().addAll(projectButton, filter);
             }
         buttonsBox.setAlignment(Pos.CENTER_RIGHT);
 
@@ -70,8 +74,8 @@ public class ShowBox extends VBox {
         return stackPane;
     }
 
-    public VBox getToday() {
-        return Today;
+    public Button getToday() {
+        return this.TodayButton;
     }
 
     public VBox getList() {
@@ -94,4 +98,7 @@ public class ShowBox extends VBox {
         return projectButton;
     }
 
+    public Button getFilterButton() {
+        return filter;
+    }
 }

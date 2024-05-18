@@ -60,6 +60,10 @@ public class TodayView extends HBox {
         return Today;
     }
 
+    public void setTodayBox(VBox today) {
+        Today = today;
+    }
+
     public VBox getDetailsBox() {
         return detailsBox;
     }
