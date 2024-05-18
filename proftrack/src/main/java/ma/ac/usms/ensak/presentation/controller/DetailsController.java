@@ -4,25 +4,31 @@ import ma.ac.usms.ensak.metier.management.DocumentManager;
 import ma.ac.usms.ensak.metier.management.ListToDoManager;
 import ma.ac.usms.ensak.metier.management.ProjectManager;
 import ma.ac.usms.ensak.metier.management.TaskManager;
+import ma.ac.usms.ensak.metier.management.WorkSessionManager;
 import ma.ac.usms.ensak.presentation.Views.VBoxes.DetailsBox;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import org.checkerframework.checker.units.qual.t;
 
 import ma.ac.usms.ensak.metier.POJO.Document;
-import ma.ac.usms.ensak.metier.POJO.Project;
 import ma.ac.usms.ensak.metier.POJO.Task;
+import ma.ac.usms.ensak.metier.POJO.WorkSession;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 public class DetailsController {
     private static TaskManager taskManager = new TaskManager();
+    private static WorkSessionManager workSessionManager = new WorkSessionManager();
     private static ListToDoManager listToDoManager = new ListToDoManager();
     private static ProjectManager projectManager = new ProjectManager();
     private static DocumentManager documentManager = new DocumentManager();
     private static DetailsBox detailsBox = new DetailsBox();
+    private static DetailsController instance = new DetailsController();
+
+    public static DetailsController getInstance() {
+        return instance;
+    }
 
     public DetailsController() {        
 
@@ -109,5 +115,35 @@ public class DetailsController {
 
     public static void DisableDocumentBox(Boolean flag) {
         detailsBox.getDocumentsBox().setVisible(!flag);
+    }
+
+
+
+    // WorkSession part
+    public static void showWorkSession(Task task) {
+        List<WorkSession> workSessions = new ArrayList<>();
+        workSessionManager.listWorkSessionsByIdProject(ShowBoxController.getIdProjectSelected()).forEach(ws -> {
+            workSessions.add(ws);
+        });
+        ObservableList<WorkSession> observableWorkSessions = FXCollections.observableArrayList(workSessions);
+        detailsBox.getWorkSessionBox().getWorkSessionList().setItems(observableWorkSessions);
+        addWorkSession(task);
+        deleteWorkSession(task);
+    }
+
+    private static void deleteWorkSession(Task task) {
+        detailsBox.getWorkSessionBox().getDeleteButton().setOnAction(e -> {
+            WorkSession workSession = detailsBox.getWorkSessionBox().getWorkSessionList().getSelectionModel().getSelectedItem();
+            workSessionManager.deleteWorkSession(workSession.getId());
+            showWorkSession(task);
+        });
+    }
+
+    private static void addWorkSession(Task task) {
+        detailsBox.getWorkSessionBox().getAddButton().setOnAction(e -> {
+            AddWorkSessionController addWorkSessionController = new AddWorkSessionController();
+            addWorkSessionController.addWorkSession(task);
+            addWorkSessionController.createView();
+        });
     }
 }

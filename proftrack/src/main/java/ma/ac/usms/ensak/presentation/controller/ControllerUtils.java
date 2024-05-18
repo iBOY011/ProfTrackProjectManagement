@@ -24,6 +24,10 @@ public class ControllerUtils {
         return Date.from(localDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
     }
 
+    public static LocalDate convertToLocalDate(Date date) {
+        return date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+    }
+
     public static void setProjectChoiceBoxItems(ChoiceBox<String> choiceBox) {
         ProjectManager projectManager = new ProjectManager();
         List<Project> projects = projectManager.listProjects();

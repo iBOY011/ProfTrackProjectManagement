@@ -29,6 +29,7 @@ import ma.ac.usms.ensak.metier.management.ProjectManager;
 import ma.ac.usms.ensak.metier.management.TaskManager;
 import ma.ac.usms.ensak.presentation.Views.VBoxes.ShowBox;
 import ma.ac.usms.ensak.presentation.Views.VBoxes.TodayBox;
+import ma.ac.usms.ensak.util.Category;
 import ma.ac.usms.ensak.util.ListItem;
 import ma.ac.usms.ensak.util.SharedData;
 import javafx.util.Duration;
@@ -46,8 +47,9 @@ public class ShowBoxController {
     private static ShowBox showBox = new ShowBox();
     private static ArrayList<ListItem> listID = new ArrayList<>();
     private static ArrayList<ListItem> ProjectID = new ArrayList<>();
-    private static String idListSelected;
-    private static String idProjectSelected;
+    private static String idListSelected = "";
+    private static String idProjectSelected = "";
+    private static Category category = null;
 
     public ShowBoxController() {
 
@@ -114,6 +116,7 @@ public class ShowBoxController {
         ListContextMenu(listView, false);
         handleSelection(listView, false);
         addProjectButton();
+        filterProject();
     }
 
     /**
@@ -228,6 +231,61 @@ public class ShowBoxController {
 
         contextMenu.getItems().addAll(deleteItem);
         listView.setContextMenu(contextMenu); // Set context menu to the ListView
+    }
+
+    public static void filterProject() {
+        ContextMenu contextMenu = new ContextMenu();
+        MenuItem category1 = new MenuItem(Category.ACADEMIC.toString());
+        MenuItem category2 = new MenuItem(Category.RESEARCH.toString());
+        MenuItem category3 = new MenuItem(Category.SUPERVISION.toString());
+        MenuItem category4 = new MenuItem(Category.OTHER.toString());
+        contextMenu.setStyle("-fx-font-size: 10px; -fx-padding: 0; -fx-background-color: #f4f4f4; -fx-text-fill: black;");
+        showBox.getFilterButton().setOnMouseClicked(e -> {
+            contextMenu.getItems().addAll(category1, category2, category3, category4);
+            contextMenu.show(showBox.getFilterButton(), e.getScreenX(), e.getScreenY());
+        });
+
+        category1.setOnAction(e -> {
+            category = Category.ACADEMIC;
+            filterProjectByCategory(category);
+        });
+
+        category2.setOnAction(e -> {
+            category = Category.RESEARCH;
+            filterProjectByCategory(category);
+        });
+
+        category3.setOnAction(e -> {
+            category = Category.SUPERVISION;
+            filterProjectByCategory(category);
+        });
+
+        category4.setOnAction(e -> {
+            category = Category.OTHER;
+            filterProjectByCategory(category);
+        });
+
+    }
+
+    public static void filterProjectByCategory(Category category) {
+        showBox.getProject().getChildren().clear();
+        showBox.getProject().getChildren().add(showBox.createLabel("Projects", false));
+        ObservableList<ListItem> items = FXCollections.observableArrayList();
+        ListView<ListItem> listView = new ListView<>(items);
+
+        projectManager.listProjects().forEach(project -> {
+            if (project.getCategory().equals(category) && !project.isArchived()) {
+                ListItem listItem = new ListItem(project.getId(), project.getTitle());
+                items.add(listItem);
+                ProjectID.add(listItem);
+            }
+        });
+        listView.setStyle("-fx-font-size: 15px; -fx-padding: 0; -fx-background-color: #f4f4f4;");
+        showBox.getProject().getChildren().add(listView);
+        ListContextMenu(listView, false);
+        handleSelection(listView, false);
+        addProjectButton(); 
+        filterProject();
     }
 
     public ShowBox getShowBox() {

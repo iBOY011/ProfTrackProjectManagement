@@ -6,22 +6,23 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.VBox;
 import ma.ac.usms.ensak.metier.POJO.Document;
-import ma.ac.usms.ensak.util.ListItem;
 
 public class DetailsBox extends VBox{
     private VBox descriptionBox;
     private  DocumentBox DocumentsBox;
-    private VBox WorkSessionBox;
+    private WorkSessionBox WorkSessionBox;
     private Label descriptionArea;
 
     public DetailsBox() {
         descriptionBox = new VBox();
         DocumentsBox = new DocumentBox();
-        WorkSessionBox = new VBox();
+        WorkSessionBox = new WorkSessionBox();
         // desing descriptionBox
         Label descriptionLabel = new Label("Description:");
         descriptionLabel.setStyle("-fx-font-size: 20px; -fx-font-weight: bold; -fx-font-family: Arial;");
         descriptionArea = new Label();
+        // set text to be in the top left corner
+        descriptionArea.setAlignment(javafx.geometry.Pos.TOP_LEFT);
         descriptionArea.setStyle("-fx-font-size: 15px; -fx-font-family: Arial; -fx-padding: 5;-fx-text-fill: black; -fx-background-color: white; -fx-wrap-text: true; -fx-text-alignment: left; -fx-underline: false; -fx-content-display: TOP;");
         descriptionArea.setPrefHeight(200);
         descriptionArea.setWrapText(true);
@@ -39,7 +40,7 @@ public class DetailsBox extends VBox{
         return DocumentsBox;
     }
 
-    public VBox getWorkSessionBox() {
+    public WorkSessionBox getWorkSessionBox() {
         return WorkSessionBox;
     }
 

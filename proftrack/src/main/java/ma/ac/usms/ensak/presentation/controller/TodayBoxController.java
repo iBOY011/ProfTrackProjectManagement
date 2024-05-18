@@ -43,12 +43,17 @@ public class TodayBoxController {
                     checkBox.setOnAction(s -> {
                         t.setStatus(Status.DONE);
                         taskManager.updateTask(t);
+                        checkBox.setDisable(true);
                     });
                     if (t.getStatus() == Status.DONE) {
                         checkBox.setSelected(true);
                         checkBox.setDisable(true);
                     }
                     Button button = new Button(t.getTitle());
+                    button.setOnAction(s -> {
+                        TaskController.showTaskDetails(t);
+                        AddDocumentController.addDocTask(t);
+                    });
                     button.setStyle(
                             "-fx-background-color: transparent; -fx-border-color: transparent; -fx-cursor: hand; -fx-font-size: 10px;");
 
@@ -78,12 +83,17 @@ public class TodayBoxController {
                     checkBox.setOnAction(s -> {
                         t.setStatus(Status.DONE);
                         taskManager.updateTask(t);
+                        checkBox.setDisable(true);
                     });
                     if (t.getStatus() == Status.DONE) {
                         checkBox.setSelected(true);
                         checkBox.setDisable(true);
                     }
                     Button button = new Button(t.getTitle());
+                    button.setOnAction(s -> {
+                        TaskController.showTaskDetails(t);
+                        AddDocumentController.addDocTask(t);
+                    });
                     button.setStyle(
                             "-fx-background-color: transparent; -fx-border-color: transparent; -fx-cursor: hand; -fx-font-size: 10px;");
 

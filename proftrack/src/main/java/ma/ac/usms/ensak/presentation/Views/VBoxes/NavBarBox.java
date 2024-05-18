@@ -11,10 +11,12 @@ public class NavBarBox extends VBox {
     private HBox UserEmail;
     private HBox Tasks;
     private HBox Calendar;
+    private HBox Statistics;
     private HBox Settings;
     private Button userEmailButton = new Button();
     private Button TasksButton = new Button();
     private Button CalendarButton = new Button();
+    private Button StatisticsButton = new Button();
     private Button SettingsButton = new Button();
 
     public NavBarBox() {
@@ -22,13 +24,15 @@ public class NavBarBox extends VBox {
         UserEmail = new HBox();
         Tasks = new HBox();
         Calendar = new HBox();
+        Statistics = new HBox();
         Settings = new HBox();
+
         
 
         // Set the preferred size of each HBox by percentage 1 -> 20% 2 -> 20% 3 -> 30%
         // 4 -> 30%
-        HBox[] HBoxes = new HBox[] { UserEmail, Tasks, Calendar, Settings };
-        double[] percentages = { 20, 20, 30, 30 };
+        HBox[] HBoxes = new HBox[] { UserEmail, Tasks, Calendar, Statistics, Settings };
+        double[] percentages = { 20, 20, 20, 20, 20 };
         for (int i = 0; i < HBoxes.length; i++) {
             HBox HBox = HBoxes[i];
             HBox.prefHeightProperty().bind(heightProperty().multiply(percentages[i] / 100));
@@ -37,7 +41,9 @@ public class NavBarBox extends VBox {
         addButtonWithImage(UserEmail, getClass().getResource("/Icons/profile.png").toString(), userEmailButton);
         addButtonWithImage(Tasks, "https://cdn-icons-png.flaticon.com/512/7072/7072982.png", TasksButton);
         addButtonWithImage(Calendar, "https://cdn-icons-png.flaticon.com/512/1048/1048953.png", CalendarButton);
+        addButtonWithImage(Statistics, getClass().getResource("/Icons/analytics.png").toExternalForm(), StatisticsButton);
         addButtonWithImage(Settings, "https://cdn-icons-png.flaticon.com/512/1835/1835942.png", SettingsButton);
+
         // add HBox to VBox
         getChildren().addAll(HBoxes);
     }

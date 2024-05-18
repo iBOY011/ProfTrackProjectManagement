@@ -19,6 +19,7 @@ public class DocumentBox extends VBox{
         documentLabel = new Label("Documents:");
         documentLabel.setStyle("-fx-font-size: 20px; -fx-font-weight: bold; -fx-font-family: Arial;");
         documentList = new ListView<Document>();
+        documentList.setStyle("-fx-font-size: 15px; -fx-font-family: serif ; -fx-padding: 5;-fx-text-fill: black; -fx-background-color: white; -fx-wrap-text: true; -fx-text-alignment: left; -fx-underline: false; -fx-content-display: TOP;");
         HBox buttonsBox = new HBox(AddButton, DeleteButton);
         buttonsBox.setAlignment(Pos.CENTER_RIGHT);
         HBox stackPane = new HBox(documentLabel, buttonsBox);

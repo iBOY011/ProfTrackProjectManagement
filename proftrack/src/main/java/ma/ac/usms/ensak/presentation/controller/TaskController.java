@@ -4,10 +4,14 @@ import java.util.List;
 
 import org.checkerframework.checker.units.qual.s;
 
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.ContextMenu;
 import javafx.scene.control.ListView;
+import javafx.scene.control.MenuItem;
 import javafx.scene.input.MouseButton;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
@@ -109,6 +113,7 @@ public class TaskController {
         });
         button.setStyle(
                 "-fx-background-color: transparent; -fx-border-color: transparent; -fx-cursor: hand; -fx-font-size: 10px;");
+        ListContextMenu(button, task, isList, checkBox);
         HBox hBox = new HBox(checkBox, button);
         hBox.setStyle("-fx-spacing: 10px; -fx-alignment: center-left;");
         return hBox;
@@ -167,7 +172,45 @@ public class TaskController {
         });
     }
 
-    private void showTaskDetails(Task task) {
+
+     public static void ListContextMenu(Button b, Task t, Boolean isList, CheckBox checkBox) {
+        ContextMenu contextMenu = new ContextMenu();
+        MenuItem UpdateItem = new MenuItem("Update");
+        MenuItem deleteItem = new MenuItem("Delete");
+
+        // Event handler for delete item
+        EventHandler<ActionEvent> deleteHandler = e -> {
+            TaskManager taskManager = new TaskManager();
+            taskManager.removeTask(t.getId());
+            if (isList) {
+                TaskController.getInstance().showTasks(t.getId_ListToDo());
+            } else {
+                TaskController.getInstance().showProjectTasks(t.getId_project());
+            }
+        };
+
+        // Event handler for archive item (only for projects)
+        EventHandler<ActionEvent> updateHandler = e -> {
+            UpdateTaskController.getInstance().updateShow(t, isList);
+        };
+
+        deleteItem.setOnAction(deleteHandler);
+        UpdateItem.setOnAction(updateHandler);
+
+        contextMenu.getItems().addAll(UpdateItem, deleteItem);
+
+        b.setOnMouseClicked(e -> {
+            if (e.getButton() == MouseButton.SECONDARY) {
+                contextMenu.show(b, e.getScreenX(), e.getScreenY());
+            }
+        });
+    }
+
+    private TaskManager getTaskManager() {
+        return taskManager;
+    }
+
+    public static void showTaskDetails(Task task) {
         DetailsController.showDetails(task.getId(), false, true);
         DetailsController.showDocument(false, task);
 
