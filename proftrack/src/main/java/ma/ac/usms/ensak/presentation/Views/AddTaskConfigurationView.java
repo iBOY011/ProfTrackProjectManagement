@@ -8,6 +8,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import ma.ac.usms.ensak.metier.POJO.ListToDo;
@@ -20,7 +21,7 @@ public class AddTaskConfigurationView extends GridPane {
     ChoiceBox<String> listChoiceBox;
     DatePicker startDatePicker;
     DatePicker endDatePicker;
-    TextField descriptionTextField;
+    TextArea descriptionTextField;
     Button submitButton;
     Button cancelButton;
 
@@ -61,8 +62,9 @@ public class AddTaskConfigurationView extends GridPane {
         GridPane.setConstraints(endDatePicker, 1, 3);
 
         // TextField for description
-        descriptionTextField = new TextField();
+        descriptionTextField = new TextArea();
         descriptionTextField.setPromptText("Enter description");
+        descriptionTextField.setPrefColumnCount(10);
         GridPane.setConstraints(descriptionTextField, 1, 4);
 
         // Buttons
@@ -99,7 +101,7 @@ public class AddTaskConfigurationView extends GridPane {
         return endDatePicker;
     }
 
-    public TextField getDescriptionTextField() {
+    public TextArea getDescriptionTextField() {
         return descriptionTextField;
     }
 
@@ -109,6 +111,14 @@ public class AddTaskConfigurationView extends GridPane {
 
     public Button getCancelButton() {
         return cancelButton;
+    }
+
+    public void setIdProject(String id) {
+        projectChoiceBox.setValue(id);
+    }
+
+    public void setIdList(String id) {
+        listChoiceBox.setValue(id);
     }
 
     

@@ -1,5 +1,7 @@
 package ma.ac.usms.ensak.presentation.Views.VBoxes;
 
+import org.checkerframework.checker.units.qual.t;
+
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -16,6 +18,7 @@ public class ShowBox extends VBox {
     private VBox Completed;
     private Button addButton;
     private Button projectButton;
+    private Button TodayButton;
 
     public ShowBox() {
         Today = new VBox();
@@ -25,7 +28,7 @@ public class ShowBox extends VBox {
         addButton = new Button();
         projectButton = new Button();
         // add button of Today
-        Button TodayButton = new Button("Today",
+        TodayButton = new Button("Today",
                 new ImageView("https://cdn-icons-png.flaticon.com/512/10875/10875695.png"));
         TodayButton.setStyle(
                 "-fx-background-color: transparent; -fx-border-color: transparent; -fx-cursor: hand; -fx-font-size: 20px;");
@@ -70,8 +73,8 @@ public class ShowBox extends VBox {
         return stackPane;
     }
 
-    public VBox getToday() {
-        return Today;
+    public Button getToday() {
+        return this.TodayButton;
     }
 
     public VBox getList() {

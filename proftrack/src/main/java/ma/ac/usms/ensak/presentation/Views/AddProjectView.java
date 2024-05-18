@@ -7,6 +7,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
@@ -19,7 +20,7 @@ import java.util.Date;
 public class AddProjectView {
 
     private TextField titleField;
-    private TextField descriptionField;
+    private TextArea descriptionField;
     private DatePicker startDatePicker;
     private DatePicker endDatePicker;
     private ComboBox<Category> categoryComboBox;
@@ -45,7 +46,7 @@ public class AddProjectView {
         grid.add(titleField, 1, 0);
 
         grid.add(new Label("Description:"), 0, 1);
-        descriptionField = new TextField();
+        descriptionField = new TextArea();
         grid.add(descriptionField, 1, 1);
 
         grid.add(new Label("Start Date:"), 0, 2);

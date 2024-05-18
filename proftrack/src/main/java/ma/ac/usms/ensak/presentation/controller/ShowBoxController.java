@@ -28,7 +28,9 @@ import ma.ac.usms.ensak.metier.management.ListToDoManager;
 import ma.ac.usms.ensak.metier.management.ProjectManager;
 import ma.ac.usms.ensak.metier.management.TaskManager;
 import ma.ac.usms.ensak.presentation.Views.VBoxes.ShowBox;
+import ma.ac.usms.ensak.presentation.Views.VBoxes.TodayBox;
 import ma.ac.usms.ensak.util.ListItem;
+import ma.ac.usms.ensak.util.SharedData;
 import javafx.util.Duration;
 
 /**
@@ -46,12 +48,19 @@ public class ShowBoxController {
     private static ArrayList<ListItem> ProjectID = new ArrayList<>();
     private static String idListSelected;
     private static String idProjectSelected;
-    private static boolean isBoxOpen = true;
 
     public ShowBoxController() {
+
         if (showBox == null) {
             showBox = new ShowBox();
         }
+        showBox.getToday().setOnMouseClicked(e -> {
+            TodayBoxController todayBoxController1 = new TodayBoxController();
+            VBox todayBox = todayBoxController1.getTodayBox();
+            VBox tBox = HomeController.getTodayView().getTodayBox();
+            tBox.getChildren().clear();
+            tBox.getChildren().add(todayBox);
+        });
         showList(showBox.getList());
         showProject(showBox.getProject());
     }
@@ -94,9 +103,11 @@ public class ShowBoxController {
         ListView<ListItem> listView = new ListView<>(items);
 
         projectManager.listProjects().forEach(project -> {
+            if (!project.isArchived()) {
             ListItem listItem = new ListItem(project.getId(), project.getTitle());
             items.add(listItem);
             ProjectID.add(listItem);
+            }
         });
         listView.setStyle("-fx-font-size: 15px; -fx-padding: 0; -fx-background-color: #f4f4f4;");
         list.getChildren().add(listView);
@@ -124,14 +135,18 @@ public class ShowBoxController {
                             DetailsController.DisableDocumentBox(true);
                             VBox todayBox = HomeController.getTodayView().getTodayBox(); 
                             todayBox.getChildren().clear();
-                            todayBox.getChildren().add(TaskController.getTaskView());
-                            TaskController.showTasks();
+                            todayBox.getChildren().add(TaskController.getInstance().getTasksView());
+                            TaskController.getInstance().showTasks(idListSelected);
 
                         } else {
                             idProjectSelected = item.getId();
-                            DetailsController.showDocument();
+                            DetailsController.showDocument(true, null);
                             showProjectDescription();
                             DetailsController.DisableDocumentBox(false);
+                            VBox todayBox = HomeController.getTodayView().getTodayBox();
+                            todayBox.getChildren().clear();
+                            todayBox.getChildren().add(TaskController.getInstance().getTasksView());
+                            TaskController.getInstance().showProjectTasks(idProjectSelected);
                         }
                     }
                 }
@@ -197,7 +212,7 @@ public class ShowBoxController {
             ListItem selectedItem = listView.getSelectionModel().getSelectedItem();
             if (selectedItem != null) {
                 Project project = projectManager.searchProjectById(selectedItem.getId());
-                project.setArchived(true);
+                projectManager.archiveProject(project);
                 showProject(showBox.getProject());
             }
         };
@@ -245,13 +260,13 @@ public class ShowBoxController {
 
     private static void showProjectDescription() {
         if (idProjectSelected != null) {
-            DetailsController.showDetails(idProjectSelected, false);
+            DetailsController.showDetails(idProjectSelected, false, false);
         }
     }
 
     private static void showListDescription() {
         if (idListSelected != null) {
-            DetailsController.showDetails(idListSelected, true);
+            DetailsController.showDetails(idListSelected, true, false);
         }
     }
 

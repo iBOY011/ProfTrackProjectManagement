@@ -3,6 +3,9 @@ package ma.ac.usms.ensak.metier.management;
 import java.util.Date;
 import java.util.List;
 
+import org.checkerframework.checker.units.qual.g;
+import org.checkerframework.checker.units.qual.s;
+
 import ma.ac.usms.ensak.metier.POJO.Project;
 import ma.ac.usms.ensak.metier.POJO.Task;
 import ma.ac.usms.ensak.metier.POJO.WorkSession;
@@ -27,15 +30,10 @@ public class ProjectManager {
 
     }
 
-    public void updateProject(String title, String description, Date startDate, Date endDate, Category category,
-            String type) {
-        if (!isValidateSyntax(title, description, startDate, endDate, category, type)) {
-            throw new IllegalArgumentException("Invalid syntax");
-        } else {
-            Project project = new Project(title, description, startDate, endDate, category, type, false);
-            ProjectImpl projectImpl = new ProjectImpl();
-            projectImpl.updateProject(project);
-        }
+    public void updateProject(Project project) {
+        ProjectImpl projectImpl = new ProjectImpl();
+        projectImpl.updateProject(project);
+       
     }
 
     public void removeProject(String projectId) {
@@ -120,26 +118,25 @@ public class ProjectManager {
     }
 
     // Méthodes pour archiver un projet
-    private void archiveProject(Project project) {
+    public void archiveProject(Project project) {
         project.setArchived(true);
-        updateProject(project.getTitle(), project.getDescription(), project.getStart_date(), project.getEnd_date(),
-                project.getCategory(), project.getType());
+        updateProject(project);
     }
 
-    public void archiveProjectByTasks(Project project) {
+    public void archiveProjectByTasks(String id) {
         List<Task> tasks;
-        tasks = taskManager.listTasksByIdProject(project);
+        tasks = taskManager.listTasksByIdProject(id);
         for (Task task : tasks) {
             if (!task.wasDone()) {
                 throw new IllegalArgumentException("The project cannot be archived because there are still open tasks");
             }
         }
-        archiveProject(project);
+        archiveProject(searchProjectById(id));
     }
 
     public void archiveProjectByWorkSessions(Project project) {
         List<WorkSession> workSessions;
-        workSessions = workSessionManager.listWorkSessionsByIdProject(project);
+        workSessions = workSessionManager.listWorkSessionsByIdProject(project.getId());
         for (WorkSession workSession : workSessions) {
             if (!workSession.isClosed()) {
                 throw new IllegalArgumentException(

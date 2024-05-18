@@ -29,7 +29,7 @@ public class TasksView extends VBox{
         HBox header = new HBox();
         arrowButton = new Button("<");
         arrowButton.setOnAction(e ->
-        HomeController.toggleShowBoxSize());
+        HomeController.getTodayView().getShowBox().setVisible(!HomeController.getTodayView().getShowBox().isVisible()));
         arrowButton.setStyle(
                 "-fx-background-color: transparent; -fx-text-fill: black; -fx-font-size: 14px; -fx-cursor: hand;");
         headerLabel = new Label("");
@@ -102,6 +102,10 @@ public class TasksView extends VBox{
 
     public VBox getListTask() {
         return listTasks;
+    }
+
+    public VBox getListWorkSession() {
+        return listWorkSession;
     }
     
     public Label getShowTask() {

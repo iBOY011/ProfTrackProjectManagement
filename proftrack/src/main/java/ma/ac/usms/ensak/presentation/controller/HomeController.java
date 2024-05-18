@@ -45,26 +45,30 @@ public class HomeController {
         return todayView;
     }
 
-    private static double calculateNormalWidth() {
-        double[] percentages = { 20, 40, 40 };
-        double totalWidth = todayView.getShowBox().getParent().getLayoutBounds().getWidth();
-        double normalWidth = 0;
-        for (double percentage : percentages) {
-            normalWidth += totalWidth * (percentage / 100);
-        }
-        return normalWidth;
-    }
+    // private static double calculateNormalWidth() {
+    //     double[] percentages = { 20, 40, 40 };
+    //     double totalWidth = todayView.getShowBox().getParent().getLayoutBounds().getWidth();
+    //     double normalWidth = 0;
+    //     for (double percentage : percentages) {
+    //         normalWidth += totalWidth * (percentage / 100);
+    //     }
+    //     return normalWidth;
+    // }
     
-    public static void toggleShowBoxSize() {
-        calculateNormalWidth();
-        // Check if the current width is 0, if so, set it back to normal width
-        if (todayView.getShowBox().getPrefWidth() == 0) {
-            todayView.getShowBox().setPrefWidth(normalWidth);
-        } else {
-            // Otherwise, set the width to 0
-            todayView.getShowBox().setPrefWidth(0);
-        }
-    }
+    // public static void toggleShowBoxSize() {
+    //     calculateNormalWidth();
+    //     System.out.println("Normal width: " + normalWidth);
+    //     // Check if the current width is 0, if so, set it back to normal width
+    //     if (todayView.getShowBox().getPrefWidth() == 0) {
+    //         todayView.getTodayBox().setPrefWidth(todayView.getTodayBox().getWidth()-normalWidth);
+    //         todayView.getShowBox().setPrefWidth(normalWidth);
+    //     } else {
+    //         // Otherwise, set the width to 0
+
+    //         todayView.getShowBox().setPrefWidth(0);
+    //         todayView.getTodayBox().setPrefWidth(todayView.getTodayBox().getWidth()+normalWidth);
+    //     }
+    // }
 
 
 }

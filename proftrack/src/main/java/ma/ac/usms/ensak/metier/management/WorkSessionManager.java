@@ -100,9 +100,9 @@ public class WorkSessionManager {
     }
 
     // get work sessions by project ID
-    public List<WorkSession> listWorkSessionsByIdProject(Project project) {
+    public List<WorkSession> listWorkSessionsByIdProject(String Id) {
         // check if the project is not null
-        if (project == null) {
+        if (Id == null) {
             throw new IllegalArgumentException("The project cannot be null.");
         }
         // get all work sessions from the database
@@ -110,7 +110,7 @@ public class WorkSessionManager {
         List<WorkSession> workSessionsByIdProject = new ArrayList<WorkSession>();
         // get the work sessions by project ID
         for (WorkSession workSession : workSessions) {
-            if (workSession.getId_project().equals(project.getId())) {
+            if (workSession.getId_project().equals(Id)) {
                 workSessionsByIdProject.add(workSession);
             }
         }

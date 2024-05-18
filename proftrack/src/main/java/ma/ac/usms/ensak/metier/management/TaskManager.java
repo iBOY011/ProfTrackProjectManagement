@@ -1,5 +1,7 @@
 package ma.ac.usms.ensak.metier.management;
 
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -91,7 +93,7 @@ public class TaskManager {
                     end_date,
                     status,
                     id,
-                    "null");
+                    "");
             validate(task);
             taskImpl.addTask(task);
         } else {
@@ -101,7 +103,7 @@ public class TaskManager {
                     start_date,
                     end_date,
                     status,
-                    "null",
+                    "",
                     id);
             validate(task);
             taskImpl.addTask(task);
@@ -109,7 +111,7 @@ public class TaskManager {
     }
 
     // update task
-    public void updateTask(Task task, String id) {
+    public void updateTask(Task task) {
         validate(task);
         taskImpl.updateTask(task);
     }
@@ -148,25 +150,21 @@ public class TaskManager {
     }
 
     // get all tasks by id project
-    public List<Task> listTasksByIdProject(Project project) {
+    public List<Task> listTasksByIdProject(String id) {
         // check if the project is not null
-        if (project == null) {
-            throw new IllegalArgumentException("The project cannot be null.");
-        }
-        // check if the id is not null
-        if (project.getId() == null) {
+        if (id == null) {
             throw new IllegalArgumentException("The id cannot be null.");
         }
         // check if the project exists
         ProjectImpl projectImpl = new ProjectImpl();
-        Project project1 = projectImpl.getProjectById(project.getId());
+        Project project1 = projectImpl.getProjectById(id);
         if (project1 == null) {
             throw new IllegalArgumentException("The project does not exist.");
         }
         tasks = taskImpl.getAllTasks();
         List<Task> tasks1 = new ArrayList<Task>();
         for (Task task : tasks) {
-            if (task.getId_project() == project.getId()) {
+            if (task.getId_project().contentEquals(id)) {
                 tasks1.add(task);
             }
         }
@@ -265,14 +263,33 @@ public class TaskManager {
     }
 
     public List<Task> getTasksOfToday() {
-        tasks = taskImpl.getAllTasks();
+        List<Task> tasks = taskImpl.getAllTasks();
         List<Task> result = new ArrayList<>();
-        Task tasktest = tasks.get(0);
+        LocalDate today = LocalDate.now(); // Get the current date
+
         for (Task task : tasks) {
-            if (task.getStart_date().compareTo(tasktest.getStart_date()) == 0) {
+            Date startDate = task.getStart_date();
+            Date endDate = task.getEnd_date();
+
+            // Convert Date to LocalDate
+            LocalDate startLocalDate = startDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+            LocalDate endLocalDate = endDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+
+            // Check if today is between start_date and end_date inclusive
+            if ((startLocalDate.equals(today) || startLocalDate.isBefore(today)) &&
+                    (endLocalDate.equals(today) || endLocalDate.isAfter(today))) {
                 result.add(task);
             }
         }
+
         return result;
+    }
+
+    public static void main(String[] args) {
+        TaskManager taskManager = new TaskManager();
+        List<Task> tasks = taskManager.getTasksOfToday();
+        for (Task task : tasks) {
+            System.out.println(task);
+        }
     }
 }
