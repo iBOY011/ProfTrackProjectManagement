@@ -1,8 +1,10 @@
 package ma.ac.usms.ensak.presentation.controller;
 
+import java.time.YearMonth;
+
 import javafx.animation.TranslateTransition;
 import javafx.util.Duration;
-import ma.ac.usms.ensak.presentation.Views.CalendarView;
+import ma.ac.usms.ensak.presentation.Views.FullCalendarView;
 import ma.ac.usms.ensak.presentation.Views.HomeView;
 import ma.ac.usms.ensak.presentation.Views.TodayView;
 import ma.ac.usms.ensak.presentation.Views.VBoxes.NavBarBox;
@@ -12,7 +14,8 @@ public class HomeController {
     private static HomeView homeView;
     private static NavBarBox navbar = new NavBarBox();
     private static TodayView todayView = new TodayView();
-    private static CalendarView calendarView = new CalendarView();
+    private static FullCalendarViewController fullcalendarviewcontroller = new FullCalendarViewController();
+    private static FullCalendarView fullcalendarView = fullcalendarviewcontroller.getFullCalendarView();
     private static HomeController homeController;
     private static boolean isShowBoxVisible = true;
 
@@ -27,7 +30,7 @@ public class HomeController {
 
     public void showCalendar() {
         navbar.getCalendarButton().setOnAction(e -> {
-            homeView.setCenter(calendarView);
+            homeView.setCenter(fullcalendarView.getView());
         });
     }
 
@@ -54,7 +57,7 @@ public class HomeController {
         }
         return normalWidth;
     }
-    
+
     public static void toggleShowBoxSize() {
         calculateNormalWidth();
         // Check if the current width is 0, if so, set it back to normal width
@@ -65,6 +68,5 @@ public class HomeController {
             todayView.getShowBox().setPrefWidth(0);
         }
     }
-
 
 }
