@@ -13,7 +13,7 @@ import ma.ac.usms.ensak.persistance.StorageFile;
  * Implementation of the DocumentDAO interface that provides methods to create, read, update, and delete documents.
  */
 public class DocumentImpl implements DocumentDAO {
-    private static final String DOCUMENT_FILE = "src\\main\\resources\\databases\\DocumentFile.json";
+    private static final String DOCUMENT_FILE = "proftrack\\src\\main\\resources\\databases\\DocumentFile.json";
 
     /**
      * Creates a new document and saves it to the storage file.

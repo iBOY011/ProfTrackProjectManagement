@@ -10,7 +10,7 @@ import ma.ac.usms.ensak.persistance.StorageFile;
  * Provides methods to create, read, update, and delete work sessions.
  */
 public class WorkSessionImpl implements WorkSessionDAO {
-    private static final String WORK_SESSION_FILE = "src\\main\\resources\\databases\\WorkSessionFile.json";
+    private static final String WORK_SESSION_FILE = "proftrack\\src\\main\\resources\\databases\\WorkSessionFile.json";
 
     /**
      * Creates a new work session.
