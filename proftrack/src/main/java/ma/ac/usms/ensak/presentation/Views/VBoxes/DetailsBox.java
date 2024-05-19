@@ -6,6 +6,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.VBox;
 import ma.ac.usms.ensak.metier.POJO.Document;
+import ma.ac.usms.ensak.metier.POJO.WorkSession;
 
 public class DetailsBox extends VBox{
     private VBox descriptionBox;
@@ -63,6 +64,10 @@ public class DetailsBox extends VBox{
 
     public ListView<Document> getDocumentList() {
         return DocumentsBox.getDocumentList();
+    }
+
+    public ListView<WorkSession> getWorkSessionList() {
+        return WorkSessionBox.getWorkSessionList();
     }
 
 }
