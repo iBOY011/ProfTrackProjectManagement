@@ -54,12 +54,12 @@ public class WorkSessionImpl implements WorkSessionDAO {
    
         for (int i = 0; i < workSessions.size(); i++) {
             WorkSession ws = workSessions.get(i);
-            if (ws.getId() == workSession.getId()) {
+            if (ws.getId().contentEquals(workSession.getId())) {
                 workSessions.set(i, workSession);
+                StorageFile.saveToJsonFile(workSessions, WORK_SESSION_FILE);
                 break;
             }
         }
-        StorageFile.saveToJsonFile(workSessions, WORK_SESSION_FILE);
     }
 
     /**
