@@ -123,7 +123,7 @@ public class AddProjectView {
         // Extract other fields similarly...
 
         // Create and return Project object
-        return new Project(title, description, startDate, endDate, category, type.name(), false);
+        return new Project(title, description, startDate, endDate, category, type, false);
     }
 
     public void setAddButtonAction(Runnable action) {

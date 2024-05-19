@@ -10,7 +10,6 @@ public class StatisticView extends VBox{
     public StatisticView() {
         TotalHoursWork = new HBox();
         ProjectHoursWork = new HBox();
-
         getChildren().addAll(TotalHoursWork, ProjectHoursWork);
     }
 

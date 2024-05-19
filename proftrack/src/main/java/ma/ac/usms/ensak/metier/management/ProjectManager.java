@@ -11,6 +11,7 @@ import ma.ac.usms.ensak.metier.POJO.Task;
 import ma.ac.usms.ensak.metier.POJO.WorkSession;
 import ma.ac.usms.ensak.persistance.impl.ProjectImpl;
 import ma.ac.usms.ensak.util.Category;
+import ma.ac.usms.ensak.util.Type;
 
 public class ProjectManager {
     private TaskManager taskManager;
@@ -19,7 +20,7 @@ public class ProjectManager {
     // implementer les methodes CRUD en utilisant les fonctions dans la package DAO
 
     public void createProject(String title, String description, Date startDate, Date endDate, Category category,
-            String type) {
+            Type type) {
         // if (!isValidateSyntax(title, description, startDate, endDate, category, type)) {
         //     throw new IllegalArgumentException("Invalid syntax");
         // } else {
@@ -107,15 +108,15 @@ public class ProjectManager {
     }
 
     // Méthodes pour rechercher un projet par mot-clé
-    public boolean containsKeyword(String keyword) {
-        return listProjects().stream().anyMatch(project -> project.getTitle().contains(keyword)
-                || project.getDescription().contains(keyword) || project.getType().contains(keyword));
-    }
+    // public boolean containsKeyword(Type keyword) {
+    //     return listProjects().stream().anyMatch(project -> project.getTitle().contains(keyword)
+    //             || project.getDescription().contains(keyword) || project.getType() == keyword);
+    // }
 
-    public List<Project> searchProjectsByKeyword(String keyword) {
-        return listProjects().stream().filter(project -> project.getTitle().contains(keyword)
-                || project.getDescription().contains(keyword) || project.getType().contains(keyword)).toList();
-    }
+    // public List<Project> searchProjectsByKeyword(String keyword) {
+    //     return listProjects().stream().filter(project -> project.getTitle().contains(keyword)
+    //             || project.getDescription().contains(keyword) || project.getType().contains(keyword)).toList();
+    // }
 
     // Méthodes pour archiver un projet
     public void archiveProject(Project project) {
@@ -154,7 +155,7 @@ public class ProjectManager {
 
     public static void main(String[] args) {
         ProjectManager projectManager = new ProjectManager();
-        projectManager.createProject("Test", "Test", new Date(), new Date(), Category.ACADEMIC, "Test");
+        projectManager.createProject("Test", "Test", new Date(), new Date(), Category.ACADEMIC, Type.PFE);
         projectManager.listProjects().forEach(project -> {
             System.out.println(project.getTitle());
         });

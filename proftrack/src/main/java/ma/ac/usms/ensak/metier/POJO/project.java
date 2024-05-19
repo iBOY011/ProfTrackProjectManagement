@@ -6,6 +6,7 @@ import java.util.UUID;
 import org.checkerframework.checker.units.qual.t;
 
 import ma.ac.usms.ensak.util.Category;
+import ma.ac.usms.ensak.util.Type;
 
 
 /**
@@ -19,7 +20,7 @@ public class Project {
     private Date start_date;
     private Date end_date;
     private Category category;
-    private String type;
+    private Type type;
     private boolean archived;
 
     public Project() {
@@ -36,7 +37,7 @@ public class Project {
      * @param type        the type of the project
      * @param archived    the status of the project
      */
-    public Project(String title, String description, Date start_date, Date end_date, Category category, String type, boolean archived) {
+    public Project(String title, String description, Date start_date, Date end_date, Category category, Type type, boolean archived) {
         this.id = UUID.randomUUID().toString();
         this.title = title;
         this.description = description;
@@ -133,7 +134,7 @@ public class Project {
      * 
      * @return the type of the project
      */
-    public String getType() {
+    public Type getType() {
         return type;
     }
 
@@ -142,7 +143,7 @@ public class Project {
      * 
      * @param type the type to set
      */
-    public void setType(String type) {
+    public void setType(Type type) {
         this.type = type;
     }
 
