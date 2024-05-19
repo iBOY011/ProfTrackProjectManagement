@@ -22,6 +22,7 @@ public class ShowBox extends VBox {
     private Button filter;
 
     public ShowBox() {
+        this.setId("showbox");
         Today = new VBox();
         List = new VBox();
         Project = new VBox();
@@ -44,6 +45,7 @@ public class ShowBox extends VBox {
     public HBox createLabel(String text, Boolean isList) {
         Label label = new Label(text);
         label.setStyle("-fx-font-size: 20px;");
+        label.setId("label");
 
         Image addImage = new Image(getClass().getResource("/Icons/add.png").toString());
         Button button = new Button("", new ImageView(addImage));
@@ -69,7 +71,7 @@ public class ShowBox extends VBox {
 
         HBox stackPane = new HBox(label, buttonsBox);
         HBox.setHgrow(buttonsBox, Priority.ALWAYS); // This line makes buttonsBox grow to fill the space
-        stackPane.setStyle("-fx-padding: 10 0 10 0; -fx-spacing: 100;");
+        stackPane.setStyle("-fx-padding: 10 0 10 0; -fx-spacing: 50;");
 
         return stackPane;
     }

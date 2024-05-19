@@ -5,6 +5,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
@@ -52,11 +54,12 @@ public class TasksView extends VBox{
         VBox headerContainer = new VBox();
         // add Text feil to add tasks
         addTask = new TextField();
-        addTask.setPromptText("+Add a task on \"Today\"");
+        addTask.setPromptText("Add a task ...");
 
         // Create
-        informationButton = new Button("+");
-
+        Image image = new Image(getClass().getResource("/Icons/addTask.png").toString());
+        informationButton = new Button("",new ImageView(image));
+        informationButton.getGraphic().setStyle("-fx-fit-width: 25px; -fx-fit-height: 25px;");
         // Create a HBox to contain the TextField and the Button
         HBox addFeild = new HBox(addTask, informationButton);
         addFeild.setStyle("-fx-spacing: 15px; -fx-alignment: center;");

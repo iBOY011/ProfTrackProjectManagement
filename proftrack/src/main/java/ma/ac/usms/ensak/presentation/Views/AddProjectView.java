@@ -1,4 +1,5 @@
 package ma.ac.usms.ensak.presentation.Views;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
@@ -43,10 +44,14 @@ public class AddProjectView {
         // Add labels and fields
         grid.add(new Label("Title:"), 0, 0);
         titleField = new TextField();
+        titleField.setPromptText("Enter project title");
+        titleField.setPrefWidth(200);
         grid.add(titleField, 1, 0);
 
         grid.add(new Label("Description:"), 0, 1);
         descriptionField = new TextArea();
+        descriptionField.setPromptText("Enter project description");
+        descriptionField.setPrefWidth(200);
         grid.add(descriptionField, 1, 1);
 
         grid.add(new Label("Start Date:"), 0, 2);
@@ -69,11 +74,41 @@ public class AddProjectView {
         typeComboBox.setValue(Type.PFE); // Set default value
         grid.add(typeComboBox, 1, 5);
 
-        // Add button
+        // Add button and cancel button
         addButton = new Button("Add");
         grid.add(addButton, 0, 7, 2, 1);
+        // Inside the initialize() method
+        grid.setStyle("-fx-background-color: #f0f0f0;");
 
-        Scene scene = new Scene(grid, 400, 350);
+        // Add styles for individual components
+        titleField.setStyle("-fx-background-color: white;");
+        descriptionField.setStyle("-fx-background-color: white;");
+        startDatePicker.setStyle("-fx-background-color: white;");
+        endDatePicker.setStyle("-fx-background-color: white;");
+        categoryComboBox.setStyle("-fx-background-color: white;");
+        typeComboBox.setStyle("-fx-background-color: white;");
+        addButton.setStyle("-fx-background-color: #4CAF50; -fx-text-fill: white;");
+
+        // Optional: Add padding to the buttons
+        GridPane.setMargin(addButton, new Insets(10, 0, 0, 0));
+
+        // Add borders to the fields
+        titleField.setStyle("-fx-border-color: #ccc;");
+        descriptionField.setStyle("-fx-border-color: #ccc;");
+        startDatePicker.setStyle("-fx-border-color: #ccc;");
+        endDatePicker.setStyle("-fx-border-color: #ccc;");
+        categoryComboBox.setStyle("-fx-border-color: #ccc;");
+        typeComboBox.setStyle("-fx-border-color: #ccc;");
+
+        GridPane.setMargin(titleField, new Insets(0, 0, 10, 0));
+        GridPane.setMargin(descriptionField, new Insets(0, 0, 10, 0));
+        GridPane.setMargin(startDatePicker, new Insets(0, 0, 10, 0));
+        GridPane.setMargin(endDatePicker, new Insets(0, 0, 10, 0));
+        GridPane.setMargin(categoryComboBox, new Insets(0, 0, 10, 0));
+        GridPane.setMargin(typeComboBox, new Insets(0, 0, 10, 0));
+        GridPane.setMargin(addButton, new Insets(0, 0, 10, 0));
+
+        Scene scene = new Scene(grid, 400, 360);
         stage.setScene(scene);
         stage.show();
     }

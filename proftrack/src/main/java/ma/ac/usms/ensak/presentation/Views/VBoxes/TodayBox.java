@@ -5,6 +5,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
@@ -23,16 +25,17 @@ public class TodayBox extends VBox {
     Button showProjectOfToday;
 
     public TodayBox() {
+        this.setId("todayBox");
 
         // creating a header container
         HBox header = new HBox();
         arrowButton = new Button("<");
-        arrowButton.setOnAction(e ->
-        HomeController.getTodayView().getShowBox().setVisible(!HomeController.getTodayView().getShowBox().isVisible()));
+        arrowButton.setOnAction(e -> HomeController.getTodayView().getShowBox()
+                .setVisible(!HomeController.getTodayView().getShowBox().isVisible()));
         arrowButton.setStyle(
                 "-fx-background-color: transparent; -fx-text-fill: black; -fx-font-size: 14px; -fx-cursor: hand;");
         Label headerLabel = new Label("Today");
-        headerLabel.setStyle("-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #4CAF50;");
+        headerLabel.setId("header");
         // create filter buttin with image
         filterComboBox = new ComboBox<>();
         filterComboBox.getItems().addAll("All", "Completed", "Uncompleted");
@@ -54,7 +57,9 @@ public class TodayBox extends VBox {
         addTask.setPromptText("+Add a task on \"Today\"");
 
         // Create
-        informationButton = new Button("+");
+        Image image = new Image(getClass().getResource("/Icons/addTask.png").toString());
+        informationButton = new Button("", new ImageView(image));
+        informationButton.getGraphic().setStyle("-fx-fit-width: 25px; -fx-fit-height: 25px;");
 
         // Create a HBox to contain the TextField and the Button
         HBox addFeild = new HBox(addTask, informationButton);
@@ -78,6 +83,10 @@ public class TodayBox extends VBox {
         projectToday.getChildren().add(showProjectOfToday);
         // Add padding to move the VBox down
         projectToday.setPadding(new Insets(10, 0, 0, 5)); // Top, Right, Bottom, Left
+        addTask.setId("addTask");
+        filterComboBox.setId("filterComboBox");
+        informationButton.setId("informationButton");
+        showListOfToday.setId("showListOfToday");
 
         this.getChildren().addAll(headerContainer, listToday, projectToday);
 
@@ -98,7 +107,6 @@ public class TodayBox extends VBox {
     public Button getInformationButton() {
         return informationButton;
     }
-
 
     public Button getShowListOfToday() {
         return showListOfToday;

@@ -46,6 +46,7 @@ public class NavBarBox extends VBox {
 
         // add HBox to VBox
         getChildren().addAll(HBoxes);
+        this.setId("navbar");
     }
 
     public static Button addButtonWithImage(HBox hbox, String imageUrl , Button button) {
@@ -60,6 +61,7 @@ public class NavBarBox extends VBox {
 
         
         button.setGraphic(imageView);
+        button.setId("navbar-button");
         hbox.getChildren().add(button);
         return button;
     }

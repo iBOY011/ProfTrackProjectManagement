@@ -14,16 +14,19 @@ public class DetailsBox extends VBox{
     private Label descriptionArea;
 
     public DetailsBox() {
+        this.setId("detailsBox");
         descriptionBox = new VBox();
         DocumentsBox = new DocumentBox();
         WorkSessionBox = new WorkSessionBox();
         // desing descriptionBox
         Label descriptionLabel = new Label("Description:");
-        descriptionLabel.setStyle("-fx-font-size: 20px; -fx-font-weight: bold; -fx-font-family: Arial;");
+        descriptionLabel.setId("label");
+        // descriptionLabel.setStyle("-fx-font-size: 20px; -fx-font-weight: bold; -fx-font-family: Arial;");
         descriptionArea = new Label();
         // set text to be in the top left corner
         descriptionArea.setAlignment(javafx.geometry.Pos.TOP_LEFT);
-        descriptionArea.setStyle("-fx-font-size: 15px; -fx-font-family: Arial; -fx-padding: 5;-fx-text-fill: black; -fx-background-color: white; -fx-wrap-text: true; -fx-text-alignment: left; -fx-underline: false; -fx-content-display: TOP;");
+        descriptionArea.setId("descriptionArea");
+        // descriptionArea.setStyle("-fx-font-size: 15px; -fx-font-family: Arial; -fx-padding: 5;-fx-text-fill: black; -fx-background-color: white; -fx-wrap-text: true; -fx-text-alignment: left; -fx-underline: false; -fx-content-display: TOP;");
         descriptionArea.setPrefHeight(200);
         descriptionArea.setWrapText(true);
         descriptionArea.setMaxWidth(730);

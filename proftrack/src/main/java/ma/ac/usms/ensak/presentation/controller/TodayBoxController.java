@@ -22,8 +22,8 @@ import ma.ac.usms.ensak.util.Status;
 
 public class TodayBoxController {
     private TodayBox todayBox = new TodayBox();
-    private boolean isListDisplayed = false;
-    private boolean isProjectDisplayed = false;
+    private boolean isListDisplayed = true;
+    private boolean isProjectDisplayed = true;
 
     private static TaskManager taskManager = new TaskManager();
     private static ListToDoManager listToDoManager = new ListToDoManager();
@@ -33,7 +33,7 @@ public class TodayBoxController {
 
         // Add the TodayBox to the SharedData
         SharedData.getInstance().setTodayBoxController(this);
-
+        
         todayBox.getShowListOfToday().setOnMouseClicked(e -> {
             if (!isListDisplayed) {
                 List<Task> tasks = taskManager.getTasksOfToday();
