@@ -11,8 +11,8 @@ import ma.ac.usms.ensak.metier.POJO.Document;
 
 public class DocumentBox extends VBox{
     private Label documentLabel;
-    private static Button AddButton = new Button("Add Document");
-    private static Button DeleteButton = new Button("Delete Document");
+    private static Button AddButton = new Button("Add");
+    private static Button DeleteButton = new Button("Delete");
     private ListView<Document> documentList;
 
     public DocumentBox() {
@@ -25,6 +25,7 @@ public class DocumentBox extends VBox{
         HBox stackPane = new HBox(documentLabel, buttonsBox);
         HBox.setHgrow(buttonsBox, Priority.ALWAYS);
         getChildren().addAll(stackPane, documentList);
+        this.setPrefHeight(200);
     }
 
     public ListView<Document> getDocumentList() {

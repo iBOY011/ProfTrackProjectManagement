@@ -51,6 +51,7 @@ public class AddDocumentController {
     public void createView() {
         Stage stage = new Stage();
         stage.setScene(new Scene(addDocumentvView, 400, 200));
+        stage.getScene().getStylesheets().add("/Css/Home.css");
         stage.setTitle("Add Document");
         stage.setResizable(false);
         stage.show();

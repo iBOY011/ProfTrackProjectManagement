@@ -16,6 +16,7 @@ import ma.ac.usms.ensak.metier.POJO.Task;
 import ma.ac.usms.ensak.metier.POJO.WorkSession;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.stage.Stage;
 
 public class DetailsController {
     private static TaskManager taskManager = new TaskManager();
@@ -120,30 +121,45 @@ public class DetailsController {
 
 
     // WorkSession part
-    public static void showWorkSession(Task task) {
+    public static void showWorkSession() {
         List<WorkSession> workSessions = new ArrayList<>();
         workSessionManager.listWorkSessionsByIdProject(ShowBoxController.getIdProjectSelected()).forEach(ws -> {
             workSessions.add(ws);
         });
         ObservableList<WorkSession> observableWorkSessions = FXCollections.observableArrayList(workSessions);
         detailsBox.getWorkSessionBox().getWorkSessionList().setItems(observableWorkSessions);
-        addWorkSession(task);
-        deleteWorkSession(task);
+        addWorkSession();
+        deleteWorkSession();
     }
 
-    private static void deleteWorkSession(Task task) {
+    private static void deleteWorkSession() {
         detailsBox.getWorkSessionBox().getDeleteButton().setOnAction(e -> {
             WorkSession workSession = detailsBox.getWorkSessionBox().getWorkSessionList().getSelectionModel().getSelectedItem();
             workSessionManager.deleteWorkSession(workSession.getId());
-            showWorkSession(task);
         });
     }
 
-    private static void addWorkSession(Task task) {
+    private static void addWorkSession() {
         detailsBox.getWorkSessionBox().getAddButton().setOnAction(e -> {
             AddWorkSessionController addWorkSessionController = new AddWorkSessionController();
-            addWorkSessionController.addWorkSession(task);
             addWorkSessionController.createView();
+        });
+    }
+
+    public static void DisableWorkSessionBox(Boolean flag) {
+        detailsBox.getWorkSessionBox().setVisible(!flag);
+    }
+
+    public static void showWorkSessionDetails() {
+        detailsBox.getWorkSessionBox().getWorkSessionList().setOnMouseClicked(e -> {
+            if (e.getClickCount() == 2) {  // Check for double-click
+                WorkSession workSession = detailsBox.getWorkSessionBox().getWorkSessionList().getSelectionModel().getSelectedItem();
+                if (workSession != null) {
+                    Stage stage = new Stage();
+                    stage.setTitle("Work Session Details");
+                    WorkSessionDetailsController workSessionDetailsController = new WorkSessionDetailsController();
+                }
+            }
         });
     }
 }

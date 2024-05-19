@@ -5,6 +5,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
@@ -22,6 +24,7 @@ public class TodayBox extends VBox {
     Button showProjectOfToday;
 
     public TodayBox() {
+        this.setId("todayBox");
 
         // creating a header container
         HBox header = new HBox();
@@ -76,6 +79,10 @@ public class TodayBox extends VBox {
         projectToday.getChildren().add(showProjectOfToday);
         // Add padding to move the VBox down
         projectToday.setPadding(new Insets(10, 0, 0, 5)); // Top, Right, Bottom, Left
+        addTask.setId("addTask");
+        filterComboBox.setId("filterComboBox");
+        informationButton.setId("informationButton");
+        showListOfToday.setId("showListOfToday");
 
         this.getChildren().addAll(headerContainer, listToday, projectToday);
         this.setStyle("-fx-background-color: white; -fx-border-color: black; -fx-border-width: 0 1 0 0;");

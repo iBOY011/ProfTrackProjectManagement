@@ -5,6 +5,7 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
 import java.util.Date;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.List;
 import ma.ac.usms.ensak.metier.POJO.ListToDo;
@@ -64,5 +65,9 @@ public class ControllerUtils {
             }
         }
         return null;
+    }
+
+    public static Date convertLocalDateTimeToDate(LocalDateTime endDateTime) {
+        return Date.from(endDateTime.atZone(ZoneId.systemDefault()).toInstant());
     }
 }

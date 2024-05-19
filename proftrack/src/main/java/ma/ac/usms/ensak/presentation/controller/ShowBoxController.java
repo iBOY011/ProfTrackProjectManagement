@@ -132,10 +132,13 @@ public class ShowBoxController {
                     // Left-clicked
                     ListItem item = listView.getSelectionModel().getSelectedItem();
                     if (item != null) {
+                        DetailsController.DisableDocumentBox(FLAG);
+                        DetailsController.DisableWorkSessionBox(FLAG);
                         if (FLAG) {
                             idListSelected = item.getId();
                             showListDescription();
                             DetailsController.DisableDocumentBox(true);
+                            DetailsController.DisableWorkSessionBox(FLAG);
                             VBox todayBox = HomeController.getTodayView().getTodayBox(); 
                             todayBox.getChildren().clear();
                             todayBox.getChildren().add(TaskController.getInstance().getTasksView());
@@ -144,8 +147,8 @@ public class ShowBoxController {
                         } else {
                             idProjectSelected = item.getId();
                             DetailsController.showDocument(true, null);
+                            DetailsController.showWorkSession();
                             showProjectDescription();
-                            DetailsController.DisableDocumentBox(false);
                             VBox todayBox = HomeController.getTodayView().getTodayBox();
                             todayBox.getChildren().clear();
                             todayBox.getChildren().add(TaskController.getInstance().getTasksView());

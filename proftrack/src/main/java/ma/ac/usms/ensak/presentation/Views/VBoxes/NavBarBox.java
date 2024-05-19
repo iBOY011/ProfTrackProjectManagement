@@ -61,6 +61,7 @@ public class NavBarBox extends VBox {
 
         
         button.setGraphic(imageView);
+        button.setId("navbar-button");
         hbox.getChildren().add(button);
         return button;
     }
