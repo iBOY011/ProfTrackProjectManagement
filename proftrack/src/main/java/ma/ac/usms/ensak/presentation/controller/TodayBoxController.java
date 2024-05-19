@@ -35,7 +35,7 @@ public class TodayBoxController {
         SharedData.getInstance().setTodayBoxController(this);
 
         todayBox.getShowListOfToday().setOnMouseClicked(e -> {
-            if (!isListDisplayed) {
+            if (!isListDisplayed) { 
                 List<Task> tasks = taskManager.getTasksOfToday();
                 for (Task t : tasks) {
                     CheckBox checkBox = new CheckBox();
@@ -55,7 +55,7 @@ public class TodayBoxController {
                         AddDocumentController.addDocTask(t);
                     });
                     button.setStyle(
-                            "-fx-background-color: transparent; -fx-border-color: transparent; -fx-cursor: hand; -fx-font-size: 10px;");
+                            "-fx-background-color: transparent; -fx-border-color: transparent; -fx-cursor: hand; -fx-font-size: 10px; -fx-text-fill: black; -fx-font-weight: bold; -fx-font-family: 'Arial';");
 
                     if (t.getId_ListToDo() != null) {
                         ListToDo listToDo = listToDoManager.searchListeToDoById(t.getId_ListToDo());

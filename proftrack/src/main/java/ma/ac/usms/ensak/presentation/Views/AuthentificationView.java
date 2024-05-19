@@ -6,7 +6,9 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 
 public class AuthentificationView extends HBox {
@@ -15,36 +17,41 @@ public class AuthentificationView extends HBox {
         public AuthentificationView() {
                 // Creating the labels and button
                 Label titleLabel = new Label("PROFTRACK MANAGER");
-                // set font cursive
-                titleLabel.setStyle(
-                                " -fx-margin: 10px; -fx-alignment: center;-fx-padding: 10px; -fx-border-color: transparent; -fx-border-radius: 10px; -fx-background-color: transparent; -fx-width: 100%; -fx-height: 100%; -fx-margin: 10px;");
-                titleLabel.setFont(new Font("cursive", 50));
+                titleLabel.setTextFill(Color.WHITE);
+                titleLabel.setFont(new Font("Arial", 20));
+                titleLabel.setStyle("-fx-font-weight: bold;" + "-fx-font-size: 30px;");
+
                 Label loginLabel = new Label("Login Using Google");
-                loginLabel.setStyle(
-                                "-fx-font-size: 20px; -fx-font-weight: bold; -fx-margin: 10px; -fx-alignment: center; -fx-font-family: Arial; -fx-padding: 10px; -fx-border-color: transparent; -fx-border-radius: 10px; -fx-background-color: transparent; -fx-width: 100%; -fx-height: 100%; -fx-margin: 10px;");
+                loginLabel.setTextFill(Color.WHITE);
+                loginLabel.setFont(new Font("Arial", 15));
+                loginLabel.setStyle("-fx-font-weight: bold;" + "-fx-font-size: 20px;");
+
                 loginButton = new Button("Login");
                 ImageView googleIcon = new ImageView(
                                 new Image("https://cdn-icons-png.flaticon.com/512/281/281764.png"));
                 googleIcon.setFitWidth(50);
                 googleIcon.setFitHeight(50);
-
-                // Creating the HBox for Google icon and login button
                 loginButton.setGraphic(googleIcon);
-                loginButton.setStyle(
-                                "-fx-background-color: #e8e8e8; -fx-text-fill: black; -fx-font-size: 20px; -fx-cursor: hand; -fx-border-color: transparent; -fx-border-radius: 2; -fx-padding: 10px 20px; -fx-alignment: center; -fx-margin: 10px; -fx-hover: #f0f0f0; -fx-width: 100%; -fx-height: 100%;");
+                loginButton.setStyle("-fx-background-radius: 10; -fx-font-size: 20px; -fx-font-weight: bold;");
 
-                // Creating the VBox and adding all the elements
-                VBox logginVBox = new VBox();
-                logginVBox.setAlignment(Pos.CENTER);
-                logginVBox.getChildren().addAll(titleLabel, loginLabel, loginButton);
+                // Creating the VBox for the labels
+                VBox leftVBox = new VBox(10, titleLabel, loginLabel);
+                leftVBox.setAlignment(Pos.CENTER);
+                leftVBox.setStyle("-fx-background-color: #04ECFF;");
+                // Bind the preferred width of leftVBox to half of the window's width
+                leftVBox.prefWidthProperty().bind(this.widthProperty().divide(2));
 
-                // Centering the VBox within the HBox
-                this.setAlignment(Pos.CENTER);
+                // Creating the VBox for the login button
+                VBox rightVBox = new VBox(loginButton);
+                rightVBox.setAlignment(Pos.CENTER);
+                rightVBox.setStyle("-fx-background-color: white;");
+                // Bind the preferred width of leftVBox to half of the window's width
+                rightVBox.prefWidthProperty().bind(this.widthProperty().divide(2));
 
-                // Setting the Loggin VBox as a child of the Auth HBox
-                this.getChildren().add(logginVBox);
-                this.setStyle(
-                                "-fx-background-color: #f0f0f0; -fx-background-image : url('https://i.pinimg.com/originals/6f/6c/15/6f6c1538b050072b002dbc06bedaaf90.jpg'); -fx-background-size: cover; -fx-background-repeat: no-repeat; -fx-background-position: center; -fx-width: 100%; -fx-height: 100%; -fx-margin: 10px; -fx-padding: 10px; -fx-border-color: transparent; -fx-border-radius: 10px;");
+                // Creating the HBox for the two VBoxes
+                HBox hbox = new HBox(leftVBox, rightVBox);
+                // Adding the HBox to the scene
+                this.getChildren().add(hbox);
         }
 
         public Button getLoginButton() {
