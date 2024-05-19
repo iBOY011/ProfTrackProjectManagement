@@ -16,8 +16,8 @@ public class ShowBox extends VBox {
     private VBox List;
     private VBox Project;
     private VBox Completed;
-    private Button addButton;
-    private Button projectButton;
+    private Button addListButton;
+    private Button addProjectButton;
     private Button TodayButton;
     private Button filter;
 
@@ -27,8 +27,8 @@ public class ShowBox extends VBox {
         List = new VBox();
         Project = new VBox();
         Completed = new VBox();
-        addButton = new Button();
-        projectButton = new Button();
+        addListButton = new Button();
+        addProjectButton = new Button();
         // add button of Today
         TodayButton = new Button("Today",
                 new ImageView("https://cdn-icons-png.flaticon.com/512/10875/10875695.png"));
@@ -36,9 +36,11 @@ public class ShowBox extends VBox {
                 "-fx-background-color: transparent; -fx-border-color: transparent; -fx-cursor: hand; -fx-font-size: 20px; -fx-padding: 0; -fx-text-fill: black; -fx-font-weight: bold;");
         TodayButton.getGraphic().setStyle("-fx-fit-width: 20px; -fx-fit-height: 20px;");
         Today.getChildren().add(TodayButton);
-        Today.setStyle("-fx-border-color: black; -fx-border-width: 0 1 1 1; -fx-background-color: white;");
-        List.setStyle("-fx-border-color: black; -fx-border-width: 0 1 1 1; -fx-background-color: white;");
+        Today.setStyle("-fx-border-color: black; -fx-border-width: 0 0 1 0; -fx-background-color: white;");
+        List.setStyle("-fx-border-color: black; -fx-border-width: 0 0 1 0; -fx-background-color: #cbe2ff;");
+        Project.setStyle("-fx-border-color: black; -fx-border-width: 0 0 1 0; -fx-background-color: #cbe2ff;");
         getChildren().addAll(Today, List, Project, Completed);
+        this.setStyle("-fx-spacing: 10; -fx-border-color: black; -fx-border-width: 0 1 0 0; -fx-background-color: #cbe2ff;");
 
     }
 
@@ -60,13 +62,13 @@ public class ShowBox extends VBox {
                 "-fx-background-color: transparent; -fx-border-color: transparent; -fx-cursor: hand; -fx-font-size: 20px; -fx-padding: 0;");
         filter.getGraphic().setStyle("-fx-fit-width: 20px; -fx-fit-height: 20px;");
         HBox buttonsBox = new HBox();
-            if (isList) {
-                addButton = button;
-                buttonsBox.getChildren().addAll(addButton);
-            } else {
-                projectButton = button;
-                buttonsBox.getChildren().addAll(projectButton, filter);
-            }
+        if (isList) {
+            addListButton = button;
+            buttonsBox.getChildren().addAll(addListButton);
+        } else {
+            addProjectButton = button;
+            buttonsBox.getChildren().addAll(addProjectButton, filter);
+        }
         buttonsBox.setAlignment(Pos.CENTER_RIGHT);
 
         HBox stackPane = new HBox(label, buttonsBox);
@@ -93,11 +95,11 @@ public class ShowBox extends VBox {
     }
 
     public Button getListButton() {
-        return addButton;
+        return addListButton;
     }
 
-    public Button getProjectButton() {
-        return projectButton;
+    public Button getaddProjectButton() {
+        return addProjectButton;
     }
 
     public Button getFilterButton() {

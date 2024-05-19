@@ -27,8 +27,6 @@ public class NavBarBox extends VBox {
         Statistics = new HBox();
         Settings = new HBox();
 
-        
-
         // Set the preferred size of each HBox by percentage 1 -> 20% 2 -> 20% 3 -> 30%
         // 4 -> 30%
         HBox[] HBoxes = new HBox[] { UserEmail, Tasks, Calendar, Statistics, Settings };
@@ -41,25 +39,24 @@ public class NavBarBox extends VBox {
         addButtonWithImage(UserEmail, getClass().getResource("/Icons/profile.png").toString(), userEmailButton);
         addButtonWithImage(Tasks, "https://cdn-icons-png.flaticon.com/512/7072/7072982.png", TasksButton);
         addButtonWithImage(Calendar, "https://cdn-icons-png.flaticon.com/512/1048/1048953.png", CalendarButton);
-        addButtonWithImage(Statistics, getClass().getResource("/Icons/analytics.png").toExternalForm(), StatisticsButton);
+        addButtonWithImage(Statistics, getClass().getResource("/Icons/analytics.png").toExternalForm(),
+                StatisticsButton);
         addButtonWithImage(Settings, "https://cdn-icons-png.flaticon.com/512/1835/1835942.png", SettingsButton);
 
         // add HBox to VBox
         getChildren().addAll(HBoxes);
-        this.setStyle("-fx-background-color: #04ECFF;");
+        this.setStyle("-fx-background-color: #04ECFF; -fx-border-color: black; -fx-border-width: 0 1 0 0;");
     }
 
-    public static Button addButtonWithImage(HBox hbox, String imageUrl , Button button) {
+    public static Button addButtonWithImage(HBox hbox, String imageUrl, Button button) {
         Image image = new Image(imageUrl);
         ImageView imageView = new ImageView(image);
         imageView.setFitWidth(50);
         imageView.setFitHeight(50);
         // set the style of the button
-        button.setStyle("-fx-border-color: transparent; -fx-cursor: hand; -fx-width: 100%; -fx-height: 50px; -fx-background-color: transparent; -fx-alignment: center;");
-        
+        button.setStyle(
+                "-fx-border-color: transparent; -fx-cursor: hand; -fx-width: 100%; -fx-height: 50px; -fx-background-color: transparent; -fx-alignment: center;");
 
-
-        
         button.setGraphic(imageView);
         button.setId("navbar-button");
         hbox.getChildren().add(button);
