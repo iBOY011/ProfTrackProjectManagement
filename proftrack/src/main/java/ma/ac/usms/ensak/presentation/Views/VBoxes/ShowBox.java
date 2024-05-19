@@ -33,11 +33,11 @@ public class ShowBox extends VBox {
         TodayButton = new Button("Today",
                 new ImageView("https://cdn-icons-png.flaticon.com/512/10875/10875695.png"));
         TodayButton.setStyle(
-                "-fx-background-color: transparent; -fx-border-color: transparent; -fx-cursor: hand; -fx-font-size: 20px;");
+                "-fx-background-color: transparent; -fx-border-color: transparent; -fx-cursor: hand; -fx-font-size: 20px; -fx-padding: 0; -fx-text-fill: black; -fx-font-weight: bold;");
         TodayButton.getGraphic().setStyle("-fx-fit-width: 20px; -fx-fit-height: 20px;");
         Today.getChildren().add(TodayButton);
-        Today.setStyle("-fx-border-color: black; -fx-border-width: 0 0 1 0;");
-        List.setStyle("-fx-border-color: black; -fx-border-width: 0 0 1 0;");
+        Today.setStyle("-fx-border-color: black; -fx-border-width: 0 1 1 1; -fx-background-color: white;");
+        List.setStyle("-fx-border-color: black; -fx-border-width: 0 1 1 1; -fx-background-color: white;");
         getChildren().addAll(Today, List, Project, Completed);
 
     }

@@ -46,7 +46,7 @@ public class NavBarBox extends VBox {
 
         // add HBox to VBox
         getChildren().addAll(HBoxes);
-        this.setId("navbar");
+        this.setStyle("-fx-background-color: #04ECFF;");
     }
 
     public static Button addButtonWithImage(HBox hbox, String imageUrl , Button button) {

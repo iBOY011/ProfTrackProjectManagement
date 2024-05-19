@@ -15,7 +15,6 @@ import ma.ac.usms.ensak.presentation.controller.HomeController;
 import ma.ac.usms.ensak.presentation.controller.ShowBoxController;
 
 public class TodayBox extends VBox {
-    Button arrowButton;
     ComboBox<String> filterComboBox;
     TextField addTask;
     Button informationButton;
@@ -29,13 +28,9 @@ public class TodayBox extends VBox {
 
         // creating a header container
         HBox header = new HBox();
-        arrowButton = new Button("<");
-        arrowButton.setOnAction(e -> HomeController.getTodayView().getShowBox()
-                .setVisible(!HomeController.getTodayView().getShowBox().isVisible()));
-        arrowButton.setStyle(
-                "-fx-background-color: transparent; -fx-text-fill: black; -fx-font-size: 14px; -fx-cursor: hand;");
         Label headerLabel = new Label("Today");
-        headerLabel.setId("header");
+        headerLabel.setStyle(
+                "-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: black; -fx-padding: 0 0 0 5; -fx-font-family: 'Arial';");
         // create filter buttin with image
         filterComboBox = new ComboBox<>();
         filterComboBox.getItems().addAll("All", "Completed", "Uncompleted");
@@ -47,23 +42,24 @@ public class TodayBox extends VBox {
         HBox.setHgrow(spacer, Priority.ALWAYS);
 
         // Add the spacer to the HBox
-        header.getChildren().addAll(arrowButton, headerLabel, spacer, filterComboBox);
-        header.setStyle("-fx-spacing: 10px; -fx-alignment: center-left;");
+        header.getChildren().addAll(headerLabel, spacer, filterComboBox);
+        header.setStyle(
+                "-fx-spacing: 10px; -fx-alignment: center-left; -fx-background-color: white;");
 
         // create a VBox super container of the header
         VBox headerContainer = new VBox();
         // add Text feil to add tasks
         addTask = new TextField();
         addTask.setPromptText("+Add a task on \"Today\"");
+        addTask.setStyle("-fx-background-color: white; -fx-border-color: black;");
 
         // Create
-        Image image = new Image(getClass().getResource("/Icons/addTask.png").toString());
-        informationButton = new Button("", new ImageView(image));
-        informationButton.getGraphic().setStyle("-fx-fit-width: 25px; -fx-fit-height: 25px;");
+        informationButton = new Button("+");
+        informationButton.setStyle("-fx-background-color: black; -fx-text-fill: white;");
 
         // Create a HBox to contain the TextField and the Button
         HBox addFeild = new HBox(addTask, informationButton);
-        addFeild.setStyle("-fx-spacing: 15px; -fx-alignment: center;");
+        addFeild.setStyle("-fx-spacing: 15px; -fx-alignment: center; -fx-background-color: white; -fx-padding: 5;");
 
         headerContainer.getChildren().addAll(header, addFeild);
         // Set the spacing between each child of the VBox
@@ -71,7 +67,7 @@ public class TodayBox extends VBox {
 
         listToday = new VBox();
         showListOfToday = new Button("List of Today");
-        showListOfToday.setStyle("-fx-background-color: transparent; -fx-text-fill: #000000; -fx-font-size: 24px;");
+        showListOfToday.setStyle("-fx-background-color: transparent; -fx-text-fill: #04ECFF; -fx-font-size: 24px; -fx-font-weight: bold; -fx-font-family: 'Arial';");
         listToday.getChildren().add(showListOfToday);
         // Add padding to move the VBox down
         listToday.setPadding(new Insets(10, 0, 0, 5)); // Top, Right, Bottom, Left
@@ -79,7 +75,7 @@ public class TodayBox extends VBox {
         // all i did for showing the tasks of lists , iwant to di it for projects
         projectToday = new VBox();
         showProjectOfToday = new Button("Project of Today");
-        showProjectOfToday.setStyle("-fx-background-color: transparent; -fx-text-fill: #000000; -fx-font-size: 24px;");
+        showProjectOfToday.setStyle("-fx-background-color: transparent; -fx-text-fill: #04ECFF; -fx-font-size: 24px; -fx-font-weight: bold; -fx-font-family: 'Arial';");
         projectToday.getChildren().add(showProjectOfToday);
         // Add padding to move the VBox down
         projectToday.setPadding(new Insets(10, 0, 0, 5)); // Top, Right, Bottom, Left
@@ -89,11 +85,8 @@ public class TodayBox extends VBox {
         showListOfToday.setId("showListOfToday");
 
         this.getChildren().addAll(headerContainer, listToday, projectToday);
+        this.setStyle("-fx-background-color: white; -fx-border-color: black; -fx-border-width: 0 1 0 0;");
 
-    }
-
-    public Button getArrowButton() {
-        return arrowButton;
     }
 
     public ComboBox<String> getFilterComboBox() {
