@@ -74,4 +74,5 @@ public class FullCalendarViewController {
         fullCalendarView.addMultiDayTask(startDate, endDate, taskTitle, idTask);
     }
 
+
 }

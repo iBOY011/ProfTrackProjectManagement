@@ -30,6 +30,8 @@ public class HomeController {
     public void showCalendar() {
         navbar.getCalendarButton().setOnAction(e -> {
             homeView.setCenter(fullcalendarView.getView());
+            fullcalendarviewcontroller = new FullCalendarViewController();
+            fullcalendarView = fullcalendarviewcontroller.getFullCalendarView();
         });
     }
 

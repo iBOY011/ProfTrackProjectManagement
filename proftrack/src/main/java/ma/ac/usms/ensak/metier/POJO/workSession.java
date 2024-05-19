@@ -5,7 +5,7 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
 
-
+import ma.ac.usms.ensak.presentation.controller.ControllerUtils;
 
 /**
  * The `workSession` class represents a work session object.
@@ -133,7 +133,8 @@ public class WorkSession {
     }
 
     /**
-     * Adds a document ID to the set of document IDs associated with this work session.
+     * Adds a document ID to the set of document IDs associated with this work
+     * session.
      *
      * @param documentId the document ID to add
      */
@@ -153,4 +154,15 @@ public class WorkSession {
         this.id = asString;
     }
 
+    private String getDateByString(Date date) {
+        String dateTime = ControllerUtils.convertDateToLocalDateTime(date).toString();
+        // return only the Time from the date
+        return dateTime.substring(11, 16);
+    }
+
+    @Override
+    public String toString() {
+        return getDateByString(dateDebut) + " --> " + getDateByString(dateFin) + "  "
+                + ControllerUtils.convertToLocalDate(dateDebut) + " Desc: " + description;
+    }
 }

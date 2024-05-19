@@ -1,10 +1,6 @@
 package ma.ac.usms.ensak.presentation.controller;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import ma.ac.usms.ensak.metier.management.DocumentManager;
-import ma.ac.usms.ensak.util.ListItem;
 
 
 public class DocumentController {
