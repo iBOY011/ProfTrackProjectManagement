@@ -24,6 +24,7 @@ public class WorkSessionBox extends VBox{
         buttonsBox.setAlignment(Pos.CENTER_RIGHT);
         HBox stackPane = new HBox(WorkSessionLabel, buttonsBox);
         HBox.setHgrow(buttonsBox, Priority.ALWAYS);
+        WorkSessionList.setStyle("-fx-background-color: white; -fx-border-color: black; -fx-border-width: 1 1 1 1;");
         getChildren().addAll(stackPane, WorkSessionList);
         this.setPrefHeight(200);
     }

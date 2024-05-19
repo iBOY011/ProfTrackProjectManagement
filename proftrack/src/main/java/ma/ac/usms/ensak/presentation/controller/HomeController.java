@@ -20,7 +20,7 @@ public class HomeController {
         homeController = this;
         homeView = new HomeView();
         homeView.setId("home");
-        homeView.getStylesheets().add(getClass().getResource("/css/home.css").toExternalForm());
+        homeView.getStylesheets().add(getClass().getResource("/Css/home.css").toExternalForm());
         homeView.setLeft(navbar);
         homeView.setCenter(todayView);
         showToday();

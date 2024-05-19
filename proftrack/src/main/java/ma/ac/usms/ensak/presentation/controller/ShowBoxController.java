@@ -84,7 +84,8 @@ public class ShowBoxController {
             items.add(listItem);
             listID.add(listItem);
         });
-        listView.setStyle("-fx-font-size: 15px; -fx-padding: 0; -fx-background-color: #f4f4f4;");
+        listView.setStyle("-fx-font-size: 15px; -fx-padding: 0; -fx-background-color: black;");
+        listView.getStyleClass().add("list-view");
         list.getChildren().add(listView);
         ListContextMenu(listView, true);
         handleSelection(listView, true);
@@ -111,7 +112,7 @@ public class ShowBoxController {
             ProjectID.add(listItem);
             }
         });
-        listView.setStyle("-fx-font-size: 15px; -fx-padding: 0; -fx-background-color: #f4f4f4;");
+        listView.setStyle("-fx-font-size: 15px; -fx-padding: 0; -fx-background-color: black;");
         list.getChildren().add(listView);
         ListContextMenu(listView, false);
         handleSelection(listView, false);
@@ -137,8 +138,6 @@ public class ShowBoxController {
                         if (FLAG) {
                             idListSelected = item.getId();
                             showListDescription();
-                            DetailsController.DisableDocumentBox(true);
-                            DetailsController.DisableWorkSessionBox(FLAG);
                             VBox todayBox = HomeController.getTodayView().getTodayBox(); 
                             todayBox.getChildren().clear();
                             todayBox.getChildren().add(TaskController.getInstance().getTasksView());
@@ -188,7 +187,7 @@ public class ShowBoxController {
     }
 
     public static void addProjectButton() {
-        showBox.getProjectButton().setOnAction(e -> {
+        showBox.getaddProjectButton().setOnAction(e -> {
             AddProjectController addProjectController = new AddProjectController();
             addProjectController.createView();
         });
@@ -242,7 +241,6 @@ public class ShowBoxController {
         MenuItem category2 = new MenuItem(Category.RESEARCH.toString());
         MenuItem category3 = new MenuItem(Category.SUPERVISION.toString());
         MenuItem category4 = new MenuItem(Category.OTHER.toString());
-        contextMenu.setStyle("-fx-font-size: 10px; -fx-padding: 0; -fx-background-color: #f4f4f4; -fx-text-fill: black;");
         showBox.getFilterButton().setOnMouseClicked(e -> {
             contextMenu.getItems().addAll(category1, category2, category3, category4);
             contextMenu.show(showBox.getFilterButton(), e.getScreenX(), e.getScreenY());
@@ -283,7 +281,7 @@ public class ShowBoxController {
                 ProjectID.add(listItem);
             }
         });
-        listView.setStyle("-fx-font-size: 15px; -fx-padding: 0; -fx-background-color: #f4f4f4;");
+        listView.setStyle("-fx-font-size: 15px; -fx-padding: 0; -fx-background-color: #04ECFF;");
         showBox.getProject().getChildren().add(listView);
         ListContextMenu(listView, false);
         handleSelection(listView, false);
