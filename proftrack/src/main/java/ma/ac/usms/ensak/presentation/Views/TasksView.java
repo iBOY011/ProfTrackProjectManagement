@@ -14,9 +14,8 @@ import javafx.scene.layout.VBox;
 import ma.ac.usms.ensak.presentation.controller.HomeController;
 import ma.ac.usms.ensak.presentation.controller.ShowBoxController;
 
-public class TasksView extends VBox{
+public class TasksView extends VBox {
     Label headerLabel;
-    Button arrowButton;
     ComboBox<String> filterComboBox;
     TextField addTask;
     Button informationButton;
@@ -29,13 +28,10 @@ public class TasksView extends VBox{
 
         // creating a header container
         HBox header = new HBox();
-        arrowButton = new Button("<");
-        arrowButton.setOnAction(e ->
-        HomeController.getTodayView().getShowBox().setVisible(!HomeController.getTodayView().getShowBox().isVisible()));
-        arrowButton.setStyle(
-                "-fx-background-color: transparent; -fx-text-fill: black; -fx-font-size: 14px; -fx-cursor: hand;");
         headerLabel = new Label("");
-        headerLabel.setStyle("-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #4CAF50;");
+        headerLabel.setStyle(
+                "-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: black; -fx-padding: 0 0 0 5; -fx-font-family: 'Arial';");
+
         // create filter buttin with image
         filterComboBox = new ComboBox<>();
         filterComboBox.getItems().addAll("All", "Completed", "Uncompleted");
@@ -47,22 +43,22 @@ public class TasksView extends VBox{
         HBox.setHgrow(spacer, Priority.ALWAYS);
 
         // Add the spacer to the HBox
-        header.getChildren().addAll(arrowButton, headerLabel, spacer, filterComboBox);
-        header.setStyle("-fx-spacing: 10px; -fx-alignment: center-left;");
+        header.getChildren().addAll(headerLabel, spacer, filterComboBox);
+        header.setStyle("-fx-spacing: 10px; -fx-alignment: center-left; -fx-background-color: white;");
 
         // create a VBox super container of the header
         VBox headerContainer = new VBox();
         // add Text feil to add tasks
         addTask = new TextField();
         addTask.setPromptText("Add a task ...");
+        addTask.setStyle("-fx-background-color: white; -fx-border-color: black;");
 
         // Create
-        Image image = new Image(getClass().getResource("/Icons/addTask.png").toString());
-        informationButton = new Button("",new ImageView(image));
-        informationButton.getGraphic().setStyle("-fx-fit-width: 25px; -fx-fit-height: 25px;");
+        informationButton = new Button("+");
+        informationButton.setId("informationButton");
         // Create a HBox to contain the TextField and the Button
         HBox addFeild = new HBox(addTask, informationButton);
-        addFeild.setStyle("-fx-spacing: 15px; -fx-alignment: center;");
+        addFeild.setStyle("-fx-spacing: 15px; -fx-alignment: center; -fx-background-color: white; -fx-padding: 5;");
 
         headerContainer.getChildren().addAll(header, addFeild);
         // Set the spacing between each child of the VBox
@@ -71,7 +67,9 @@ public class TasksView extends VBox{
         // Create a VBox to contain the list of tasks
         listTasks = new VBox();
         showTask = new Label();
-        showTask.setStyle("-fx-background-color: transparent; -fx-text-fill: #000000; -fx-font-size: 24px;");
+        showTask.setStyle(
+                "-fx-background-color: transparent; -fx-text-fill: #04ECFF; -fx-font-size: 24px; -fx-font-weight: bold; -fx-font-family: 'Arial';");
+
         listTasks.getChildren().add(showTask);
         // Add padding to move the VBox down
         listTasks.setPadding(new Insets(10, 0, 0, 5));
@@ -79,16 +77,15 @@ public class TasksView extends VBox{
         // Create a VBox to contain the list of work sessions
         listWorkSession = new VBox();
         showWorkSession = new Button("Work Sessions:");
-        showWorkSession.setStyle("-fx-background-color: transparent; -fx-text-fill: #000000; -fx-font-size: 24px;");
+        showWorkSession.setStyle(
+                "-fx-background-color: transparent; -fx-text-fill: #04ECFF; -fx-font-size: 24px; -fx-font-weight: bold; -fx-font-family: 'Arial';");
+
         listWorkSession.getChildren().add(showWorkSession);
         // Add padding to move the VBox down
         listWorkSession.setPadding(new Insets(10, 0, 0, 5));
         this.getChildren().addAll(headerContainer, listTasks, listWorkSession);
+        this.setStyle("-fx-background-color: white; -fx-border-color: black; -fx-border-width: 0 1 0 0;");
 
-    }
-
-    public Button getArrowButton() {
-        return arrowButton;
     }
 
     public ComboBox<String> getFilterComboBox() {
@@ -110,11 +107,11 @@ public class TasksView extends VBox{
     public VBox getListWorkSession() {
         return listWorkSession;
     }
-    
+
     public Label getShowTask() {
         return showTask;
     }
-    
+
     public Button getShowWorkSession() {
         return showWorkSession;
     }

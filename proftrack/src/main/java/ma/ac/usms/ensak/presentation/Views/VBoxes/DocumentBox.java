@@ -24,6 +24,7 @@ public class DocumentBox extends VBox{
         buttonsBox.setAlignment(Pos.CENTER_RIGHT);
         HBox stackPane = new HBox(documentLabel, buttonsBox);
         HBox.setHgrow(buttonsBox, Priority.ALWAYS);
+        documentList.setStyle("-fx-background-color: white; -fx-border-color: black; -fx-border-width: 1 1 1 1;");
         getChildren().addAll(stackPane, documentList);
         this.setPrefHeight(200);
     }

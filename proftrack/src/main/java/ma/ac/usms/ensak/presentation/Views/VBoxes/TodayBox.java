@@ -55,7 +55,7 @@ public class TodayBox extends VBox {
 
         // Create
         informationButton = new Button("+");
-        informationButton.setStyle("-fx-background-color: black; -fx-text-fill: white;");
+        informationButton.setId("informationButton");
 
         // Create a HBox to contain the TextField and the Button
         HBox addFeild = new HBox(addTask, informationButton);
@@ -66,16 +66,18 @@ public class TodayBox extends VBox {
         headerContainer.setSpacing(10);
 
         listToday = new VBox();
-        showListOfToday = new Button("List of Today");
-        showListOfToday.setStyle("-fx-background-color: transparent; -fx-text-fill: #04ECFF; -fx-font-size: 24px; -fx-font-weight: bold; -fx-font-family: 'Arial';");
+        showListOfToday = new Button("Lists to do");
+        showListOfToday.setStyle(
+                "-fx-background-color: transparent; -fx-text-fill: #04ECFF; -fx-font-size: 24px; -fx-font-weight: bold; -fx-font-family: 'Arial';");
         listToday.getChildren().add(showListOfToday);
         // Add padding to move the VBox down
         listToday.setPadding(new Insets(10, 0, 0, 5)); // Top, Right, Bottom, Left
 
         // all i did for showing the tasks of lists , iwant to di it for projects
         projectToday = new VBox();
-        showProjectOfToday = new Button("Project of Today");
-        showProjectOfToday.setStyle("-fx-background-color: transparent; -fx-text-fill: #04ECFF; -fx-font-size: 24px; -fx-font-weight: bold; -fx-font-family: 'Arial';");
+        showProjectOfToday = new Button("Projects to do");
+        showProjectOfToday.setStyle(
+                "-fx-background-color: transparent; -fx-text-fill: #04ECFF; -fx-font-size: 24px; -fx-font-weight: bold; -fx-font-family: 'Arial';");
         projectToday.getChildren().add(showProjectOfToday);
         // Add padding to move the VBox down
         projectToday.setPadding(new Insets(10, 0, 0, 5)); // Top, Right, Bottom, Left

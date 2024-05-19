@@ -115,11 +115,13 @@
 
 /* Style for the information button */
 #todayBox #informationButton {
-    -fx-background-color: transparent;
-    -fx-background-size: 20px;
-    -fx-text-fill: black;
+    -fx-background-color: #04ECFF;
+    -fx-text-fill: white;
     -fx-font-size: 14px;
+    -fx-font-weight: bold;
     -fx-cursor: hand;
+    -fx-border-radius: 50%;
+    -fx-background-radius: 50%;
 }
 
 /* Style for the showListOfToday button */
@@ -220,3 +222,12 @@
 .addListViewButton:hover {
     -fx-background-color: #0056b3;
 }
+
+.list-view .list-cell:even {
+    -fx-background-color:#AFF0F6;
+    -fx-text-fill: black;
+    }
+.list-view .list-cell:odd {
+    -fx-background-color: #FFFFFF;
+    -fx-text-fill: black;
+    }
