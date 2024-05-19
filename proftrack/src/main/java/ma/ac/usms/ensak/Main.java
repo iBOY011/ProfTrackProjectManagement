@@ -16,6 +16,7 @@ public class Main extends Application {
         AuthController authController = new AuthController();
         scene = new Scene(authController.getAuthentification(), 1024, 600);
         primaryStage.setScene(scene);
+        primaryStage.getScene().getStylesheets().add("file:src/main/resources/Css/login.css");
         primaryStage.setTitle("ProfTrack");
         primaryStage.getIcons().add(new Image("file:src/main/resources/Icons/image.png"));
         primaryStage.show();

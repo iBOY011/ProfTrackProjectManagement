@@ -1,0 +1,21 @@
+/* Style for the root container */
+.root-container {
+    -fx-padding: 10px;
+}
+
+/* Style for the Add Work Session button */
+.add-button {
+    -fx-background-color: #4CAF50;
+    -fx-text-fill: white;
+}
+
+/* Style for the TextArea */
+.text-area {
+    -fx-pref-width: 300px;
+    -fx-pref-height: 100px;
+}
+
+/* Style for the DatePicker */
+.date-picker {
+    -fx-pref-width: 200px;
+}

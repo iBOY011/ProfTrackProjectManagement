@@ -1,9 +1,6 @@
 package ma.ac.usms.ensak.presentation.controller;
 
-import java.time.YearMonth;
 
-import javafx.animation.TranslateTransition;
-import javafx.util.Duration;
 import ma.ac.usms.ensak.presentation.Views.FullCalendarView;
 import ma.ac.usms.ensak.presentation.Views.HomeView;
 import ma.ac.usms.ensak.presentation.Views.TodayView;
@@ -22,6 +19,8 @@ public class HomeController {
     public HomeController() {
         homeController = this;
         homeView = new HomeView();
+        homeView.setId("home");
+        homeView.getStylesheets().add(getClass().getResource("/css/home.css").toExternalForm());
         homeView.setLeft(navbar);
         homeView.setCenter(todayView);
         showToday();

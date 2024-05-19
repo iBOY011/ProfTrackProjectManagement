@@ -5,6 +5,7 @@ import javafx.scene.layout.BorderPane;
 public class HomeView extends BorderPane {
 
     public HomeView() {
+        this.setId("home");
     }
 
 

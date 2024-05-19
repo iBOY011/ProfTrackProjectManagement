@@ -21,19 +21,22 @@ public class AddListView extends BorderPane {
         // Create the UI components
         Label nameLabel = new Label("List Name:");
         nameField = new TextField();
-        
+
         Label descriptionLabel = new Label("Description:");
         descriptionArea = new TextArea();
 
         submitButton = new Button("Add List");
+        submitButton.getStyleClass().add("addListViewButton");
         closeButton = new Button("Close");
+        closeButton.getStyleClass().add("addListViewButton");
 
         // Layout using GridPane for the form
         GridPane formGrid = new GridPane();
+        formGrid.getStyleClass().add("addListViewForm");
         formGrid.setPadding(new Insets(10));
         formGrid.setHgap(10);
         formGrid.setVgap(10);
-        
+
         formGrid.add(nameLabel, 0, 0);
         formGrid.add(nameField, 1, 0);
         formGrid.add(descriptionLabel, 0, 1);

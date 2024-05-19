@@ -1,0 +1,222 @@
+#home {
+    background-color: #f2f2f2;
+    border-radius: 10px;
+}
+
+
+#navbar {
+    -fx-background-color: #e1e0e0;
+}
+
+.navbar-hbox {
+    -fx-background-color: #444;
+    -fx-alignment: center-left;
+}
+
+#showbox {
+    -fx-background-color: #f2f2f2;
+    -fx-border-color: #e1e0e0;
+    -fx-border-radius: 10px;
+    -fx-margin: 5px;
+}
+
+#showbox .label {
+    -fx-font-size: 30px;
+    -fx-font-family: "Georgia";
+    -fx-text-fill: #1d1c1d;
+
+}
+
+/* styles.css */
+
+/* Style for the DetailsBox */
+#detailsBox {
+    -fx-padding: 10px;
+    -fx-spacing: 10px;
+    -fx-background-color: #f0f0f0;
+}
+
+/* Style for the labels */
+#detailsBox .label {
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-font-family: 'Trebuchet MS';
+}
+
+/* Style for the description area */
+#detailsBox #descriptionArea {
+    -fx-font-size: 15px;
+    -fx-font-family: 'Trebuchet MS';
+    -fx-padding: 5px;
+    -fx-text-fill: black;
+    -fx-background-color: white;
+    -fx-wrap-text: true;
+    -fx-text-alignment: left;
+    -fx-underline: false;
+    -fx-content-display: top;
+    -fx-pref-height: 200px;
+    -fx-max-width: 730px;
+}
+
+/* Style for the buttons */
+#detailsBox .button {
+    -fx-font-size: 15px;
+    -fx-font-family: 'Trebuchet MS';
+    -fx-background-color: #f0f0f0;
+    -fx-text-fill: black;
+    -fx-border-color: #f0f0f0;
+    -fx-border-radius: 15px;
+    -fx-padding: 5px;
+    -fx-cursor: hand;
+}
+
+/* Style for the buttons when hovered */
+#detailsBox .button:hover {
+    -fx-background-color: #e1e0e0;
+}
+
+
+/* styles.css */
+
+/* Style for the TodayBox */
+#todayBox {
+    -fx-spacing: 10px;
+    -fx-padding: 10px;
+    -fx-background-color: #f0f0f0;
+}
+
+/* Style for the header */
+#todayBox #header {
+    -fx-font-size: 30px;
+    -fx-font-weight: bold;
+    -fx-text-fill: linear-gradient(to right, #8d0bde, #ffc802, #ff0000);
+}
+
+/* Style for the arrow button */
+#todayBox #arrowButton {
+    -fx-background-color: transparent;
+    -fx-text-fill: black;
+    -fx-font-size: 14px;
+    -fx-cursor: hand;
+}
+
+/* Style for the filter ComboBox */
+#todayBox #filterComboBox {
+    -fx-background-color: transparent;
+    -fx-text-fill: black;
+    -fx-font-size: 14px;
+    -fx-cursor: hand;
+}
+
+/* Style for the addTask TextField */
+#todayBox #addTask {
+    -fx-prompt-text-fill: black;
+}
+
+/* Style for the information button */
+#todayBox #informationButton {
+    -fx-background-color: transparent;
+    -fx-background-size: 20px;
+    -fx-text-fill: black;
+    -fx-font-size: 14px;
+    -fx-cursor: hand;
+}
+
+/* Style for the showListOfToday button */
+#todayBox #showListOfToday {
+    -fx-background-color: transparent;
+    -fx-text-fill: black;
+    -fx-font-size: 24px;
+    -fx-cursor: hand;
+}
+
+/* Style for the showProjectOfToday button */
+#todayBox #showProjectOfToday {
+    -fx-background-color: transparent;
+    -fx-text-fill: black;
+    -fx-font-size: 24px;
+    -fx-cursor: hand;
+}
+
+/* styles.css */
+
+/* Style for the grid */
+#addDocumentView #addDocumentGrid {
+    -fx-padding: 20px;
+    -fx-hgap: 10px;
+    -fx-vgap: 10px;
+}
+
+/* Style for labels */
+#addDocumentView #addDocumentLabel {
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+}
+
+/* Style for text fields */
+#addDocumentView #addDocumentTextField {
+    -fx-pref-width: 180px;
+}
+
+/* Style for buttons */
+#addDocumentView #addDocumentButton {
+    -fx-background-color: #007bff;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-pref-width: 80px;
+}
+
+#addDocumentView #addDocumentButton:hover {
+    -fx-background-color: #0056b3;
+}
+
+/* Style for the Choose File button */
+#addDocumentView #addDocumentChooseFileButton {
+    -fx-background-color: #28a745;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-pref-width: 80px;
+}
+
+#addDocumentView #addDocumentChooseFileButton:hover {
+    -fx-background-color: #218838;
+}
+
+
+/* styles.css */
+
+/* Style for the form grid */
+.addListViewForm {
+    -fx-padding: 10px;
+    -fx-hgap: 10px;
+    -fx-vgap: 10px;
+}
+
+/* Style for labels */
+.addListViewLabel {
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+}
+
+/* Style for text fields */
+.addListViewTextField {
+    -fx-pref-width: 200px;
+}
+
+/* Style for text area */
+.addListViewTextArea {
+    -fx-pref-width: 200px;
+    -fx-pref-height: 100px;
+}
+
+/* Style for buttons */
+.addListViewButton {
+    -fx-background-color: #007bff;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-pref-width: 100px;
+}
+
+.addListViewButton:hover {
+    -fx-background-color: #0056b3;
+}

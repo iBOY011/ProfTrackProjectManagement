@@ -23,6 +23,8 @@ public class AddDocumentView extends VBox {
 
     public AddDocumentView() {
         GridPane grid = new GridPane();
+        this.setId("addDocumentView");
+        grid.setId("addDocumentGrid");
         grid.setPadding(new Insets(20));
         grid.setHgap(10);
         grid.setVgap(10);
@@ -56,6 +58,12 @@ public class AddDocumentView extends VBox {
         closeButton.setOnAction(e -> closeWindow());
 
         getChildren().add(grid);
+        descriptionField.setId("addDocumentLabel");
+        closeButton.setId("addDocumentButton");
+        addButton.setId("addDocumentButton");
+        chooseFileButton.setId("addDocumentChooseFileButton");
+        pathField.setId("addDocumentTextField");
+
     }
 
 
