@@ -1,38 +1,25 @@
 package ma.ac.usms.ensak.presentation.controller;
 
 import java.util.ArrayList;
-import java.util.List;
-
-import org.checkerframework.checker.units.qual.A;
-import org.checkerframework.checker.units.qual.s;
-
-import javafx.animation.TranslateTransition;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ContextMenu;
-import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.MenuItem;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import ma.ac.usms.ensak.metier.POJO.Project;
 import ma.ac.usms.ensak.metier.management.ListToDoManager;
 import ma.ac.usms.ensak.metier.management.ProjectManager;
 import ma.ac.usms.ensak.metier.management.TaskManager;
 import ma.ac.usms.ensak.presentation.Views.VBoxes.ShowBox;
-import ma.ac.usms.ensak.presentation.Views.VBoxes.TodayBox;
 import ma.ac.usms.ensak.util.Category;
 import ma.ac.usms.ensak.util.ListItem;
-import ma.ac.usms.ensak.util.SharedData;
-import javafx.util.Duration;
 
 /**
  * The ShowBoxController class is responsible for managing the display and
@@ -78,6 +65,8 @@ public class ShowBoxController {
 
         ObservableList<ListItem> items = FXCollections.observableArrayList();
         ListView<ListItem> listView = new ListView<>(items);
+        // set class list-view
+        listView.getStyleClass().add("list-view");
 
         listToDoManager.listListToDo().forEach(listToDo -> {
             ListItem listItem = new ListItem(listToDo.getId(), listToDo.getTitle());
@@ -241,8 +230,9 @@ public class ShowBoxController {
         MenuItem category2 = new MenuItem(Category.RESEARCH.toString());
         MenuItem category3 = new MenuItem(Category.SUPERVISION.toString());
         MenuItem category4 = new MenuItem(Category.OTHER.toString());
+        MenuItem category5 = new MenuItem("All");
         showBox.getFilterButton().setOnMouseClicked(e -> {
-            contextMenu.getItems().addAll(category1, category2, category3, category4);
+            contextMenu.getItems().addAll(category1, category2, category3, category4, category5);
             contextMenu.show(showBox.getFilterButton(), e.getScreenX(), e.getScreenY());
         });
 
@@ -264,6 +254,10 @@ public class ShowBoxController {
         category4.setOnAction(e -> {
             category = Category.OTHER;
             filterProjectByCategory(category);
+        });
+
+        category5.setOnAction(e -> {
+            showProject(showBox.getProject());
         });
 
     }

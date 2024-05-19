@@ -130,6 +130,7 @@ public class DetailsController {
         detailsBox.getWorkSessionBox().getWorkSessionList().setItems(observableWorkSessions);
         addWorkSession();
         deleteWorkSession();
+        showWorkSessionDetails();
     }
 
     private static void deleteWorkSession() {
@@ -151,13 +152,15 @@ public class DetailsController {
     }
 
     public static void showWorkSessionDetails() {
-        detailsBox.getWorkSessionBox().getWorkSessionList().setOnMouseClicked(e -> {
+        detailsBox.getWorkSessionList().setOnMouseClicked(e -> {
             if (e.getClickCount() == 2) {  // Check for double-click
                 WorkSession workSession = detailsBox.getWorkSessionBox().getWorkSessionList().getSelectionModel().getSelectedItem();
                 if (workSession != null) {
                     Stage stage = new Stage();
                     stage.setTitle("Work Session Details");
                     WorkSessionDetailsController workSessionDetailsController = new WorkSessionDetailsController();
+                    workSessionDetailsController.createView(workSession.getId());
+                    showWorkSessionDetails();
                 }
             }
         });
