@@ -33,6 +33,7 @@ public class HomeController {
             fullcalendarviewcontroller = new FullCalendarViewController();
             fullcalendarView = fullcalendarviewcontroller.getFullCalendarView();
         });
+
     }
 
     public void showToday() {

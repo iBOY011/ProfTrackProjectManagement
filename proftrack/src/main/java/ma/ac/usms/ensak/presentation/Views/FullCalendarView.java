@@ -31,12 +31,13 @@ public class FullCalendarView {
         // Create the calendar grid pane
         GridPane calendar = new GridPane();
         calendar.setPrefSize(600, 400);
-        calendar.setGridLinesVisible(true);
+        calendar.getStyleClass().add("calendar-grid");
         // Create rows and columns with anchor panes for the calendar
         for (int i = 0; i < 5; i++) {
             for (int j = 0; j < 7; j++) {
                 AnchorPaneNode ap = new AnchorPaneNode();
                 ap.setPrefSize(200, 200);
+                ap.getStyleClass().add("anchor-pane");
                 calendar.add(ap, j, i);
                 allCalendarDays.add(ap);
             }
@@ -47,6 +48,7 @@ public class FullCalendarView {
                 new Text("Saturday") };
         GridPane dayLabels = new GridPane();
         dayLabels.setPrefWidth(600);
+        dayLabels.getStyleClass().add("day-labels");
         Integer col = 0;
         for (Text txt : dayNames) {
             AnchorPane ap = new AnchorPane();
@@ -61,10 +63,12 @@ public class FullCalendarView {
         nextMonth = new Button(">>");
         HBox titleBar = new HBox(previousMonth, calendarTitle, nextMonth);
         titleBar.setAlignment(Pos.BASELINE_CENTER);
+        titleBar.getStyleClass().add("title-bar");
         // Populate calendar with the appropriate day numbers
         populateCalendar(yearMonth);
         // Create the calendar view
         view = new VBox(titleBar, dayLabels, calendar);
+        view.getStylesheets().add(getClass().getResource("/Css/calendar.css").toExternalForm());
     }
 
     /**
