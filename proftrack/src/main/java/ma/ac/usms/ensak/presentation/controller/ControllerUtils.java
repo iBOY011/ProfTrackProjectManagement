@@ -2,7 +2,6 @@ package ma.ac.usms.ensak.presentation.controller;
 
 import javafx.stage.Stage;
 import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.DatePicker;
 import java.util.Date;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -70,4 +69,9 @@ public class ControllerUtils {
     public static Date convertLocalDateTimeToDate(LocalDateTime endDateTime) {
         return Date.from(endDateTime.atZone(ZoneId.systemDefault()).toInstant());
     }
+
+    public static LocalDateTime convertDateToLocalDateTime(Date date) {
+        return date.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
+    }
+    
 }

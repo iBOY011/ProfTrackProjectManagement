@@ -2,15 +2,12 @@ package ma.ac.usms.ensak.presentation.controller;
 
 import java.util.List;
 
-import org.checkerframework.checker.units.qual.s;
-
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ContextMenu;
-import javafx.scene.control.ListView;
 import javafx.scene.control.MenuItem;
 import javafx.scene.input.MouseButton;
 import javafx.scene.layout.HBox;
@@ -18,22 +15,22 @@ import javafx.stage.Stage;
 import ma.ac.usms.ensak.metier.POJO.ListToDo;
 import ma.ac.usms.ensak.metier.POJO.Project;
 import ma.ac.usms.ensak.metier.POJO.Task;
-import ma.ac.usms.ensak.metier.POJO.WorkSession;
 import ma.ac.usms.ensak.metier.management.ListToDoManager;
 import ma.ac.usms.ensak.metier.management.ProjectManager;
 import ma.ac.usms.ensak.metier.management.TaskManager;
-import ma.ac.usms.ensak.metier.management.WorkSessionManager;
 import ma.ac.usms.ensak.presentation.Views.AddTaskConfigurationView;
 import ma.ac.usms.ensak.presentation.Views.TasksView;
-import ma.ac.usms.ensak.util.ListItem;
 import ma.ac.usms.ensak.util.Status;
 
 public class TaskController {
     private static final TaskController instance = new TaskController();
     private final TaskManager taskManager = new TaskManager();
     private final TasksView tasksView = new TasksView();
+    private List<Task> tasks;
+    private String status = "All";
 
     private TaskController() {
+        tasksView.getFilterComboBox().setOnAction(e -> filterTasksByStatus(tasksView.getListTask().getChildren().contains(tasksView.getShowTask())));
     }
 
     public static TaskController getInstance() {
@@ -57,8 +54,8 @@ public class TaskController {
         tasksView.getShowTask().setText("Tasks:");
         tasksView.getListTask().getChildren().add(tasksView.getShowTask());
 
-        List<Task> tasks = taskManager.listTasksByIdListToDo(listId);
-        tasks.forEach(task -> tasksView.getListTask().getChildren().add(createTaskItem(task, true)));
+        tasks = taskManager.listTasksByIdListToDo(listId);
+        filterTasksByStatus(true);
 
         tasksView.getInformationButton().setOnAction(e -> addTaskToList(listId));
     }
@@ -75,12 +72,8 @@ public class TaskController {
         tasksView.getShowTask().setText("Tasks:");
         tasksView.getListTask().getChildren().add(tasksView.getShowTask());
 
-        List<Task> tasks = taskManager.listTasksByIdProject(projectId);
-        tasks.forEach(task -> tasksView.getListTask().getChildren().add(createTaskItem(task, false)));
-
-        WorkSessionManager workSessionManager = new WorkSessionManager();
-        List<WorkSession> workSessions = workSessionManager.listWorkSessionsByIdProject(projectId);
-        workSessions.forEach(ws -> tasksView.getListWorkSession().getChildren().add(createWorkSessionItem(ws)));
+        tasks = taskManager.listTasksByIdProject(projectId);
+        filterTasksByStatus(false);
 
         tasksView.getInformationButton().setOnAction(e -> addTaskToProject(projectId));
     }
@@ -95,12 +88,7 @@ public class TaskController {
         checkBox.setOnAction(e -> {
             task.setStatus(Status.DONE);
             taskManager.updateTask(task);
-            if (isList) {
-                showTasks(task.getId_ListToDo());
-            } else {
-                showProjectTasks(task.getId_project());
-
-            }
+            filterTasksByStatus(isList);
         });
         if (task.getStatus() == Status.DONE) {
             checkBox.setSelected(true);
@@ -114,17 +102,6 @@ public class TaskController {
         button.setStyle(
                 "-fx-background-color: transparent; -fx-border-color: transparent; -fx-cursor: hand; -fx-font-size: 10px;");
         ListContextMenu(button, task, isList, checkBox);
-        HBox hBox = new HBox(checkBox, button);
-        hBox.setStyle("-fx-spacing: 10px; -fx-alignment: center-left;");
-        return hBox;
-    }
-
-    private HBox createWorkSessionItem(WorkSession workSession) {
-        CheckBox checkBox = new CheckBox();
-        checkBox.setStyle("-fx-cursor: hand; -fx-font-size: 14px;");
-        Button button = new Button(workSession.getDateDebut().toString() + " - " + workSession.getDateFin().toString());
-        button.setStyle(
-                "-fx-background-color: transparent; -fx-border-color: transparent; -fx-cursor: hand; -fx-font-size: 10px;");
         HBox hBox = new HBox(checkBox, button);
         hBox.setStyle("-fx-spacing: 10px; -fx-alignment: center-left;");
         return hBox;
@@ -206,13 +183,10 @@ public class TaskController {
         });
     }
 
-    private TaskManager getTaskManager() {
-        return taskManager;
-    }
-
     public static void showTaskDetails(Task task) {
         DetailsController.showDetails(task.getId(), false, true);
         DetailsController.showDocument(false, task);
+        DetailsController.DisableWorkSessionBox(true);
 
     }
 
@@ -228,5 +202,19 @@ public class TaskController {
 
     public TasksView getTasksView() {
         return tasksView;
+    }
+
+    public void filterTasksByStatus(Boolean isList) {
+        status = tasksView.getFilterComboBox().getValue();
+        tasksView.getListTask().getChildren().clear();
+        tasksView.getListTask().getChildren().add(tasksView.getShowTask());
+
+        tasks.forEach(task -> {
+            if (status.equals("All") || 
+                (status.equals("Completed") && task.getStatus() == Status.DONE) || 
+                (status.equals("Uncompleted") && (task.getStatus() == Status.IN_PROGRESS || task.getStatus() == Status.TODO))) {
+                tasksView.getListTask().getChildren().add(createTaskItem(task, isList));
+            }
+        });
     }
 }

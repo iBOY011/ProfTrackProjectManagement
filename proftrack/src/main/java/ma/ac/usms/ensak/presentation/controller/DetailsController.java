@@ -137,6 +137,7 @@ public class DetailsController {
         detailsBox.getWorkSessionBox().getDeleteButton().setOnAction(e -> {
             WorkSession workSession = detailsBox.getWorkSessionBox().getWorkSessionList().getSelectionModel().getSelectedItem();
             workSessionManager.deleteWorkSession(workSession.getId());
+            showWorkSession();
         });
     }
 
@@ -144,6 +145,7 @@ public class DetailsController {
         detailsBox.getWorkSessionBox().getAddButton().setOnAction(e -> {
             AddWorkSessionController addWorkSessionController = new AddWorkSessionController();
             addWorkSessionController.createView();
+            showWorkSession();
         });
     }
 
@@ -160,7 +162,7 @@ public class DetailsController {
                     stage.setTitle("Work Session Details");
                     WorkSessionDetailsController workSessionDetailsController = new WorkSessionDetailsController();
                     workSessionDetailsController.createView(workSession.getId());
-                    showWorkSessionDetails();
+                    showWorkSession();
                 }
             }
         });

@@ -139,4 +139,10 @@ public class FullCalendarView {
     public Button getnextMonth() {
         return nextMonth;
     }
+
+    public ArrayList<AnchorPaneNode> getCalendar() {
+        return allCalendarDays;
+    }
+
+    
 }
