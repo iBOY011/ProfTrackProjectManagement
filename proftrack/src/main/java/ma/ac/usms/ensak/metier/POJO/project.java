@@ -3,7 +3,6 @@ package ma.ac.usms.ensak.metier.POJO;
 import java.util.Date;
 import java.util.UUID;
 
-import org.checkerframework.checker.units.qual.t;
 
 import ma.ac.usms.ensak.util.Category;
 import ma.ac.usms.ensak.util.Type;
