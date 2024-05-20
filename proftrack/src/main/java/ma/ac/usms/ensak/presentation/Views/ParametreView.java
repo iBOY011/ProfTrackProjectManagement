@@ -83,7 +83,6 @@ public class ParametreView extends VBox {
                 });
             }
         }).start();
-        this.getStylesheets().add(getClass().getResource("/Css/stylesheet.css").toExternalForm());
     }
 
     
