@@ -8,18 +8,31 @@ import ma.ac.usms.ensak.presentation.Views.UpdateTaskView;
 import ma.ac.usms.ensak.metier.POJO.Task;
 import ma.ac.usms.ensak.metier.management.TaskManager;
 
+/**
+ * The controller class for updating a task.
+ */
 public class UpdateTaskController {
     private UpdateTaskView updateTaskView;
     private static final UpdateTaskController instance = new UpdateTaskController();
 
+    /**
+     * Private constructor to enforce singleton pattern.
+     */
     private UpdateTaskController() {
         updateTaskView = new UpdateTaskView();
     }
 
+    /**
+     * Get the instance of the UpdateTaskController.
+     * @return The instance of the UpdateTaskController.
+     */
     public static UpdateTaskController getInstance() {
         return instance;
     }
 
+    /**
+     * Create and display the update task view.
+     */
     public void createView() {
         updateTaskView = new UpdateTaskView();
         Stage stage = new Stage();
@@ -28,10 +41,19 @@ public class UpdateTaskController {
         stage.show();
     }
 
+    /**
+     * Get the update task view.
+     * @return The update task view.
+     */
     public UpdateTaskView getUpdateTaskView() {
         return updateTaskView;
     }
 
+    /**
+     * Update the show with the given task and list flag.
+     * @param task The task to update.
+     * @param isList Flag indicating if the task belongs to a list.
+     */
     public void updateShow(Task task, boolean isList) {
         createView();
         updateTaskView.getTitleInput().setText(task.getTitle());
@@ -47,6 +69,11 @@ public class UpdateTaskController {
         });
     }
 
+    /**
+     * Update the task with the given values and perform necessary actions.
+     * @param t The task to update.
+     * @param isList Flag indicating if the task belongs to a list.
+     */
     private void update(Task t, boolean isList) {
         t.setTitle(updateTaskView.getTitleInput().getText());
         t.setDescription(updateTaskView.getDescriptionInput().getText());

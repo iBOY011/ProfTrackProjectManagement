@@ -10,17 +10,27 @@ import ma.ac.usms.ensak.persistance.StorageFile;
 public class DocSessionImpl implements DocSessionDAO {
     private final String DOCSESSION_FILE_PATH = "src\\main\\resources\\databases\\DocSession.json";
 
-
+    /**
+     * Adds a new document session to the database.
+     * 
+     * @param docSession The document session to be added.
+     */
     @Override
     public void addDocSession(DocSession docSession) {
         List<DocSession> docSessions = getAllDocSessions();
         if (docSessions == null) {
-            docSessions = new ArrayList<>(); // Initialize the list if it's null
+            docSessions = new ArrayList<>();
         }
         docSessions.add(docSession);
         saveToJsonFile(docSessions, DOCSESSION_FILE_PATH);
     }
 
+    /**
+     * Retrieves a document session by its session ID.
+     * 
+     * @param idDocSession The session ID of the document session.
+     * @return The document session with the specified session ID, or null if not found.
+     */
     @Override
     public DocSession getDocSessionByIdSession(String idDocSession) {
         List<DocSession> docSessions = getAllDocSessions();
@@ -32,6 +42,12 @@ public class DocSessionImpl implements DocSessionDAO {
         return null;
     }
 
+    /**
+     * Retrieves a document session by its document ID.
+     * 
+     * @param idDocSession The document ID of the document session.
+     * @return The document session with the specified document ID, or null if not found.
+     */
     @Override
     public DocSession getDocSessionByIdDoc(String idDocSession) {
         List<DocSession> docSessions = getAllDocSessions();
@@ -43,6 +59,11 @@ public class DocSessionImpl implements DocSessionDAO {
         return null;
     }
 
+    /**
+     * Updates a document session in the database.
+     * 
+     * @param docSession The updated document session.
+     */
     @Override
     public void updateDocSession(DocSession docSession) {
         List<DocSession> docSessions = getAllDocSessions();
@@ -56,6 +77,11 @@ public class DocSessionImpl implements DocSessionDAO {
         saveToJsonFile(docSessions, DOCSESSION_FILE_PATH);
     }
 
+    /**
+     * Deletes a document session from the database.
+     * 
+     * @param idDocSession The session ID of the document session to be deleted.
+     */
     @Override
     public void deleteDocSession(String idDocSession) {
         List<DocSession> docSessions = getAllDocSessions();
@@ -63,6 +89,11 @@ public class DocSessionImpl implements DocSessionDAO {
         saveToJsonFile(docSessions, DOCSESSION_FILE_PATH);
     }
 
+    /**
+     * Retrieves all document sessions from the database.
+     * 
+     * @return A list of all document sessions.
+     */
     @Override
     public List<DocSession> getAllDocSessions() {
         return StorageFile.readObjectsFromJsonFile(DOCSESSION_FILE_PATH, DocSession.class);

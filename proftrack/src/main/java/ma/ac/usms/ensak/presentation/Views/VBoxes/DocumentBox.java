@@ -9,12 +9,18 @@ import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import ma.ac.usms.ensak.metier.POJO.Document;
 
-public class DocumentBox extends VBox{
+/**
+ * A custom JavaFX VBox that represents a document box.
+ */
+public class DocumentBox extends VBox {
     private Label documentLabel;
     private static Button AddButton = new Button("Add");
     private static Button DeleteButton = new Button("Delete");
     private ListView<Document> documentList;
 
+    /**
+     * Constructs a new DocumentBox.
+     */
     public DocumentBox() {
         documentLabel = new Label("Documents:");
         documentLabel.setStyle("-fx-font-size: 20px; -fx-font-weight: bold; -fx-font-family: Arial;");
@@ -29,24 +35,48 @@ public class DocumentBox extends VBox{
         this.setPrefHeight(200);
     }
 
+    /**
+     * Returns the ListView of documents.
+     * 
+     * @return the ListView of documents
+     */
     public ListView<Document> getDocumentList() {
         return documentList;
     }
 
+    /**
+     * Returns the label for the document box.
+     * 
+     * @return the label for the document box
+     */
     public Label getDocumentLabel() {
         return documentLabel;
     }
 
+    /**
+     * Returns the Add button.
+     * 
+     * @return the Add button
+     */
     public Button getAddButton() {
         return AddButton;
     }
 
+    /**
+     * Returns the Delete button.
+     * 
+     * @return the Delete button
+     */
     public Button getDeleteButton() {
         return DeleteButton;
     }
 
+    /**
+     * Returns the ListView of documents.
+     * 
+     * @return the ListView of documents
+     */
     public ListView<Document> getListView() {
         return documentList;
     }
-    
 }
