@@ -1,4 +1,5 @@
 package ma.ac.usms.ensak.presentation.Views;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Pos;
@@ -43,7 +44,7 @@ public class PercentageView extends VBox {
         HBox hbox2 = new HBox();
         hbox2.getChildren().addAll(selectPeriod, selector2);
 
-        // make hbox et hbox2 at the same size and align them
+        // Set size and alignment for HBox elements
         hbox.setMinWidth(200);
         hbox2.setMinWidth(200);
         hbox.setSpacing(10);
@@ -97,42 +98,40 @@ public class PercentageView extends VBox {
         }
 
         pieChart.setData(pieChartData);
-        
-        // Show percentage labels on pie chart slices
+
+        // Optionally show percentage labels on pie chart slices
     }
 
     private Date[] getDateRange(String period) {
         Calendar calendar = Calendar.getInstance();
-        calendar.setTime(currentDate); // Set calendar to current date
+        calendar.setTime(currentDate);
         Date endDate = calendar.getTime();
         Date startDate = null;
 
         switch (period) {
             case "Week":
-                calendar.add(Calendar.WEEK_OF_YEAR, -1);
+                calendar.set(Calendar.DAY_OF_WEEK, calendar.getFirstDayOfWeek());
                 startDate = calendar.getTime();
                 break;
             case "Month":
-                calendar.add(Calendar.MONTH, -1);
+                calendar.set(Calendar.DAY_OF_MONTH, 1);
                 startDate = calendar.getTime();
                 break;
             case "Year":
-                calendar.add(Calendar.YEAR, -1);
+                calendar.set(Calendar.DAY_OF_YEAR, 1);
                 startDate = calendar.getTime();
                 break;
         }
-
-        return new Date[]{startDate, endDate};
+        System.out.println("Start date: " + startDate);
+        System.out.println("End date: " + endDate);
+        return new Date[] { startDate, endDate };
     }
 
     private ObservableList<PieChart.Data> getPieChartDataByCategory(Date start, Date end) {
         ObservableList<PieChart.Data> data = FXCollections.observableArrayList();
         for (Category category : Category.values()) {
             int percentage = statistics.getPercentageOfWorkHoursByCategory(category, start, end);
-            if (percentage != 0) {
-                String name = String.format("%s (%s%%)", category.name(), DECIMAL_FORMAT.format(percentage));
-                data.add(new PieChart.Data(name, percentage));
-            }
+            data.add(new PieChart.Data(category.name(), percentage));
         }
         return data;
     }
@@ -141,10 +140,7 @@ public class PercentageView extends VBox {
         ObservableList<PieChart.Data> data = FXCollections.observableArrayList();
         for (Type type : Type.values()) {
             int percentage = statistics.getPercentageOfWorkHoursByType(type, start, end);
-            if (percentage != 0) { // Exclude zero percentage data
-                String name = String.format("%s (%s%%)", type.name(), DECIMAL_FORMAT.format(percentage));
-                data.add(new PieChart.Data(name, percentage));
-            }
+            data.add(new PieChart.Data(type.name(), percentage));
         }
         return data;
     }
