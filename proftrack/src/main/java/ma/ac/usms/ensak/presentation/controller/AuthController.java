@@ -14,7 +14,7 @@ import ma.ac.usms.ensak.presentation.Views.HomeView;
  * The AuthController class handles the authentication process for the application.
  */
 public class AuthController {
-    private AuthentificationView authentification;
+    private static AuthentificationView authentification;
 
     /**
      * Constructs an AuthController object.
@@ -34,11 +34,7 @@ public class AuthController {
         });
     }
 
-    /**
-     * Returns the AuthentificationView object associated with this AuthController.
-     * @return The AuthentificationView object.
-     */
-    public AuthentificationView getAuthentification() {
+    public static AuthentificationView getAuthentification() {
         return authentification;
     }
 }

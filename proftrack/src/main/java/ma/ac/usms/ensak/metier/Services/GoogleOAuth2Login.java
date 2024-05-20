@@ -20,13 +20,16 @@ import java.util.List;
 
 public class GoogleOAuth2Login {
     private static final String CLIENT_SECRET_FILE = "/.configs/client_secret.json";
-    private static final List<String> SCOPES = Arrays.asList("https://www.googleapis.com/auth/drive.metadata.readonly");
-    private static final JsonFactory JSON_FACTORY = GsonFactory.getDefaultInstance();
-    private static HttpTransport httpTransport;
+    private static final List<String> SCOPES = Arrays.asList(
+            "https://www.googleapis.com/auth/userinfo.email",
+            "https://www.googleapis.com/auth/userinfo.profile"
+    );
+    public static final JsonFactory JSON_FACTORY = GsonFactory.getDefaultInstance();
+    public static HttpTransport httpTransport;
     private static final String TOKENS_DIRECTORY_PATH = "src/main/resources/.tokens";
 
     public static Credential authorize() throws IOException, GeneralSecurityException, InterruptedException {
-        ensureTokensDirectoryExists();  // Ensure the tokens directory exists
+        ensureTokensDirectoryExists();  
 
         httpTransport = GoogleNetHttpTransport.newTrustedTransport();
 
