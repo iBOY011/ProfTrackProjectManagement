@@ -21,6 +21,9 @@ import ma.ac.usms.ensak.presentation.Views.VBoxes.TodayBox;
 import ma.ac.usms.ensak.util.SharedData;
 import ma.ac.usms.ensak.util.Status;
 
+/**
+ * The controller class for the TodayBox view.
+ */
 public class TodayBoxController {
     private TodayBox todayBox = new TodayBox();
     private boolean isListDisplayed = true;
@@ -30,9 +33,11 @@ public class TodayBoxController {
     private static ListToDoManager listToDoManager = new ListToDoManager();
     private static ProjectManager projectManager = new ProjectManager();
 
+    /**
+     * Constructs a new TodayBoxController.
+     */
     public TodayBoxController() {
 
-        // Add the TodayBox to the SharedData
         SharedData.getInstance().setTodayBoxController(this);
 
         todayBox.getShowListOfToday().setOnMouseClicked(e -> {
@@ -46,7 +51,6 @@ public class TodayBoxController {
                             t.setStatus(Status.DONE);
                             taskManager.updateTask(t);
                             AlertHandler.showSuccessAlert(AlertHandler.getFinishedTaskSentence());
-                            // add a normaly cathc block
                         } catch (Exception h) {
                             AlertHandler.showFailureAlert("Task not finished");
                         }
@@ -132,6 +136,11 @@ public class TodayBoxController {
         });
     }
 
+    /**
+     * Gets the TodayBox associated with this controller.
+     * 
+     * @return the TodayBox
+     */
     public TodayBox getTodayBox() {
         return todayBox;
     }

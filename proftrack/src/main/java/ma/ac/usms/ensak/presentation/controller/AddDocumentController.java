@@ -9,14 +9,24 @@ import ma.ac.usms.ensak.metier.management.DocumentManager;
 import ma.ac.usms.ensak.presentation.Views.AddDocumentView;
 import ma.ac.usms.ensak.metier.POJO.Task;
 
+/**
+ * The AddDocumentController class is responsible for controlling the logic and behavior of the Add Document feature.
+ */
 public class AddDocumentController {
     private static DocumentManager documentManager = new DocumentManager();
     private static AddDocumentView addDocumentvView;
 
+    /**
+     * Constructs an instance of the AddDocumentController class.
+     */
     public AddDocumentController() {
         addDocumentvView = new AddDocumentView();
     }
 
+    /**
+     * Adds a document to the system.
+     * @return true if the document is added successfully, false otherwise.
+     */
     public static boolean addDocument() {
         try {
             addDocumentvView.getAddButton().setOnAction(e -> {
@@ -36,6 +46,10 @@ public class AddDocumentController {
         }
     }
 
+    /**
+     * Adds a document to a task.
+     * @param task the task to which the document is added.
+     */
     public static void addDocTask(Task task) {
         AddDocumentController addDocumentController = new AddDocumentController();
         AddDocumentView addDocumentvView = addDocumentController.getAddDocumentView();
@@ -58,10 +72,17 @@ public class AddDocumentController {
         });
     }
 
+    /**
+     * Retrieves the AddDocumentView associated with this controller.
+     * @return the AddDocumentView object.
+     */
     public AddDocumentView getAddDocumentView() {
         return addDocumentvView;
     }
 
+    /**
+     * Creates and displays the view for adding a document.
+     */
     public void createView() {
         Stage stage = new Stage();
         stage.setScene(new Scene(addDocumentvView, 400, 200));

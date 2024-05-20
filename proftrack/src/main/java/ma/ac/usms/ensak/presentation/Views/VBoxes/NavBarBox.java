@@ -7,7 +7,6 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 public class NavBarBox extends VBox {
-    // Create 4 HBoxs
     private HBox UserEmail;
     private HBox Tasks;
     private HBox Calendar;
@@ -21,15 +20,12 @@ public class NavBarBox extends VBox {
     private Button SettingsButton = new Button();
     
     public NavBarBox() {
-        // Create 4 HBoxs
         UserEmail = new HBox();
         Tasks = new HBox();
         Calendar = new HBox();
         Statistics = new HBox();
         Settings = new HBox();
         
-        // Set the preferred size of each HBox by percentage 1 -> 20% 2 -> 20% 3 -> 30%
-        // 4 -> 30%
         HBox[] HBoxes = new HBox[] { UserEmail, Tasks, Calendar, Statistics, Settings };
         double[] percentages = { 20, 20, 20, 20, 20 };
         for (int i = 0; i < HBoxes.length; i++) {
@@ -44,7 +40,6 @@ public class NavBarBox extends VBox {
         StatisticsButton);
         addButtonWithImage(Settings, "https://cdn-icons-png.flaticon.com/512/1835/1835942.png", SettingsButton);
         
-        // add HBox to VBox
         getChildren().addAll(HBoxes);
         this.setStyle("-fx-background-color: #04ECFF; -fx-border-color: black; -fx-border-width: 0 1 0 0;");
     }
@@ -54,7 +49,6 @@ public class NavBarBox extends VBox {
         ImageView imageView = new ImageView(image);
         imageView.setFitWidth(50);
         imageView.setFitHeight(50);
-        // set the style of the button
         button.setStyle(
             "-fx-border-color: transparent; -fx-cursor: hand; -fx-width: 100%; -fx-height: 50px; -fx-background-color: transparent; -fx-alignment: center;");
             

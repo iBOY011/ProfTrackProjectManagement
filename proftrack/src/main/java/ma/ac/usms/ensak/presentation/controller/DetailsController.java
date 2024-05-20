@@ -96,10 +96,9 @@ public class DetailsController {
 
     private static void openDocument() {
         detailsBox.getDocumentList().setOnMouseClicked(e -> {
-            if (e.getClickCount() == 2) {  // Check for double-click
+            if (e.getClickCount() == 2) {
                 Document document = detailsBox.getDocumentList().getSelectionModel().getSelectedItem();
                 if (document != null) {
-                    // open document by path
                     String documentPath = documentManager.searchDocumentById(document.getId()).getPath();
                     try {
                         Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler " + documentPath);
@@ -138,7 +137,6 @@ public class DetailsController {
 
 
 
-    // WorkSession part
     public static void showWorkSession() {
         List<WorkSession> workSessions = new ArrayList<>();
         workSessionManager.listWorkSessionsByIdProject(ShowBoxController.getIdProjectSelected()).forEach(ws -> {
@@ -186,7 +184,7 @@ public class DetailsController {
 
     public static void showWorkSessionDetails() {
         detailsBox.getWorkSessionList().setOnMouseClicked(e -> {
-            if (e.getClickCount() == 2) {  // Check for double-click
+            if (e.getClickCount() == 2) { 
                 WorkSession workSession = detailsBox.getWorkSessionBox().getWorkSessionList().getSelectionModel().getSelectedItem();
                 if (workSession != null) {
                     Stage stage = new Stage();
