@@ -11,7 +11,7 @@ import ma.ac.usms.ensak.presentation.Views.AuthentificationView;
 import ma.ac.usms.ensak.presentation.Views.HomeView;
 
 public class AuthController {
-    private AuthentificationView authentification;
+    private static AuthentificationView authentification;
 
     public AuthController() {
         authentification = new AuthentificationView();
@@ -27,7 +27,7 @@ public class AuthController {
         
     }
 
-    public AuthentificationView getAuthentification() {
+    public static AuthentificationView getAuthentification() {
         return authentification;
     }
 

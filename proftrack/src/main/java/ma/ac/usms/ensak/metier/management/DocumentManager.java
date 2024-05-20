@@ -10,22 +10,36 @@ import ma.ac.usms.ensak.persistance.impl.DocumentImpl;
 /**
  * 
  */
+/**
+ * The DocumentManager class is responsible for managing documents in the system.
+ */
 public class DocumentManager {
     
     private ArrayList<Document> documents;
     private DocumentImpl documentImpl;
 
+    /**
+     * Constructs a new DocumentManager object.
+     */
     public DocumentManager() {
         documents = new ArrayList<Document>();
         documentImpl = new DocumentImpl();
     }
 
+    /**
+     * Sorts the documents by date.
+     */
     public void sort() {
         // sort the documents by date
         documents.sort((Document d1, Document d2) -> d1.getDateAdded().compareTo(d2.getDateAdded()));
     }
 
-    // validate
+    /**
+     * Validates a document.
+     * 
+     * @param document The document to validate.
+     * @throws IllegalArgumentException If the document or any of its properties are null.
+     */
     public void validate(Document document) {
         // check if the document is not null
         if (document == null) {
@@ -47,13 +61,15 @@ public class DocumentManager {
         if (document.getId_project() == null) {
             throw new IllegalArgumentException("The id project cannot be null.");
         }
-        // path regex
-        // if (!document.getPath().matches("^(?:[a-zA-Z]\\:|\\\\)\\\\[a-zA-Z0-9\\.]+(\\\\[a-zA-Z0-9\\.]+)*$")) {
-        //     throw new IllegalArgumentException("The path is not valid.");
-        // }
     }
 
-    // add document
+    /**
+     * Creates a new document with the given description, path, and project ID.
+     * 
+     * @param description The description of the document.
+     * @param path The path of the document.
+     * @param id_project The ID of the project the document belongs to.
+     */
     public void createDocument(String description, String path, String id_project) {
         // create a new document
         Document document = new Document(description, path, id_project);
@@ -63,7 +79,11 @@ public class DocumentManager {
         documentImpl.addDocument(document);
     }
 
-    // update document
+    /**
+     * Updates an existing document.
+     * 
+     * @param document The document to update.
+     */
     public void updateDocument(Document document) {
         // validate the document
         validate(document);
@@ -71,7 +91,12 @@ public class DocumentManager {
         documentImpl.updateDocument(document);
     }
 
-    // delete document
+    /**
+     * Deletes a document with the given ID.
+     * 
+     * @param idDocument The ID of the document to delete.
+     * @throws IllegalArgumentException If the ID is null.
+     */
     public void deleteDocument(String idDocument) {
         // check if the idDocument is not null
         if (idDocument == null) {
@@ -81,7 +106,13 @@ public class DocumentManager {
         documentImpl.deleteDocument(idDocument);
     }
 
-    // get document by id
+    /**
+     * Searches for a document with the given ID.
+     * 
+     * @param idDocument The ID of the document to search for.
+     * @return The document with the given ID, or null if not found.
+     * @throws IllegalArgumentException If the ID is null.
+     */
     public Document searchDocumentById(String idDocument) {
         // check if the idDocument is not null
         if (idDocument == null) {
@@ -90,17 +121,31 @@ public class DocumentManager {
         return documentImpl.getDocumentById(idDocument);
     }
 
-    // get all documents
+    /**
+     * Retrieves a list of all documents.
+     * 
+     * @return A list of all documents.
+     */
     public List<Document> ListAllDocuments() {
         return documentImpl.getAllDocuments();
     }
 
-    // get documents by project
+    /**
+     * Retrieves a list of documents belonging to a specific project.
+     * 
+     * @param idProjet The ID of the project.
+     * @return A list of documents belonging to the specified project.
+     */
     public List<Document> ListDocumentsByProject(String idProjet) {
         return documentImpl.getDocumentsByProject(idProjet);
     }
 
-    // search documents by task
+    /**
+     * Retrieves a list of documents associated with a specific task.
+     * 
+     * @param idTask The ID of the task.
+     * @return A list of documents associated with the specified task.
+     */
     public List<Document> ListDocumentsByTask(String idTask) {
         DocTaskManager docTaskManager = new DocTaskManager();
         List<DocTask> Ids = docTaskManager.searchDocTaskByTask(idTask);
@@ -109,18 +154,13 @@ public class DocumentManager {
             documents.add(documentImpl.getDocumentById(docTask.getIdDocument()));
         }
         return documents;
-
-    }
-    
-    public static void main(String[] args) {
-        // ListDocumentsByTask
-        DocumentManager documentManager = new DocumentManager();
-        List<Document> documents = documentManager.ListDocumentsByTask("a297401f-5d75-434a-bd51-4fbf44db0df4");
-        documents.forEach(doc -> {
-            System.out.println(doc.getId());
-        });
     }
 
+    /**
+     * Creates a new document.
+     * 
+     * @param document The document to create.
+     */
     public void createDocument(Document document) {
         documentImpl.addDocument(document);
     }

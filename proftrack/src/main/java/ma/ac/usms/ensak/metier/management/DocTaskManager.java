@@ -7,26 +7,35 @@ import ma.ac.usms.ensak.persistance.impl.DocTaskImpl;
 
 public class DocTaskManager {
 
+    /**
+     * Creates a new document-task association.
+     * 
+     * @param idDocument The ID of the document.
+     * @param idTask     The ID of the task.
+     */
     public void createDocTask(String idDocument, String idTask) {
-        if (!isValidateSyntax(idDocument, idTask)) {
-            throw new IllegalArgumentException("Invalid syntax");
-        } else {
-            DocTask docTask = new DocTask(idDocument, idTask);
-            DocTaskImpl docTaskImpl = new DocTaskImpl();
-            docTaskImpl.addDocTask(docTask);
-        }
-
+        DocTask docTask = new DocTask(idDocument, idTask);
+        DocTaskImpl docTaskImpl = new DocTaskImpl();
+        docTaskImpl.addDocTask(docTask);
     }
 
+    /**
+     * Removes the document-task association.
+     * 
+     * @param idDocument The ID of the document.
+     * @param idTask     The ID of the task.
+     */
     public void removeDocTask(String idDocument, String idTask) {
-        if (!isValidateSyntax(idDocument, idTask)) {
-            throw new IllegalArgumentException("Invalid syntax");
-        } else {
-            DocTaskImpl docTaskImpl = new DocTaskImpl();
-            docTaskImpl.deleteDocTask(idDocument, idTask);
-        }
+        DocTaskImpl docTaskImpl = new DocTaskImpl();
+        docTaskImpl.deleteDocTask(idDocument, idTask);
     }
 
+    /**
+     * Removes all document-task associations for a specific document.
+     * 
+     * @param idDocument The ID of the document.
+     * @throws IllegalArgumentException if the ID is null, empty, or blank.
+     */
     public void removeDocTaskByDocument(String idDocument) {
         if (idDocument == null || idDocument.isEmpty() || idDocument.isBlank()) {
             throw new IllegalArgumentException("Invalid syntax");
@@ -36,6 +45,12 @@ public class DocTaskManager {
         }
     }
 
+    /**
+     * Removes all document-task associations for a specific task.
+     * 
+     * @param idTask The ID of the task.
+     * @throws IllegalArgumentException if the ID is null, empty, or blank.
+     */
     public void removeDocTaskByTask(String idTask) {
         if (idTask == null || idTask.isEmpty() || idTask.isBlank()) {
             throw new IllegalArgumentException("Invalid syntax");
@@ -45,39 +60,45 @@ public class DocTaskManager {
         }
     }
 
+    /**
+     * Removes all document-task associations.
+     */
     public void removeAllDocTask() {
         DocTaskImpl docTaskImpl = new DocTaskImpl();
         docTaskImpl.deleteAllDocTask();
     }
 
+    /**
+     * Updates the document-task association.
+     * 
+     * @param idDocument The ID of the document.
+     * @param idTask     The ID of the task.
+     */
     public void updateDocTask(String idDocument, String idTask) {
-        if (!isValidateSyntax(idDocument, idTask)) {
-            throw new IllegalArgumentException("Invalid syntax");
-        } else {
-            DocTask docTask = new DocTask(idDocument, idTask);
-            DocTaskImpl docTaskImpl = new DocTaskImpl();
-            docTaskImpl.updateDocTask(docTask);
-        }
+        DocTask docTask = new DocTask(idDocument, idTask);
+        DocTaskImpl docTaskImpl = new DocTaskImpl();
+        docTaskImpl.updateDocTask(docTask);
     }
 
-    private boolean isValidateSyntax(String idDocument, String idTask) {
-        // if (idDocument == null || idDocument.isEmpty() || idDocument.isBlank()) {
-        //     return false;
-        // }
-        // return (idTask == null || idTask.isEmpty() || idTask.isBlank());
-        return true;
-    }
-
-    // Méthodes pour chercher les documents liés à une tâche ou vice versa
+    /**
+     * Searches for a specific document-task association.
+     * 
+     * @param idDocument The ID of the document.
+     * @param idTask     The ID of the task.
+     * @return The document-task association, or null if not found.
+     */
     public DocTask searchDocTask(String idDocument, String idTask) {
-        if (!isValidateSyntax(idDocument, idTask)) {
-            throw new IllegalArgumentException("Invalid syntax");
-        } else {
-            DocTaskImpl docTaskImpl = new DocTaskImpl();
-            return docTaskImpl.getDocTask(idDocument, idTask);
-        }
+        DocTaskImpl docTaskImpl = new DocTaskImpl();
+        return docTaskImpl.getDocTask(idDocument, idTask);
     }
 
+    /**
+     * Searches for all document-task associations for a specific document.
+     * 
+     * @param idDocument The ID of the document.
+     * @return A list of document-task associations, or an empty list if not found.
+     * @throws IllegalArgumentException if the ID is null, empty, or blank.
+     */
     public List<DocTask> searchDocTaskByDocument(String idDocument) {
         if (idDocument == null || idDocument.isEmpty() || idDocument.isBlank()) {
             throw new IllegalArgumentException("Invalid syntax");
@@ -87,21 +108,19 @@ public class DocTaskManager {
         }
     }
 
+    /**
+     * Searches for all document-task associations for a specific task.
+     * 
+     * @param idTask The ID of the task.
+     * @return A list of document-task associations, or an empty list if not found.
+     * @throws IllegalArgumentException if the ID is null, empty, or blank.
+     */
     public List<DocTask> searchDocTaskByTask(String idTask) {
         if (idTask == null || idTask.isEmpty() || idTask.isBlank()) {
             throw new IllegalArgumentException("Invalid syntax");
         } else {
             DocTaskImpl docTaskImpl = new DocTaskImpl();
             return docTaskImpl.getDocTaskByTask(idTask);
-        }
-    }
-
-    public static void main(String[] args) {
-        // searchDocTaskByTask 
-        DocTaskManager docTaskManager = new DocTaskManager();
-        List<DocTask> docTasks = docTaskManager.searchDocTaskByTask("a297401f-5d75-434a-bd51-4fbf44db0df4");
-        for (DocTask docTask : docTasks) {
-            System.out.println(docTask.getIdDocument());
         }
     }
 

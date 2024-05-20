@@ -12,6 +12,20 @@ import ma.ac.usms.ensak.persistance.impl.ProjectImpl;
 import ma.ac.usms.ensak.persistance.impl.TaskImpl;
 import ma.ac.usms.ensak.util.Status;
 import ma.ac.usms.ensak.util.Category;
+import java.util.List;
+import ma.ac.usms.ensak.metier.POJO.Project;
+import ma.ac.usms.ensak.metier.POJO.Task;
+import ma.ac.usms.ensak.persistance.impl.ProjectImpl;
+import ma.ac.usms.ensak.persistance.impl.TaskImpl;
+import ma.ac.usms.ensak.util.Status;
+import ma.ac.usms.ensak.util.Category;
+
+
+/**
+ * The TaskManager class is responsible for managing tasks in a project management system.
+ * It provides methods for creating, updating, and deleting tasks, as well as searching and filtering tasks based on various criteria.
+ * The TaskManager class uses a TaskImpl object to interact with the underlying data storage.
+ */
 
 public class TaskManager {
 
@@ -23,39 +37,37 @@ public class TaskManager {
         taskImpl = new TaskImpl();
     }
 
-    // sort tasks
+    /**
+     * Sorts the tasks in ascending order based on their start dates.
+     */
     public void sort() {
-        // sort the tasks by start_date
         tasks.sort((Task t1, Task t2) -> t1.getStart_date().compareTo(t2.getStart_date()));
     }
 
-    // validate task
+    /**
+     * @param task
+     */
     public void validate(Task task) {
-        // check if the task is not null
         if (task == null) {
             throw new IllegalArgumentException("The task cannot be null.");
         }
-        // check if the title is not null
         if (task.getTitle() == null) {
             throw new IllegalArgumentException("The title cannot be null.");
         }
-        // check if the description is not null
         if (task.getDescription() == null) {
             throw new IllegalArgumentException("The description cannot be null.");
         }
-        // check if the start_date is not null and greater than the current date
-        // if (task.getStart_date() == null ||
-        // task.getStart_date().compareTo(new Date()) < 0) {
-        // throw new IllegalArgumentException("The start date cannot be null.");
-        // }
-        // // check if the end_date is not null and greater than the start_date
-        // if (task.getEnd_date() == null ||
-        // task.getEnd_date().compareTo(task.getStart_date()) < 0) {
-        // throw new IllegalArgumentException("The end date cannot be null.");
-        // }
     }
 
-    // add task with id project and id list to do
+    /**
+     * @param title
+     * @param description
+     * @param start_date
+     * @param end_date
+     * @param status
+     * @param id_project
+     * @param id_ListToDo
+     */
     public void createTask(
             String title,
             String description,
@@ -76,7 +88,6 @@ public class TaskManager {
         taskImpl.addTask(task);
     }
 
-    // add task with id project and without id list to do
     public void createTask(
             String title,
             String description,
@@ -110,19 +121,26 @@ public class TaskManager {
         }
     }
 
-    // update task
+    /**
+     * Updates the given task.
+     *
+     * @param task The task to be updated.
+     */
     public void updateTask(Task task) {
         validate(task);
         taskImpl.updateTask(task);
     }
 
-    // delete task
+    /**
+     * Removes a task with the specified ID.
+     *
+     * @param id the ID of the task to be removed
+     * @throws IllegalArgumentException if the ID is null or if the task does not exist
+     */
     public void removeTask(String id) {
-        // check if the id is not null
         if (id == null) {
             throw new IllegalArgumentException("The id cannot be null.");
         }
-        // check if the task exists
         Task task = taskImpl.getTaskById(id);
         if (task == null) {
             throw new IllegalArgumentException("The task does not exist.");
@@ -130,13 +148,13 @@ public class TaskManager {
         taskImpl.deleteTask(id);
     }
 
-    // get task by id
+    /**
+     * Represents a task in the project management system.
+     */
     public Task searchTaskById(String id) {
-        // check if the id is not null
         if (id == null) {
             throw new IllegalArgumentException("The id cannot be null.");
         }
-        // check if the task exists
         Task task = taskImpl.getTaskById(id);
         if (task == null) {
             throw new IllegalArgumentException("The task does not exist.");
@@ -144,18 +162,26 @@ public class TaskManager {
         return task;
     }
 
-    // get all tasks
+    /**
+     * Retrieves a list of all tasks.
+     *
+     * @return a list of Task objects representing all tasks.
+     */
     public List<Task> listTasks() {
         return taskImpl.getAllTasks();
     }
 
-    // get all tasks by id project
+    /**
+     * Retrieves a list of tasks associated with a specific project ID.
+     *
+     * @param id The ID of the project.
+     * @return A list of tasks associated with the specified project ID.
+     * @throws IllegalArgumentException If the provided project ID is null or if the project does not exist.
+     */
     public List<Task> listTasksByIdProject(String id) {
-        // check if the project is not null
         if (id == null) {
             throw new IllegalArgumentException("The id cannot be null.");
         }
-        // check if the project exists
         ProjectImpl projectImpl = new ProjectImpl();
         Project project1 = projectImpl.getProjectById(id);
         if (project1 == null) {
@@ -171,9 +197,14 @@ public class TaskManager {
         return tasks1;
     }
 
-    // get all tasks by id list to do
+    /**
+     * Retrieves a list of tasks based on the provided id of the list to do.
+     *
+     * @param id The id of the list to do.
+     * @return A list of tasks associated with the provided id.
+     * @throws IllegalArgumentException if the id is null.
+     */
     public List<Task> listTasksByIdListToDo(String id) {
-        // check if the id is not null
         if (id == null) {
             throw new IllegalArgumentException("The id cannot be null.");
         }
@@ -187,9 +218,14 @@ public class TaskManager {
         return tasks1;
     }
 
-    // get all tasks by status
+    /**
+     * Returns a list of tasks with the specified status.
+     *
+     * @param status the status of the tasks to retrieve
+     * @return a list of tasks with the specified status
+     * @throws IllegalArgumentException if the status is null
+     */
     public List<Task> listTasksByStatus(Status status) {
-        // check if the status is not null
         if (status == null) {
             throw new IllegalArgumentException("The status cannot be null.");
         }
@@ -203,9 +239,14 @@ public class TaskManager {
         return tasks1;
     }
 
-    // get all tasks by keyword
+    /**
+     * Searches for tasks that contain a specific keyword in their description.
+     *
+     * @param keyword the keyword to search for in task descriptions
+     * @return a list of tasks that contain the specified keyword in their description
+     * @throws IllegalArgumentException if the keyword is null
+     */
     public List<Task> searchTasksByKeyword(String keyword) {
-        // check if the keyword is not null
         if (keyword == null) {
             throw new IllegalArgumentException("The keyword cannot be null.");
         }
@@ -219,18 +260,29 @@ public class TaskManager {
         return tasks1;
     }
 
-    // filter tasks by status
+    /**
+     * Filters a list of tasks based on the specified status.
+     *
+     * @param tasks  the list of tasks to filter
+     * @param status the status to filter the tasks by
+     * @return a new list containing only the tasks with the specified status
+     * @throws IllegalArgumentException if the status is null
+     */
     public List<Task> filterTasksByStatus(List<Task> tasks, Status status) {
-        // check if the status is not null
         if (status == null) {
             throw new IllegalArgumentException("The status cannot be null.");
         }
         return tasks.stream().filter(task -> task.getStatus() == status).toList();
     }
 
-    // get all tasks by project category
+    /**
+     * Filters the tasks by the specified project category.
+     *
+     * @param category the category to filter the tasks by
+     * @return a list of tasks that belong to the specified category
+     * @throws IllegalArgumentException if the category is null
+     */
     public List<Task> filterTasksByProjectCategory(Category category) {
-        // check if the category is not null
         if (category == null) {
             throw new IllegalArgumentException("The category cannot be null.");
         }
@@ -246,9 +298,14 @@ public class TaskManager {
         return tasks1;
     }
 
-    // get all tasks by date
+    /**
+     * Filters the tasks based on the given date.
+     *
+     * @param date The date to filter the tasks by.
+     * @return A list of tasks that have the same start date as the given date.
+     * @throws IllegalArgumentException if the date is null.
+     */
     public List<Task> filterTasksByDate(Date date) {
-        // check if the date is not null
         if (date == null) {
             throw new IllegalArgumentException("The date cannot be null.");
         }
@@ -262,20 +319,23 @@ public class TaskManager {
         return tasks1;
     }
 
+    /**
+     * Retrieves a list of tasks that are scheduled for today.
+     *
+     * @return A list of tasks scheduled for today.
+     */
     public List<Task> getTasksOfToday() {
         List<Task> tasks = taskImpl.getAllTasks();
         List<Task> result = new ArrayList<>();
-        LocalDate today = LocalDate.now(); // Get the current date
+        LocalDate today = LocalDate.now();
 
         for (Task task : tasks) {
             Date startDate = task.getStart_date();
             Date endDate = task.getEnd_date();
 
-            // Convert Date to LocalDate
             LocalDate startLocalDate = startDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
             LocalDate endLocalDate = endDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
 
-            // Check if today is between start_date and end_date inclusive
             if ((startLocalDate.equals(today) || startLocalDate.isBefore(today)) &&
                     (endLocalDate.equals(today) || endLocalDate.isAfter(today))) {
                 result.add(task);
@@ -285,11 +345,4 @@ public class TaskManager {
         return result;
     }
 
-    public static void main(String[] args) {
-        TaskManager taskManager = new TaskManager();
-        List<Task> tasks = taskManager.getTasksOfToday();
-        for (Task task : tasks) {
-            System.out.println(task);
-        }
-    }
 }
