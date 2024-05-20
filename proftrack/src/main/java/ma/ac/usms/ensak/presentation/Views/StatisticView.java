@@ -31,10 +31,12 @@ public class StatisticView extends VBox {
     public StatisticView() {
         TotalHoursWork = new HBox();
         ProjectHoursWork = new HBox();
+        PercentageView piechart = new PercentageView();
+        TotalHoursWork.getChildren().add(piechart);
         initializeChart();
 
-        displayWorkHours();
-        this.getChildren().addAll(TotalHoursWork, ProjectHoursWork);
+        // displayWorkHours();
+        getChildren().addAll(TotalHoursWork, ProjectHoursWork);
     }
 
     private void initializeChart() {
@@ -65,12 +67,12 @@ public class StatisticView extends VBox {
         barChart2.setTitle("Number of Documents by Project");
         for (Project project : projects) {
             XYChart.Series series = new XYChart.Series();
-            series.setName(project.getTitle()());
+            series.setName(project.getTitle());
     
             int numberOfDocuments = getNumberOfDocumentsByProject(project.getId());
-            series.getData().add(new XYChart.Data(project.getTitle()(), numberOfDocuments));
+            series.getData().add(new XYChart.Data(project.getTitle(), numberOfDocuments));
     
-            barChart.getData().add(series);
+            barChart2.getData().add(series);
         }
     
         

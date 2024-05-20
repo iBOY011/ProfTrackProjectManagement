@@ -1,0 +1,33 @@
+.percentage-view {
+    -fx-padding: 10px;
+    -fx-spacing: 5px;
+}
+
+.label {
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+}
+
+.combo-box {
+    -fx-font-size: 14px;
+}
+
+.pie-chart {
+    -fx-pie-label-visible: true;
+    -fx-pie-label-color: white;
+}
+
+
+.hbox {
+    -fx-spacing: 10px;
+    -fx-alignment: center-left;
+}
+
+.label {
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+}
+
+.combo-box {
+    -fx-font-size: 14px;
+}

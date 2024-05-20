@@ -10,6 +10,11 @@ import ma.ac.usms.ensak.presentation.Views.VBoxes.DetailsBox;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.checkerframework.checker.units.qual.A;
+
+import ma.ac.usms.ensak.exception.*;
+
+
 
 import ma.ac.usms.ensak.metier.POJO.Document;
 import ma.ac.usms.ensak.metier.POJO.Task;
@@ -56,8 +61,8 @@ public class DetailsController {
         if (isProject) {
             detailsBox.getAddDocumentButton().setOnAction(e -> {
                 AddDocumentController addDocumentController = new AddDocumentController();
-                addDocumentController.addDocument();
-                addDocumentController.createView();
+                    addDocumentController.addDocument();
+                    addDocumentController.createView();
             });
         } else {
             detailsBox.getAddDocumentButton().setOnAction(e -> {
@@ -108,9 +113,22 @@ public class DetailsController {
 
     public static void deleteDocument(Boolean isProject , Task task) {
         detailsBox.getDeleteDocumentButton().setOnAction(e -> {
-            Document document = detailsBox.getDocumentList().getSelectionModel().getSelectedItem();
-            documentManager.deleteDocument(document.getId());
-            showDocument(isProject, task);
+            if (detailsBox.getDocumentList().getSelectionModel().getSelectedItem() == null) {
+                AlertHandler.showFailureAlert("Please select a document to delete");
+                return;
+            }
+            if (ConfirmationDialog.showConfirmationDialog("Are you sure you want to delete this document?")) {
+                Document document = detailsBox.getDocumentList().getSelectionModel().getSelectedItem();
+                try {
+                    documentManager.deleteDocument(document.getId());
+                    AlertHandler.showSuccessAlert("Document deleted successfully");
+                    showDocument(isProject, task);
+                } catch (Exception ex) {
+                    AlertHandler.showFailureAlert("Failed to delete document");
+                }
+            } else {
+                AlertHandler.showFailureAlert("Document deletion canceled");
+            }
         });
     }
 
@@ -136,8 +154,21 @@ public class DetailsController {
     private static void deleteWorkSession() {
         detailsBox.getWorkSessionBox().getDeleteButton().setOnAction(e -> {
             WorkSession workSession = detailsBox.getWorkSessionBox().getWorkSessionList().getSelectionModel().getSelectedItem();
-            workSessionManager.deleteWorkSession(workSession.getId());
-            showWorkSession();
+            if (workSession == null) {
+                AlertHandler.showFailureAlert("Please select a work session to delete");
+                return;
+                
+            } else if (!ConfirmationDialog.showConfirmationDialog("Are you sure you want to delete this work session?")) {
+                AlertHandler.showFailureAlert("Work session deletion canceled");
+                return;
+            }
+            try {
+                workSessionManager.deleteWorkSession(workSession.getId());
+                showWorkSession();
+                AlertHandler.showSuccessAlert("Work session deleted successfully");
+            } catch (Exception ex) {
+                AlertHandler.showFailureAlert("Work session deletion canceled");
+            }
         });
     }
 

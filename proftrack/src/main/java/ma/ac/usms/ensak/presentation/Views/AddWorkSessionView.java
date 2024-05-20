@@ -7,6 +7,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
+import ma.ac.usms.ensak.exception.*;
 import ma.ac.usms.ensak.metier.management.WorkSessionManager;
 import ma.ac.usms.ensak.presentation.controller.ControllerUtils;
 import ma.ac.usms.ensak.presentation.controller.ShowBoxController;
@@ -16,6 +17,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.Date;
+
 
 public class AddWorkSessionView {
     private VBox root;
@@ -78,7 +80,7 @@ public class AddWorkSessionView {
         LocalDate date = datePicker.getValue();
 
         if (description.isEmpty() || date == null || startTimePicker.getSelectedTime() == null || endTimePicker.getSelectedTime() == null){
-            // Show error message alerting the user to fill in all fields
+            AlertHandler.showFailureAlert("Please fill all fields");
             return;
         }
 
@@ -88,11 +90,19 @@ public class AddWorkSessionView {
         LocalDateTime startDateTime = LocalDateTime.of(date, startTime);
         LocalDateTime endDateTime = LocalDateTime.of(date, endTime);
 
+        if (!InputValidator.isValidDateRange(startDateTime, endDateTime)) {
+            return;
+        }
+
         Date convertedStartDate = ControllerUtils.convertLocalDateTimeToDate(startDateTime);
         Date convertedEndDate = ControllerUtils.convertLocalDateTimeToDate(endDateTime);
-
-        WorkSessionManager workSessionManager = new WorkSessionManager();
-        workSessionManager.createWorkSession(description, convertedStartDate, convertedEndDate, "", ShowBoxController.getIdProjectSelected());
+        try {
+            WorkSessionManager workSessionManager = new WorkSessionManager();
+            workSessionManager.createWorkSession(description, convertedStartDate, convertedEndDate, "", ShowBoxController.getIdProjectSelected());
+            AlertHandler.showSuccessAlert("Work session added successfully");
+        } catch (Exception ex) {
+            AlertHandler.showFailureAlert("Failed to add work session");
+        }
 
         // Optionally, you can reset fields after adding the work session
         descriptionTextArea.clear();

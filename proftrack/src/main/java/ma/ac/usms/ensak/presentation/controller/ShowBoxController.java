@@ -20,6 +20,7 @@ import ma.ac.usms.ensak.metier.management.TaskManager;
 import ma.ac.usms.ensak.presentation.Views.VBoxes.ShowBox;
 import ma.ac.usms.ensak.util.Category;
 import ma.ac.usms.ensak.util.ListItem;
+import ma.ac.usms.ensak.exception.*;
 
 /**
  * The ShowBoxController class is responsible for managing the display and
@@ -192,11 +193,17 @@ public class ShowBoxController {
             ListItem selectedItem = listView.getSelectionModel().getSelectedItem();
             if (selectedItem != null) {
                 if (FLAG) {
-                    listToDoManager.removeListToDo(selectedItem.getId());
-                    showList(showBox.getList());
+                    if (ConfirmationDialog.showConfirmationDialog("Are you sure you want to delete this list?")) {
+                        listToDoManager.removeListToDo(selectedItem.getId());
+                        showList(showBox.getList());
+                        AlertHandler.showSuccessAlert("List deleted successfully");
+                    }
                 } else {
+                    if (ConfirmationDialog.showConfirmationDialog("Are you sure you want to delete this Project?")) {
                     projectManager.removeProject(selectedItem.getId());
                     showProject(showBox.getProject());
+                    AlertHandler.showSuccessAlert("Project deleted successfully");
+                    }
                 }
             }
         };
@@ -205,9 +212,16 @@ public class ShowBoxController {
         EventHandler<ActionEvent> archiveHandler = e -> {
             ListItem selectedItem = listView.getSelectionModel().getSelectedItem();
             if (selectedItem != null) {
-                Project project = projectManager.searchProjectById(selectedItem.getId());
-                projectManager.archiveProject(project);
-                showProject(showBox.getProject());
+                if (ConfirmationDialog.showConfirmationDialog("Are you sure you want to archive this project?")) {
+                    try {
+                        Project project = projectManager.searchProjectById(selectedItem.getId());
+                        projectManager.archiveProject(project);
+                        showProject(showBox.getProject());
+                        AlertHandler.showSuccessAlert("Project archived successfully");
+                    } catch (Exception ex) {
+                        AlertHandler.showFailureAlert("Failed to archive project");
+                    }
+                }
             }
         };
 

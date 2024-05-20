@@ -8,6 +8,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
+import ma.ac.usms.ensak.exception.AlertHandler;
 import ma.ac.usms.ensak.metier.POJO.ListToDo;
 import ma.ac.usms.ensak.metier.POJO.Project;
 import ma.ac.usms.ensak.metier.POJO.Task;
@@ -33,16 +34,22 @@ public class TodayBoxController {
 
         // Add the TodayBox to the SharedData
         SharedData.getInstance().setTodayBoxController(this);
-        
+
         todayBox.getShowListOfToday().setOnMouseClicked(e -> {
-            if (!isListDisplayed) { 
+            if (!isListDisplayed) {
                 List<Task> tasks = taskManager.getTasksOfToday();
                 for (Task t : tasks) {
                     CheckBox checkBox = new CheckBox();
                     checkBox.setStyle("-fx-cursor: hand; -fx-font-size: 14px;");
                     checkBox.setOnAction(s -> {
-                        t.setStatus(Status.DONE);
-                        taskManager.updateTask(t);
+                        try {
+                            t.setStatus(Status.DONE);
+                            taskManager.updateTask(t);
+                            AlertHandler.getFinishedTaskSentence();
+                            // add a normaly cathc block
+                        } catch (Exception h) {
+                            AlertHandler.showFailureAlert("Task not finished");
+                        }
                         checkBox.setDisable(true);
                     });
                     if (t.getStatus() == Status.DONE) {
@@ -81,8 +88,13 @@ public class TodayBoxController {
                     CheckBox checkBox = new CheckBox();
                     checkBox.setStyle("-fx-cursor: hand; -fx-font-size: 14px;");
                     checkBox.setOnAction(s -> {
-                        t.setStatus(Status.DONE);
-                        taskManager.updateTask(t);
+                        try {
+                            t.setStatus(Status.DONE);
+                            taskManager.updateTask(t);
+                            AlertHandler.getFinishedTaskSentence();
+                        } catch (Exception h) {
+                            AlertHandler.showFailureAlert("Task not finished");
+                        }
                         checkBox.setDisable(true);
                     });
                     if (t.getStatus() == Status.DONE) {
