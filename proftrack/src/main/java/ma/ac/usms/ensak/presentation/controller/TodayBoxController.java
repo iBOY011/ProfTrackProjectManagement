@@ -45,7 +45,7 @@ public class TodayBoxController {
                         try {
                             t.setStatus(Status.DONE);
                             taskManager.updateTask(t);
-                            AlertHandler.getFinishedTaskSentence();
+                            AlertHandler.showSuccessAlert(AlertHandler.getFinishedTaskSentence());
                             // add a normaly cathc block
                         } catch (Exception h) {
                             AlertHandler.showFailureAlert("Task not finished");
@@ -91,7 +91,7 @@ public class TodayBoxController {
                         try {
                             t.setStatus(Status.DONE);
                             taskManager.updateTask(t);
-                            AlertHandler.getFinishedTaskSentence();
+                            AlertHandler.showSuccessAlert(AlertHandler.getFinishedTaskSentence());
                         } catch (Exception h) {
                             AlertHandler.showFailureAlert("Task not finished");
                         }

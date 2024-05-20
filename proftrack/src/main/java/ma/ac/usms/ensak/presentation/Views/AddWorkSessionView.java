@@ -90,9 +90,9 @@ public class AddWorkSessionView {
         LocalDateTime startDateTime = LocalDateTime.of(date, startTime);
         LocalDateTime endDateTime = LocalDateTime.of(date, endTime);
 
-        if (!InputValidator.isValidDateRange(startDateTime, endDateTime)) {
-            return;
-        }
+        // if (!InputValidator.isValidDateRange(startDateTime, endDateTime)) {
+        //     return;
+        // }
 
         Date convertedStartDate = ControllerUtils.convertLocalDateTimeToDate(startDateTime);
         Date convertedEndDate = ControllerUtils.convertLocalDateTimeToDate(endDateTime);

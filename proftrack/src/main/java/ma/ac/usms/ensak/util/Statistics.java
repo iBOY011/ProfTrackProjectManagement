@@ -37,7 +37,7 @@ public class Statistics {
         final int[] TotalHours = {0};
         WorkSessionManager workSessionManager = new WorkSessionManager();
         workSessionManager.getAllWorkSessions().forEach(workSession -> {
-            if (workSession.getDateDebut().after(start) && workSession.getDateFin().before(end)) {
+            if (workSession.getDateDebut().after(start) && workSession.getDateFin().before(end) || workSession.getDateDebut().equals(start) || workSession.getDateFin().equals(end) ){
                 long durationMillis = workSession.getDateFin().getTime() - workSession.getDateDebut().getTime();
                 int durationHours = (int) (durationMillis / (1000 * 60 * 60)); // Convert milliseconds to hours
                 TotalHours[0] += durationHours;

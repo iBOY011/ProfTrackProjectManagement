@@ -91,7 +91,7 @@ public class TaskController {
             try {
                 task.setStatus(Status.DONE);
                 taskManager.updateTask(task);
-                AlertHandler.getFinishedTaskSentence();
+                AlertHandler.showSuccessAlert(AlertHandler.getFinishedTaskSentence());
             } catch (Exception h) {
                 AlertHandler.showFailureAlert("Task not finished");
             }

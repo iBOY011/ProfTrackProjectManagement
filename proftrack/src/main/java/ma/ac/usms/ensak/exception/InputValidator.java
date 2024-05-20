@@ -19,7 +19,7 @@ public class InputValidator {
         if ( startDate.isBefore(LocalDateTime.now())) {
             AlertHandler.showInvalidStartDateAlert();
             return false;
-        } else if (startDate.isAfter(endDate) || startDate.isEqual(endDate)) {
+        } else if (startDate.isAfter(endDate)) {
             AlertHandler.showInvalidDateAlert();
             return false;
             
@@ -36,7 +36,7 @@ public class InputValidator {
         if (StaetDate.before(new Date())) {
             AlertHandler.showInvalidStartDateAlert();
             return false;
-        } else if (StaetDate.after(EndDate) || StaetDate.equals(EndDate)) {
+        } else if (StaetDate.after(EndDate)) {
             AlertHandler.showInvalidDateAlert();
             return false;
         }
