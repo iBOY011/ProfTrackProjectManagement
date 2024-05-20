@@ -25,7 +25,7 @@ public class StatisticView extends VBox {
     private HBox TotalHoursWork;
     private HBox ProjectHoursWork;
     private BarChart<String, Number> barChart1;
-    private BarChart<String, Number> barChart2;
+    // private BarChart<String, Number> barChart2;
     private XYChart.Series series;
 
     public StatisticView() {
@@ -34,7 +34,6 @@ public class StatisticView extends VBox {
         PercentageView piechart = new PercentageView();
         TotalHoursWork.getChildren().add(piechart);
         initializeChart();
-
         // displayWorkHours();
         getChildren().addAll(TotalHoursWork, ProjectHoursWork);
     }
@@ -64,16 +63,16 @@ public class StatisticView extends VBox {
 
         barChart1.getData().addAll(series);
 
-        barChart2.setTitle("Number of Documents by Project");
-        for (Project project : projects) {
-            XYChart.Series series = new XYChart.Series();
-            series.setName(project.getTitle());
+        // barChart2.setTitle("Number of Documents by Project");
+        // for (Project project : projects) {
+        //     XYChart.Series series = new XYChart.Series();
+        //     series.setName(project.getTitle());
     
-            int numberOfDocuments = getNumberOfDocumentsByProject(project.getId());
-            series.getData().add(new XYChart.Data(project.getTitle(), numberOfDocuments));
+        //     int numberOfDocuments = getNumberOfDocumentsByProject(project.getId());
+        //     series.getData().add(new XYChart.Data(project.getTitle(), numberOfDocuments));
     
-            barChart2.getData().add(series);
-        }
+        //     barChart2.getData().add(series);
+        // }
     
         
         
@@ -123,22 +122,22 @@ public class StatisticView extends VBox {
         return getTotalWorkHoursByDate(startOfYear, endOfYear);
     }
 
-    public void displayWorkHours() {
-        ListView<String> listView = new ListView<>();
+    // public void displayWorkHours() {
+    //     ListView<String> listView = new ListView<>();
 
-        Date now = new Date();
-        int hoursThisWeek = getTotalWorkHoursByWeek(now);
-        int hoursThisMonth = getTotalWorkHoursByMonth(now);
-        int hoursThisYear = getTotalWorkHoursByYear(now);
+    //     Date now = new Date();
+    //     int hoursThisWeek = getTotalWorkHoursByWeek(now);
+    //     int hoursThisMonth = getTotalWorkHoursByMonth(now);
+    //     int hoursThisYear = getTotalWorkHoursByYear(now);
 
-        ObservableList<String> items = FXCollections.observableArrayList(
-                "Hours this week: " + hoursThisWeek,
-                "Hours this month: " + hoursThisMonth,
-                "Hours this year: " + hoursThisYear);
+    //     ObservableList<String> items = FXCollections.observableArrayList(
+    //             "Hours this week: " + hoursThisWeek,
+    //             "Hours this month: " + hoursThisMonth,
+    //             "Hours this year: " + hoursThisYear);
 
-        listView.setItems(items);
+    //     listView.setItems(items);
 
-        ProjectHoursWork.getChildren().add(listView);
-    }
+    //     ProjectHoursWork.getChildren().add(listView);
+    // }
 
 }

@@ -97,7 +97,7 @@ public class PercentageView extends VBox {
         }
 
         pieChart.setData(pieChartData);
-
+        
         // Show percentage labels on pie chart slices
     }
 
