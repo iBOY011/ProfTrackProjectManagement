@@ -1,5 +1,6 @@
 package ma.ac.usms.ensak.presentation.controller;
 
+import ma.ac.usms.ensak.presentation.Views.CalendarViewMajidi;
 import ma.ac.usms.ensak.presentation.Views.FullCalendarView;
 import ma.ac.usms.ensak.presentation.Views.HomeView;
 import ma.ac.usms.ensak.presentation.Views.ParametreView;
@@ -36,6 +37,7 @@ public class HomeController {
         showCalendar();
         showStatistics();
         showSettings();
+        showHome();
     }
 
     /**
@@ -86,6 +88,13 @@ public class HomeController {
         navbar.getSettingsButton().setOnAction(e -> {
             ParametreView parametreView = new ParametreView(homeView.getScene().getWindow());
             homeView.setCenter(parametreView);
+        });
+    }
+
+    public void showHome() {
+        navbar.getUserEmailButton().setOnAction(e -> {
+            CalendarViewMajidi calendarViewMajidi = new CalendarViewMajidi();
+            homeView.setCenter(calendarViewMajidi);
         });
     }
 
