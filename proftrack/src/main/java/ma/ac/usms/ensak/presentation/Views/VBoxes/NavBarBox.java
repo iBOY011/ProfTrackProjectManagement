@@ -95,11 +95,12 @@ public class NavBarBox extends VBox {
     public Button getSettingsButton() {
         return SettingsButton;
     }
-    
-    public Button getStatisticsButton() {
-        return StatisticsButton;
-    }
+
     public HBox getStatistics() {
         return Statistics;
+    }
+
+    public Button getStatisticsButton() {
+        return StatisticsButton;
     }
 }
