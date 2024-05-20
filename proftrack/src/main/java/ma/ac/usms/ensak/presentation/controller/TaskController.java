@@ -21,11 +21,13 @@ import ma.ac.usms.ensak.metier.management.TaskManager;
 import ma.ac.usms.ensak.presentation.Views.AddTaskConfigurationView;
 import ma.ac.usms.ensak.presentation.Views.TasksView;
 import ma.ac.usms.ensak.util.Status;
+import ma.ac.usms.ensak.exception.*;
+
 
 public class TaskController {
     private static final TaskController instance = new TaskController();
     private final TaskManager taskManager = new TaskManager();
-    private final TasksView tasksView = new TasksView();
+    private TasksView tasksView = new TasksView();
     private List<Task> tasks;
     private String status = "All";
 
@@ -86,13 +88,19 @@ public class TaskController {
         CheckBox checkBox = new CheckBox();
         checkBox.setStyle("-fx-cursor: hand; -fx-font-size: 14px;");
         checkBox.setOnAction(e -> {
-            task.setStatus(Status.DONE);
-            taskManager.updateTask(task);
+            try {
+                task.setStatus(Status.DONE);
+                taskManager.updateTask(task);
+                AlertHandler.getFinishedTaskSentence();
+            } catch (Exception h) {
+                AlertHandler.showFailureAlert("Task not finished");
+            }
             filterTasksByStatus(isList);
         });
         if (task.getStatus() == Status.DONE) {
             checkBox.setSelected(true);
             checkBox.setDisable(true);
+
         }
         Button button = new Button(task.getTitle());
         button.setOnAction(e -> {
@@ -115,6 +123,17 @@ public class TaskController {
         disableChoiceBoxes(addTaskView);
 
         addTaskView.getSubmitButton().setOnAction(e -> {
+            try {
+                if (!InputValidator.isValidDate(ControllerUtils.convertToDate(addTaskView.getStartDatePicker().getValue()), ControllerUtils.convertToDate(addTaskView.getEndDatePicker().getValue()))){
+                    return;
+                } else if (addTaskView.getDescriptionTextField().getText().isEmpty()){
+                    AlertHandler.showFailureAlert("Please fill all fields");
+                    return;
+                }
+            } catch (NullPointerException ex) {
+                AlertHandler.showFailureAlert("Please enter a valid date.");
+                return;
+            }
             taskManager.createTask(
                     tasksView.getAddTask().getText(),
                     addTaskView.getDescriptionTextField().getText(),
@@ -136,6 +155,17 @@ public class TaskController {
         disableChoiceBoxes(addTaskView);
 
         addTaskView.getSubmitButton().setOnAction(e -> {
+            try {
+                if (!InputValidator.isValidDate(ControllerUtils.convertToDate(addTaskView.getStartDatePicker().getValue()), ControllerUtils.convertToDate(addTaskView.getEndDatePicker().getValue()))){
+                    return;
+                } else if (addTaskView.getDescriptionTextField().getText().isEmpty()){
+                    AlertHandler.showFailureAlert("Please fill all fields");
+                    return;
+                }
+            } catch (NullPointerException ex) {
+                AlertHandler.showFailureAlert("Please enter a valid date.");
+                return;
+            }
             taskManager.createTask(
                     tasksView.getAddTask().getText(),
                     addTaskView.getDescriptionTextField().getText(),

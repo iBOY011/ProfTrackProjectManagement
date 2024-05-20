@@ -12,11 +12,14 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
+import ma.ac.usms.ensak.exception.AlertHandler;
+import ma.ac.usms.ensak.exception.InputValidator;
 import ma.ac.usms.ensak.metier.POJO.Project;
 import ma.ac.usms.ensak.util.Category;
 import ma.ac.usms.ensak.util.Type;
 
 import java.util.Date;
+
 
 public class AddProjectView {
 
@@ -116,13 +119,26 @@ public class AddProjectView {
     public Project getProjectFromFields() {
         String title = titleField.getText();
         String description = descriptionField.getText();
-        Date startDate = java.sql.Date.valueOf(startDatePicker.getValue());
-        Date endDate = java.sql.Date.valueOf(endDatePicker.getValue());
         Category category = categoryComboBox.getValue();
         Type type = typeComboBox.getValue();
-        // Extract other fields similarly...
+        Date endDate = new Date();
+        Date startDate = new Date();
+        
+        if (title.isEmpty() || description.isEmpty() || endDatePicker.getValue() == null || startDatePicker.getValue() == null){
+            return null;
+        }
+        try {
+            endDate = java.sql.Date.valueOf(endDatePicker.getValue());
+            startDate = java.sql.Date.valueOf(startDatePicker.getValue());
+        } catch (Exception e) {
+            AlertHandler.showFailureAlert( "Please enter a valid date.");
+            return null;
+        }
 
-        // Create and return Project object
+        if (!InputValidator.isValidDate(startDate, endDate)) {
+            return null;
+            
+        }
         return new Project(title, description, startDate, endDate, category, type, false);
     }
 

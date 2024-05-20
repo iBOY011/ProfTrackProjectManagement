@@ -5,6 +5,9 @@ import ma.ac.usms.ensak.metier.management.DocumentManager;
 import ma.ac.usms.ensak.metier.management.ProjectManager;
 
 import java.util.Date;
+
+import org.checkerframework.checker.units.qual.s;
+
 import ma.ac.usms.ensak.metier.management.WorkSessionManager;
 
 public class Statistics {
@@ -47,13 +50,13 @@ public class Statistics {
     public int getPercentageOfWorkHoursByCategory(Category category, Date start, Date end) {
         int totalHours = getTotalWorkHoursByDate(start, end);
         if (totalHours == 0) {
-            return 0; // Avoid division by zero
+            return 0; 
         }
 
         final int[] TotalHoursByCategory = {0};
         ProjectManager projectManager = new ProjectManager();
         projectManager.listProjects().forEach(project -> {
-            if (project.getCategory().equals(category) && project.getStart_date().after(start) && project.getEnd_date().before(end)){
+            if (project.getCategory().equals(category)){
                 TotalHoursByCategory[0] += getTotalWorkHoursByProject(project.getId());
             }
         });
@@ -63,26 +66,18 @@ public class Statistics {
     public int getPercentageOfWorkHoursByType(Type type, Date start, Date end) {
         int totalHours = getTotalWorkHoursByDate(start, end);
         if (totalHours == 0) {
-            return 0; // Avoid division by zero
+            return 0;
         }
 
         final int[] TotalHoursByType = {0};
         ProjectManager projectManager = new ProjectManager();
         projectManager.listProjects().forEach(project -> {
-            if ((project.getType() == type) && project.getStart_date().after(start) && project.getEnd_date().before(end)){
+            if ((project.getType() == type)){
                 TotalHoursByType[0] += getTotalWorkHoursByProject(project.getId());
             }
         });
         return (TotalHoursByType[0] * 100) / totalHours;
     }
 
-    public static void main(String[] args) {
-        Statistics statistics = new Statistics();
-        System.out.println(statistics.getTotalWorkHoursByProject("9776c3ee-6899-482b-bf96-bc8363556b52"));
-        System.out.println(statistics.getNumberOfDocumentsByProject("9776c3ee-6899-482b-bf96-bc8363556b52"));
-        System.out.println(statistics.getTotalWorkHoursByDate(new Date(2024 - 1900, 0, 1), new Date(2025 - 1900, 11, 31))); // Adjusting Date constructor
-        System.out.println(statistics.getPercentageOfWorkHoursByCategory(Category.ACADEMIC, new Date(2024 - 1900, 0, 1), new Date(2025 - 1900, 11, 31)));
-        System.out.println(statistics.getPercentageOfWorkHoursByType(Type.PFE, new Date(2024 - 1900, 0, 1), new Date(2025 - 1900, 11, 31)));
-    }
 
 }

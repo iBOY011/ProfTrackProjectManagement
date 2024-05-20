@@ -4,6 +4,7 @@ package ma.ac.usms.ensak.presentation.controller;
 
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import ma.ac.usms.ensak.exception.AlertHandler;
 import ma.ac.usms.ensak.metier.management.ListToDoManager;
 import ma.ac.usms.ensak.presentation.Views.AddListView;
 
@@ -21,13 +22,20 @@ public class AddListController {
             addListView.getSubmitButton().setOnAction(e -> {
                 String title = addListView.getNameField().getText();
                 String description = addListView.getDescriptionArea().getText();
+                if (title.isEmpty() || description.isEmpty()){
+                    AlertHandler.showFailureAlert("Please fill all fields");
+                    return;
+                }
                 listToDoManager.createListToDo(title, description);
                 addListView.getNameField().clear();
                 addListView.getDescriptionArea().clear();
                 ShowBoxController.showList(ShowBoxController.getList());
+                AlertHandler.showSuccessAlert("List added successfully");
+                addListView.getScene().getWindow().hide();
             });
             return true;
         } catch (Exception e) {
+            AlertHandler.showFailureAlert("List not added");
             return false;
         }
     }
