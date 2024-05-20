@@ -1,3 +1,7 @@
+/**
+ * The TaskController class is responsible for managing tasks in the application.
+ * It handles the creation, display, and manipulation of tasks.
+ */
 package ma.ac.usms.ensak.presentation.controller;
 
 import java.util.List;
@@ -196,7 +200,6 @@ public class TaskController {
             }
         };
 
-        // Event handler for archive item (only for projects)
         EventHandler<ActionEvent> updateHandler = e -> {
             UpdateTaskController.getInstance().updateShow(t, isList);
         };
