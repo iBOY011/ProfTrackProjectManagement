@@ -9,106 +9,117 @@ import ma.ac.usms.ensak.metier.POJO.WorkSession;
 import ma.ac.usms.ensak.persistance.impl.ProjectImpl;
 import ma.ac.usms.ensak.persistance.impl.WorkSessionImpl;
 
+/**
+ * The WorkSessionManager class manages work sessions and provides various operations related to work sessions.
+ */
 public class WorkSessionManager {
     private List<WorkSession> workSessions;
     private WorkSessionImpl workSessionImpl;
 
+    /**
+     * Constructs a new WorkSessionManager object.
+     */
     public WorkSessionManager() {
         workSessions = new ArrayList<WorkSession>();
         workSessionImpl = new WorkSessionImpl();
     }
 
-    // sort work sessions
+    /**
+     * Sorts the work sessions by dateDebut.
+     */
     public void sort() {
-        // sort the work sessions by dateDebut
         workSessions.sort((WorkSession ws1, WorkSession ws2) -> ws1.getDateDebut().compareTo(ws2.getDateDebut()));
     }
 
-    // validate work session
+    /**
+     * Validates a work session.
+     *
+     * @param workSession The work session to validate.
+     * @throws IllegalArgumentException If the work session is null or if the description is null.
+     */
     public void validate(WorkSession workSession) {
-        // check if the work session is not null
         if (workSession == null) {
             throw new IllegalArgumentException("The work session cannot be null.");
         }
-        // check if the description is not null
         if (workSession.getDescription() == null) {
             throw new IllegalArgumentException("The description cannot be null.");
         }
-        // check if the dateDebut is not null and greater than the current date
-        // if (workSession.getDateDebut() == null ||
-        //         workSession.getDateDebut().compareTo(new Date()) < 0) {
-        //     throw new IllegalArgumentException("The start date cannot be null.");
-        // }
-        // // check if the dateFin is not null and greater than the dateDebut
-        // if (workSession.getDateFin() == null ||
-        //         workSession.getDateFin().compareTo(workSession.getDateDebut()) < 0) {
-        //     throw new IllegalArgumentException("The end date cannot be null.");
-        // }
-        // // check if start date and end date in the same day
-        // if (workSession.getDateDebut().compareTo(workSession.getDateFin()) == 0) {
-        //     throw new IllegalArgumentException("The start date and end date cannot be the same.");
-        // }
     }
 
-    // add work session with id project
-    public void createWorkSession(
-            String description,
-            Date dateDebut,
-            Date dateFin,
-            String note,
-            String id_project) {
-        // create a new work session
+    /**
+     * Creates a new work session with the given parameters and adds it to the database.
+     *
+     * @param description The description of the work session.
+     * @param dateDebut   The start date of the work session.
+     * @param dateFin     The end date of the work session.
+     * @param note        The note of the work session.
+     * @param id_project  The ID of the project associated with the work session.
+     */
+    public void createWorkSession(String description, Date dateDebut, Date dateFin, String note, String id_project) {
         WorkSession workSession = new WorkSession(description, dateDebut, dateFin, note, id_project);
-        // validate the work session
         validate(workSession);
-        // add the work session to the database
         workSessionImpl.addWorkSession(workSession);
     }
 
-    // update work session
+    /**
+     * Updates a work session in the database.
+     *
+     * @param workSession The work session to update.
+     */
     public void updateWorkSession(WorkSession workSession) {
-        // validate the work session
         validate(workSession);
-        // update the work session in the database
         workSessionImpl.updateWorkSession(workSession);
     }
 
-    // delete work session
+    /**
+     * Deletes a work session from the database.
+     *
+     * @param idworkSession The ID of the work session to delete.
+     * @throws IllegalArgumentException If the ID of the work session is null.
+     */
     public void deleteWorkSession(String idworkSession) {
-        // check if idworkSession is not null
         if (idworkSession == null) {
             throw new IllegalArgumentException("The ID of the work session cannot be null.");
         }
-        // delete the work session from the database
         workSessionImpl.deleteWorkSession(idworkSession);
     }
 
-    // get work session by ID
+    /**
+     * Searches for a work session by its ID.
+     *
+     * @param idworkSession The ID of the work session to search for.
+     * @return The work session with the specified ID, or null if not found.
+     * @throws IllegalArgumentException If the ID of the work session is null.
+     */
     public WorkSession searchWorkSessionById(String idworkSession) {
-        // check if idworkSession is not null
         if (idworkSession == null) {
             throw new IllegalArgumentException("The ID of the work session cannot be null.");
         }
-        // get the work session from the database
         return workSessionImpl.getWorkSessionById(idworkSession);
     }
 
-    // get all work sessions
+    /**
+     * Retrieves all work sessions from the database.
+     *
+     * @return A list of all work sessions.
+     */
     public List<WorkSession> getAllWorkSessions() {
-        // get all work sessions from the database
         return workSessionImpl.getAllSeancesTravail();
     }
 
-    // get work sessions by project ID
+    /**
+     * Retrieves work sessions by project ID.
+     *
+     * @param Id The ID of the project.
+     * @return A list of work sessions associated with the specified project ID.
+     * @throws IllegalArgumentException If the project ID is null.
+     */
     public List<WorkSession> listWorkSessionsByIdProject(String Id) {
-        // check if the project is not null
         if (Id == null) {
             throw new IllegalArgumentException("The project cannot be null.");
         }
-        // get all work sessions from the database
         List<WorkSession> workSessions = workSessionImpl.getAllSeancesTravail();
         List<WorkSession> workSessionsByIdProject = new ArrayList<WorkSession>();
-        // get the work sessions by project ID
         for (WorkSession workSession : workSessions) {
             if (workSession.getId_project().equals(Id)) {
                 workSessionsByIdProject.add(workSession);
@@ -117,16 +128,19 @@ public class WorkSessionManager {
         return workSessionsByIdProject;
     }
 
-    // get work sessions by project date
+    /**
+     * Filters work sessions by date.
+     *
+     * @param date The date to filter work sessions by.
+     * @return A list of work sessions that fall within the specified date range.
+     * @throws IllegalArgumentException If the date is null.
+     */
     public List<WorkSession> filterWorkSessionsByDate(Date date) {
-        // check if the date is not null
         if (date == null) {
             throw new IllegalArgumentException("The date cannot be null.");
         }
-        // get all work sessions from the database
         List<WorkSession> workSessions = workSessionImpl.getAllSeancesTravail();
         List<WorkSession> workSessionsByDate = new ArrayList<WorkSession>();
-        // get the work sessions by date
         for (WorkSession workSession : workSessions) {
             if (workSession.getDateDebut().compareTo(date) <= 0 &&
                     workSession.getDateFin().compareTo(date) >= 0) {
@@ -136,16 +150,19 @@ public class WorkSessionManager {
         return workSessionsByDate;
     }
 
-    // get work sessions by project category
+    /**
+     * Filters work sessions by project category.
+     *
+     * @param category The category to filter work sessions by.
+     * @return A list of work sessions that belong to projects with the specified category.
+     * @throws IllegalArgumentException If the category is null.
+     */
     public List<WorkSession> filterWorkSessionsByProjectCategory(String category) {
-        // check if the category is not null
         if (category == null) {
             throw new IllegalArgumentException("The category cannot be null.");
         }
-        // get all work sessions from the database
         List<WorkSession> workSessions = workSessionImpl.getAllSeancesTravail();
         List<WorkSession> workSessionsByProjectCategory = new ArrayList<WorkSession>();
-        // get the work sessions by project category
         for (WorkSession workSession : workSessions) {
             ProjectImpl projectImpl = new ProjectImpl();
             Project project = projectImpl.getProjectById(workSession.getId_project());
@@ -155,5 +172,4 @@ public class WorkSessionManager {
         }
         return workSessionsByProjectCategory;
     }
-
 }
