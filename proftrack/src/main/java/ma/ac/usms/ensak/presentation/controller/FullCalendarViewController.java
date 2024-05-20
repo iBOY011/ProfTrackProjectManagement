@@ -21,7 +21,8 @@ public class FullCalendarViewController {
 
     /**
      * Constructs a FullCalendarViewController object.
-     * Initializes the FullCalendarView and sets up event handlers for previous and next month buttons.
+     * Initializes the FullCalendarView and sets up event handlers for previous and
+     * next month buttons.
      */
     public FullCalendarViewController() {
 
@@ -36,7 +37,8 @@ public class FullCalendarViewController {
 
     /**
      * Handles the action when the previous month button is clicked.
-     * Updates the currentYearMonth to the previous month and updates the calendar view.
+     * Updates the currentYearMonth to the previous month and updates the calendar
+     * view.
      */
     private void previousMonth() {
         currentYearMonth = currentYearMonth.minusMonths(1);
@@ -58,6 +60,7 @@ public class FullCalendarViewController {
 
     /**
      * Gets the FullCalendarView object associated with this controller.
+     * 
      * @return The FullCalendarView object.
      */
     public FullCalendarView getFullCalendarView() {
@@ -65,7 +68,8 @@ public class FullCalendarViewController {
     }
 
     /**
-     * Initializes the FullCalendarView by retrieving the list of tasks from the TaskManager
+     * Initializes the FullCalendarView by retrieving the list of tasks from the
+     * TaskManager
      * and adding them to the calendar view.
      */
     public void initialize() {
@@ -83,9 +87,10 @@ public class FullCalendarViewController {
 
     /**
      * Adds a task to the FullCalendarView for a specific date.
-     * @param date The date of the task.
+     * 
+     * @param date      The date of the task.
      * @param taskTitle The title of the task.
-     * @param idTask The ID of the task.
+     * @param idTask    The ID of the task.
      */
     public void addTask(LocalDate date, String taskTitle, String idTask) {
         fullCalendarView.addTask(date, taskTitle, idTask);
@@ -93,10 +98,11 @@ public class FullCalendarViewController {
 
     /**
      * Adds a multi-day task to the FullCalendarView.
+     * 
      * @param startDate The start date of the task.
-     * @param endDate The end date of the task.
+     * @param endDate   The end date of the task.
      * @param taskTitle The title of the task.
-     * @param idTask The ID of the task.
+     * @param idTask    The ID of the task.
      */
     public void addMultiDayTask(LocalDate startDate, LocalDate endDate, String taskTitle, String idTask) {
         fullCalendarView.addMultiDayTask(startDate, endDate, taskTitle, idTask);
