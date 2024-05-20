@@ -10,6 +10,8 @@ public class StatisticView extends VBox{
     public StatisticView() {
         TotalHoursWork = new HBox();
         ProjectHoursWork = new HBox();
+        PercentageView piechart = new PercentageView();
+        TotalHoursWork.getChildren().add(piechart);
         getChildren().addAll(TotalHoursWork, ProjectHoursWork);
     }
 

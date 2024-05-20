@@ -3,6 +3,7 @@ package ma.ac.usms.ensak.presentation.controller;
 
 import ma.ac.usms.ensak.presentation.Views.FullCalendarView;
 import ma.ac.usms.ensak.presentation.Views.HomeView;
+import ma.ac.usms.ensak.presentation.Views.StatisticView;
 import ma.ac.usms.ensak.presentation.Views.TodayView;
 import ma.ac.usms.ensak.presentation.Views.VBoxes.NavBarBox;
 
@@ -11,6 +12,7 @@ public class HomeController {
     private static HomeView homeView;
     private static NavBarBox navbar = new NavBarBox();
     private static TodayView todayView = new TodayView();
+    private static StatisticView statisticView = new StatisticView();
     private static FullCalendarViewController fullcalendarviewcontroller = new FullCalendarViewController();
     private static FullCalendarView fullcalendarView = fullcalendarviewcontroller.getFullCalendarView();
     private static HomeController homeController;
@@ -25,6 +27,7 @@ public class HomeController {
         homeView.setCenter(todayView);
         showToday();
         showCalendar();
+        showStatistic();
     }
 
     public void showCalendar() {
@@ -39,6 +42,12 @@ public class HomeController {
     public void showToday() {
         navbar.getTasksButton().setOnAction(e -> {
             homeView.setCenter(todayView);
+        });
+    }
+
+    public void showStatistic() {
+        navbar.getStatisticsButton().setOnAction(e ->{
+            homeView.setCenter(statisticView);
         });
     }
 

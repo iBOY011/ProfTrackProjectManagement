@@ -2,8 +2,12 @@ package ma.ac.usms.ensak.presentation.controller;
 
 import java.util.Date;
 
+import org.checkerframework.checker.units.qual.A;
+
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import ma.ac.usms.ensak.exception.AlertHandler;
+import ma.ac.usms.ensak.exception.InputValidator;
 import ma.ac.usms.ensak.metier.management.TaskManager;
 import ma.ac.usms.ensak.presentation.Views.AddTaskConfigurationView;
 import ma.ac.usms.ensak.util.SharedData;
@@ -55,40 +59,50 @@ public class AddTaskConfigurationViewController {
     private void handleTaskCreation() {
         TodayBoxController todayBoxController = SharedData.getInstance().getTodayBoxController();
         TaskManager taskManager = new TaskManager();
-        if (idProject == null) {
-            taskManager.createTask(
-                todayBoxController.getTodayBox().getAddTask().getText(),
-                addTaskConfigurationView.getDescriptionTextField().getText(),
-                startDate,
-                endDate,
-                Status.IN_PROGRESS,
-                idList,
-                false
-            );
-        } else if (idList == null) {
-            taskManager.createTask(
-                todayBoxController.getTodayBox().getAddTask().getText(),
-                addTaskConfigurationView.getDescriptionTextField().getText(),
-                startDate,
-                endDate,
-                Status.IN_PROGRESS,
-                idProject,
-                true
-            );
-        } else {
-            taskManager.createTask(
-                todayBoxController.getTodayBox().getAddTask().getText(),
-                addTaskConfigurationView.getDescriptionTextField().getText(),
-                startDate,
-                endDate,
-                Status.IN_PROGRESS,
-                idProject,
-                idList
-            );
-        }
+        //  check all fields are filled
 
+        if (addTaskConfigurationView.getStartDatePicker().getValue() == null || addTaskConfigurationView.getEndDatePicker().getValue() == null) {
+            AlertHandler.showFailureAlert("Please fill all fields");
+            return;
+        } else if (!InputValidator.isValidDate(startDate, endDate)) {
+            AlertHandler.showFailureAlert("End date must be after start date");
+            return;
+        }
+            if (idProject == null) {
+                taskManager.createTask(
+                    todayBoxController.getTodayBox().getAddTask().getText(),
+                    addTaskConfigurationView.getDescriptionTextField().getText(),
+                    startDate,
+                    endDate,
+                    Status.IN_PROGRESS,
+                    idList,
+                    false
+                );
+            } else if (idList == null) {
+                taskManager.createTask(
+                    todayBoxController.getTodayBox().getAddTask().getText(),
+                    addTaskConfigurationView.getDescriptionTextField().getText(),
+                    startDate,
+                    endDate,
+                    Status.IN_PROGRESS,
+                    idProject,
+                    true
+                );
+            } else {
+                taskManager.createTask(
+                    todayBoxController.getTodayBox().getAddTask().getText(),
+                    addTaskConfigurationView.getDescriptionTextField().getText(),
+                    startDate,
+                    endDate,
+                    Status.IN_PROGRESS,
+                    idProject,
+                    idList
+                );
+            }
+            AlertHandler.showSuccessAlert("Task added successfully");
         Stage stage = (Stage) addTaskConfigurationView.getSubmitButton().getScene().getWindow();
         ControllerUtils.closeStage(stage);
+
     }
 
     public void createView() {
