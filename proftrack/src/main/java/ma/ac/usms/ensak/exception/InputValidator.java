@@ -1,9 +1,12 @@
 package ma.ac.usms.ensak.exception;
 import java.io.File;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
+
+import ma.ac.usms.ensak.presentation.controller.ControllerUtils;
 
 
 public class InputValidator {
@@ -33,15 +36,17 @@ public class InputValidator {
             AlertHandler.showInvalidDateAlert();
             return false;
         }
-        if (StaetDate.before(new Date())) {
+        LocalDate startDate = ControllerUtils.convertToLocalDate(StaetDate);
+        LocalDate endDate = ControllerUtils.convertToLocalDate(EndDate);
+        if (startDate.isBefore(LocalDate.now())) {
             AlertHandler.showInvalidStartDateAlert();
             return false;
-        } else if (StaetDate.after(EndDate)) {
+        } else if (startDate.isAfter(endDate)) {
             AlertHandler.showInvalidDateAlert();
             return false;
+            
         }
         return true;
-        
     }
 
     public static boolean isValidFile(File file) {
