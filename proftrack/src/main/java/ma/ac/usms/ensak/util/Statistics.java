@@ -76,13 +76,13 @@ public class Statistics {
         return (TotalHoursByType[0] * 100) / totalHours;
     }
 
-    public static void main(String[] args) {
-        Statistics statistics = new Statistics();
-        System.out.println(statistics.getTotalWorkHoursByProject("9776c3ee-6899-482b-bf96-bc8363556b52"));
-        System.out.println(statistics.getNumberOfDocumentsByProject("9776c3ee-6899-482b-bf96-bc8363556b52"));
-        System.out.println(statistics.getTotalWorkHoursByDate(new Date(2024 - 1900, 0, 1), new Date(2025 - 1900, 11, 31))); // Adjusting Date constructor
-        System.out.println(statistics.getPercentageOfWorkHoursByCategory(Category.ACADEMIC, new Date(2024 - 1900, 0, 1), new Date(2025 - 1900, 11, 31)));
-        System.out.println(statistics.getPercentageOfWorkHoursByType(Type.PFE, new Date(2024 - 1900, 0, 1), new Date(2025 - 1900, 11, 31)));
-    }
+    // public static void main(String[] args) {
+    //     Statistics statistics = new Statistics();
+    //     System.out.println(statistics.getTotalWorkHoursByProject("9776c3ee-6899-482b-bf96-bc8363556b52"));
+    //     System.out.println(statistics.getNumberOfDocumentsByProject("9776c3ee-6899-482b-bf96-bc8363556b52"));
+    //     System.out.println(statistics.getTotalWorkHoursByDate(new Date(2024 - 1900, 0, 1), new Date(2025 - 1900, 11, 31))); // Adjusting Date constructor
+    //     System.out.println(statistics.getPercentageOfWorkHoursByCategory(Category.ACADEMIC, new Date(2024 - 1900, 0, 1), new Date(2025 - 1900, 11, 31)));
+    //     System.out.println(statistics.getPercentageOfWorkHoursByType(Type.PFE, new Date(2024 - 1900, 0, 1), new Date(2025 - 1900, 11, 31)));
+    // }
 
 }

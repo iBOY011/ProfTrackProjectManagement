@@ -13,7 +13,7 @@ import ma.ac.usms.ensak.persistance.StorageFile;
 import ma.ac.usms.ensak.persistance.dao.ProjectDAO;
 
 public class ProjectImpl implements ProjectDAO {
-    private static final String JSON_FILE_PATH = "proftrack\\src\\main\\resources\\databases\\projects.json";
+    private static final String JSON_FILE_PATH = "src\\main\\resources\\databases\\projects.json";
 
     public ProjectImpl() {
     }

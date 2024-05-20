@@ -1,15 +1,16 @@
 package ma.ac.usms.ensak.presentation.controller;
 
-
 import ma.ac.usms.ensak.presentation.Views.FullCalendarView;
 import ma.ac.usms.ensak.presentation.Views.HomeView;
 import ma.ac.usms.ensak.presentation.Views.TodayView;
 import ma.ac.usms.ensak.presentation.Views.VBoxes.NavBarBox;
+import ma.ac.usms.ensak.presentation.Views.StatisticView;
 
 public class HomeController {
     private static double normalWidth;
     private static HomeView homeView;
     private static NavBarBox navbar = new NavBarBox();
+    private static StatisticView statisticView = new StatisticView();
     private static TodayView todayView = new TodayView();
     private static FullCalendarViewController fullcalendarviewcontroller = new FullCalendarViewController();
     private static FullCalendarView fullcalendarView = fullcalendarviewcontroller.getFullCalendarView();
@@ -25,6 +26,7 @@ public class HomeController {
         homeView.setCenter(todayView);
         showToday();
         showCalendar();
+        showStatistics();
     }
 
     public void showCalendar() {
@@ -34,6 +36,13 @@ public class HomeController {
             fullcalendarView = fullcalendarviewcontroller.getFullCalendarView();
         });
 
+    }
+
+    public void showStatistics() {
+        navbar.getStatisticsButton().setOnAction(e -> {
+            statisticView = new StatisticView();
+            homeView.setCenter(statisticView);
+        });
     }
 
     public void showToday() {
@@ -51,28 +60,29 @@ public class HomeController {
     }
 
     // private static double calculateNormalWidth() {
-    //     double[] percentages = { 20, 40, 40 };
-    //     double totalWidth = todayView.getShowBox().getParent().getLayoutBounds().getWidth();
-    //     double normalWidth = 0;
-    //     for (double percentage : percentages) {
-    //         normalWidth += totalWidth * (percentage / 100);
-    //     }
-    //     return normalWidth;
+    // double[] percentages = { 20, 40, 40 };
+    // double totalWidth =
+    // todayView.getShowBox().getParent().getLayoutBounds().getWidth();
+    // double normalWidth = 0;
+    // for (double percentage : percentages) {
+    // normalWidth += totalWidth * (percentage / 100);
     // }
-    
-    // public static void toggleShowBoxSize() {
-    //     calculateNormalWidth();
-    //     System.out.println("Normal width: " + normalWidth);
-    //     // Check if the current width is 0, if so, set it back to normal width
-    //     if (todayView.getShowBox().getPrefWidth() == 0) {
-    //         todayView.getTodayBox().setPrefWidth(todayView.getTodayBox().getWidth()-normalWidth);
-    //         todayView.getShowBox().setPrefWidth(normalWidth);
-    //     } else {
-    //         // Otherwise, set the width to 0
+    // return normalWidth;
+    // }
 
-    //         todayView.getShowBox().setPrefWidth(0);
-    //         todayView.getTodayBox().setPrefWidth(todayView.getTodayBox().getWidth()+normalWidth);
-    //     }
+    // public static void toggleShowBoxSize() {
+    // calculateNormalWidth();
+    // System.out.println("Normal width: " + normalWidth);
+    // // Check if the current width is 0, if so, set it back to normal width
+    // if (todayView.getShowBox().getPrefWidth() == 0) {
+    // todayView.getTodayBox().setPrefWidth(todayView.getTodayBox().getWidth()-normalWidth);
+    // todayView.getShowBox().setPrefWidth(normalWidth);
+    // } else {
+    // // Otherwise, set the width to 0
+
+    // todayView.getShowBox().setPrefWidth(0);
+    // todayView.getTodayBox().setPrefWidth(todayView.getTodayBox().getWidth()+normalWidth);
+    // }
     // }
     private static double calculateNormalWidth() {
         double[] percentages = { 20, 40, 40 };
